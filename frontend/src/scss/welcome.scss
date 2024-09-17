@@ -1,0 +1,28 @@
+.container__welcome{
+    position: relative;
+}
+
+.text{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2rem;
+}
+
+.text_hide{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 110%;
+    background-color: #f1f1f1;
+}
+
+.text_cursor{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    border-left: 3px solid black;
+}

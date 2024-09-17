@@ -1,0 +1,129 @@
+// Заголовки, загальні БЕМ блоки та інше...
+//================================================================LIST========================================================================================
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(20);
+    position: relative;
+    z-index: 1;
+    
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: toRem(20);
+    }
+
+    &__body {
+        display: flex;
+        gap: toRem(30);
+        align-items: center;
+        flex: 0 1 75%;
+    }
+
+    &__number {
+        font-weight: 600;
+        color: $royalBlue;
+        flex: 0 0 toRem(40);
+        text-align: center;
+    }
+
+    &__title {
+        color: $blue;
+        font-weight: 800;
+        font-size: toRem(20);
+        &:not(:last-child) {
+            margin-bottom: toRem(8);
+        }
+    }
+
+    &__text {}
+
+    &__description {
+        @media (max-width: toEm(500)) {
+            font-size: toRem(15);
+        }
+    }
+
+    &__price {
+        color: $blue;
+        font-weight: 800;
+    }
+
+    &__button {
+        border: solid 3px $royalBlue;
+        padding: toRem(6) toRem(9);
+        transition: all 0.3s;
+        border-radius: 50%;
+
+        img {
+            transition: all 0.3s;
+            vertical-align: baseline;
+        }
+
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: $lightBlue;
+
+                img {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+    }
+    &__empty {
+        text-align: center;
+    }
+}
+//============================================================INCREMENT DECREMENT COUNTER============================================================================================
+.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .quantity__minus,
+  .quantity__plus {
+    display: block;
+    width: 22px;
+    height: 23px;
+    margin: 0;
+    background: #dee0ee;
+    text-decoration: none;
+    text-align: center;
+    line-height: 23px;
+    transition: all 0.3s;
+  }
+  .quantity__minus:hover,
+  .quantity__plus:hover {
+    background: #575b71;
+    color: #fff;
+  } 
+  .quantity__minus {
+    border-radius: 3px 0 0 3px;
+  }
+  .quantity__plus {
+    border-radius: 0 3px 3px 0;
+  }
+  .quantity__input {
+    width: 32px;
+    height: 23px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border-top: 2px solid #dee0ee;
+    border-bottom: 2px solid #dee0ee;
+    border-left: 1px solid #dee0ee;
+    border-right: 2px solid #dee0ee;
+    background: #fff;
+    color: #8184a1;
+  }
+  .quantity__minus:link,
+  .quantity__plus:link {
+    color: #8184a1;
+  } 
+  .quantity__minus:visited,
+  .quantity__plus:visited {
+    color: #fff;
+  }
+  //========================================================================================================================================================

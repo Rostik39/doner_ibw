@@ -1,0 +1,553 @@
+{
+    "Döner-Dürüm-Pide": {
+        "01": {
+            "Name": "Döner Kebap",
+            "Description": "Fleisch, Salat, Sauce",
+            "Price": 4.00
+        },
+        "02": {
+            "Name": "Döner Kebap",
+            "Description": "Käse, Fleisch, Salat, Sauce",
+            "Price": 5.00
+        },
+        "03": {
+            "Name": "Döner extra Fleisch",
+            "Description": "viel Fleisch, Salat, Sauce",
+            "Price": 5.00
+        },
+        "04": {
+            "Name": "XXL Super Döner",
+            "Description": "extra viel Fleisch, Salat, Sauce, Käse",
+            "Price": 6.00
+        },
+        "05": {
+            "Name": "Döner Hawaii",
+            "Description": "Fleisch, Salat, Ananas, Sauce",
+            "Price": 5.50
+        },
+        "06": {
+            "Name": "Döner",
+            "Description": "Salat, Fleisch, Peperoni, Sauce",
+            "Price": 5.00
+        },
+        "07": {
+            "Name": "Döner Vegetarisch",
+            "Description": "Salat, Käse, Sauce",
+            "Price": 3.50
+        },
+        "08": {
+            "Name": "Döner Vegetarisch",
+            "Description": "Salat, Sauce",
+            "Price": 4.00
+        },
+        "08a": {
+            "Name": "Döner Teller",
+            "Description": "Fleisch, Salat, Sauce, Fladenbrot",
+            "Price": 7.00
+        },
+        "09": {
+            "Name": "Döner Teller mit Käse",
+            "Description": "Fleisch, Salat, Sauce, Käse, Fladenbrot",
+            "Price": 7.50
+        },
+        "10": {
+            "Name": "XXL Döner Teller",
+            "Description": "extra viel Fleisch, Käse, Salat, Sauce, Fladenbrot",
+            "Price": 9.00
+        },
+        "11": {
+            "Name": "Dürüm normal",
+            "Description": "Fleisch, Salat, Sauce",
+            "Price": 4.00
+        },
+        "11a": {
+            "Name": "Dürüm mit Käse",
+            "Description": "Fleisch, Salat, Käse, Sauce",
+            "Price": 4.00
+        },
+        "12": {
+            "Name": "Dürüm super",
+            "Description": "viel Fleisch, Salat, Sauce",
+            "Price": 5.00
+        },
+        "13": {
+            "Name": "Dürüm Hawaii",
+            "Description": "Ananas, Fleisch, Salat, Sauce",
+            "Price": 5.50
+        },
+        "14": {
+            "Name": "Dürüm vegetarisch",
+            "Description": "Salat, Sauce, Käse",
+            "Price": 4.50
+        },
+        "15": {
+            "Name": "Dürüm vegetarisch",
+            "Description": "Salat, Sauce",
+            "Price": 4.00
+        },
+        "16": {
+            "Name": "Fladenbrot mit Sauce",
+            "Description": "",
+            "Price": 1.50
+        },
+        "17": {
+            "Name": "Pide mit Hackfleisch, Schafskäse",
+            "Description": "",
+            "Price": 6.50
+        },
+        "18": {
+            "Name": "Pide mit Spinat, Schafskäse",
+            "Description": "",
+            "Price": 6.50
+        },
+        "19": {
+            "Name": "Pide Quattro Formaggi",
+            "Description": "mit vier Sorten Käse",
+            "Price": 6.50
+        }
+    },
+    "Kids Box": {
+        "20": {
+            "Name": "Kids Box",
+            "Description": "mit Pommes, Nuggets, 1 Lolly, 1 Spielzeug, 1 Getränk",
+            "Price": 7.50
+        },
+        "20a": {
+            "Name": "Dönerbox",
+            "Description": "mit Dönerfleisch und Pommes",
+            "Price": 5.00
+        }
+    },
+    "Pizza": {
+        "1": {
+            "21": {
+                "Name": "Margherita",
+                "Description": "",
+                "Price": {
+                    "Kinder": 5.30,
+                    "Klein": 7.10,
+                    "Groß": 8.40,
+                    "Family": 16.10,
+                    "Party": 20.40
+                }
+            }
+        },
+        "2": {
+            "22": {
+                "Name": "Salami",
+                "Description": "",
+                "Price": {
+                    "Kinder": 5.90,
+                    "Klein": 7.90,
+                    "Groß": 9.10,
+                    "Family": 17.20,
+                    "Party": 22.40
+                }
+            },
+            "23": {
+                "Name": "Hackfleisch",
+                "Description": "",
+                "Price": {
+                    "Kinder": 5.90,
+                    "Klein": 7.90,
+                    "Groß": 9.10,
+                    "Family": 17.20,
+                    "Party": 22.40
+                }
+            },
+            "24": {
+                "Name": "Schinken",
+                "Description": "",
+                "Price": {
+                    "Kinder": 5.90,
+                    "Klein": 7.90,
+                    "Groß": 9.10,
+                    "Family": 17.20,
+                    "Party": 22.40
+                }
+            },
+            "25": {
+                "Name": "Thunfisch",
+                "Description": "",
+                "Price": {
+                    "Kinder": 5.90,
+                    "Klein": 7.90,
+                    "Groß": 9.10,
+                    "Family": 17.20,
+                    "Party": 22.40
+                }
+            },
+            "26": {
+                "Name": "Champignons",
+                "Description": "",
+                "Price": {
+                    "Kinder": 5.90,
+                    "Klein": 7.90,
+                    "Groß": 9.10,
+                    "Family": 17.20,
+                    "Party": 22.40
+                }
+            }
+        },
+        "3": {
+            "27": {
+                "Name": "Champignons, Zwiebeln, Knoblauch",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.00,
+                    "Klein": 8.20,
+                    "Groß": 9.70,
+                    "Family": 18.70,
+                    "Party": 24.50
+                }
+            },
+            "27a": {
+                "Name": "Hackfleisch, Zwiebeln",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.00,
+                    "Klein": 8.20,
+                    "Groß": 9.70,
+                    "Family": 18.70,
+                    "Party": 24.50
+                }
+            },
+            "28": {
+                "Name": "Salami, Champignons",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.00,
+                    "Klein": 8.20,
+                    "Groß": 9.70,
+                    "Family": 18.70,
+                    "Party": 24.50
+                }
+            },
+            "28a": {
+                "Name": "Schinken, Brokkoli",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.00,
+                    "Klein": 8.20,
+                    "Groß": 9.70,
+                    "Family": 18.70,
+                    "Party": 24.50
+                }
+            },
+            "29": {
+                "Name": "Salami, Schinken",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.00,
+                    "Klein": 8.20,
+                    "Groß": 9.70,
+                    "Family": 18.70,
+                    "Party": 24.50
+                }
+            },
+            "29a": {
+                "Name": "Mozzarella, frische Tomaten",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.00,
+                    "Klein": 8.20,
+                    "Groß": 9.70,
+                    "Family": 18.70,
+                    "Party": 24.50
+                }
+            },
+            "30": {
+                "Name": "Schinken, Zwiebeln, Ei",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.00,
+                    "Klein": 8.20,
+                    "Groß": 9.70,
+                    "Family": 18.70,
+                    "Party": 24.50
+                }
+            },
+            "30a": {
+                "Name": "Salami, Peperoni",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.00,
+                    "Klein": 8.20,
+                    "Groß": 9.70,
+                    "Family": 18.70,
+                    "Party": 24.50
+                }
+            },
+            "31": {
+                "Name": "Schinken, Champignons",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.00,
+                    "Klein": 8.20,
+                    "Groß": 9.70,
+                    "Family": 18.70,
+                    "Party": 24.50
+                }
+            }
+        },
+        "4": {
+            "31a": {
+                "Name": "Salami, Schinken, Champignons",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.00,
+                    "Klein": 8.50,
+                    "Groß": 10.20,
+                    "Family": 19.90,
+                    "Party": 25.50
+                }
+            },
+            "32": {
+                "Name": "Salami, Schinken, Hackfleisch",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.00,
+                    "Klein": 8.50,
+                    "Groß": 10.20,
+                    "Family": 19.90,
+                    "Party": 25.50
+                }
+            },
+            "32a": {
+                "Name": "Vegetarisch",
+                "Description": "Brokkoli, Champignons, frische Tomaten",
+                "Price": {
+                    "Kinder": 7.00,
+                    "Klein": 8.50,
+                    "Groß": 10.20,
+                    "Family": 19.90,
+                    "Party": 25.50
+                }
+            },
+            "33": {
+                "Name": "Salami, Champignons, Hackfleisch",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.00,
+                    "Klein": 8.50,
+                    "Groß": 10.20,
+                    "Family": 19.90,
+                    "Party": 25.50
+                }
+            },
+            "33a": {
+                "Name": "Hackfleisch, frische Tomaten, Zwiebeln",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.00,
+                    "Klein": 8.50,
+                    "Groß": 10.20,
+                    "Family": 19.90,
+                    "Party": 25.50
+                }
+            },
+            "34": {
+                "Name": "Schinken, Champignons, Hackfleisch",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.00,
+                    "Klein": 8.50,
+                    "Groß": 10.20,
+                    "Family": 19.90,
+                    "Party": 25.50
+                }
+            },
+            "34a": {
+                "Name": "Schinken, Champignons, Ananas",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.00,
+                    "Klein": 8.50,
+                    "Groß": 10.20,
+                    "Family": 19.90,
+                    "Party": 25.50
+                }
+            },
+            "34b": {
+                "Name": "Schinken, Champignons, Artischocken",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.00,
+                    "Klein": 8.50,
+                    "Groß": 10.20,
+                    "Family": 19.90,
+                    "Party": 25.50
+                }
+            },
+            "36c": {
+                "Name": "Salami, Zwiebeln, Knoblauch",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.00,
+                    "Klein": 8.50,
+                    "Groß": 10.20,
+                    "Family": 19.90,
+                    "Party": 25.50
+                }
+            }
+        },
+        "5": {
+            "35": {
+                "Name": "Quattro Stagioni",
+                "Description": "Salami, Schinken, Champignons, Zwiebeln",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.10,
+                    "Groß": 10.90,
+                    "Family": 20.90,
+                    "Party": 26.50
+                }
+            },
+            "35a": {
+                "Name": "Schinken, Ananas, Ei, Spinat",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.10,
+                    "Groß": 10.90,
+                    "Family": 20.90,
+                    "Party": 26.50
+                }
+            },
+            "36": {
+                "Name": "Salami, Schinken, Champignons, Paprika",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.10,
+                    "Groß": 10.90,
+                    "Family": 20.90,
+                    "Party": 26.50
+                }
+            },
+            "37": {
+                "Name": "Pizza Capricciosa",
+                "Description": "Salami, Paprika, Champignons, Oliven, Sardellen",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.10,
+                    "Groß": 10.90,
+                    "Family": 20.90,
+                    "Party": 26.50
+                }
+            },
+            "37a": {
+                "Name": "Schinken, Champignons, Hackfleisch, Zwiebel",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.10,
+                    "Groß": 10.90,
+                    "Family": 20.90,
+                    "Party": 26.50
+                }
+            },
+            "38": {
+                "Name": "Schinken, Peperoni, Zwiebeln, Oliven",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.10,
+                    "Groß": 10.90,
+                    "Family": 20.90,
+                    "Party": 26.50
+                }
+            },
+            "38a": {
+                "Name": "Salami, Schinken, Peperoni mild, Oliven, Champignons",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.10,
+                    "Groß": 10.90,
+                    "Family": 20.90,
+                    "Party": 26.50
+                }
+            },
+            "39": {
+                "Name": "Salami, Schinken, Champignons, Hackfleisch, Zwiebel",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.10,
+                    "Groß": 10.90,
+                    "Family": 20.90,
+                    "Party": 26.50
+                }
+            },
+            "39a": {
+                "Name": "Pizza Extra",
+                "Description": "doppelt Salami, Schinken, Käse, extra scharf",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.10,
+                    "Groß": 10.90,
+                    "Family": 20.90,
+                    "Party": 26.50
+                }
+            }
+        },
+        "6": {
+            "40": {
+                "Name": "Napoli",
+                "Description": "Mozzarella, Basilikum, Tomaten",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.60,
+                    "Groß": 10.20,
+                    "Family": 18.70,
+                    "Party": 25.50
+                }
+            },
+            "41": {
+                "Name": "Schinken, Mozzarella, Ei",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.60,
+                    "Groß": 10.20,
+                    "Family": 18.70,
+                    "Party": 25.50
+                }
+            },
+            "41a": {
+                "Name": "Schinken, Spargel, Ei",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.60,
+                    "Groß": 10.20,
+                    "Family": 18.70,
+                    "Party": 25.50
+                }
+            },
+            "42": {
+                "Name": "Mais, Paprika, Ananas",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.60,
+                    "Groß": 10.20,
+                    "Family": 18.70,
+                    "Party": 25.50
+                }
+            },
+            "43": {
+                "Name": "Thunfisch, Zwiebeln, Knoblauch",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.60,
+                    "Groß": 10.20,
+                    "Family": 18.70,
+                    "Party": 25.50
+                }
+            }
+        }
+    }
+}

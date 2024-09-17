@@ -1,0 +1,46 @@
+.cart--page {
+    flex: 1 0 auto;
+    align-content: center;
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: toRem(30);
+        padding-top: toRem(20);
+        padding-bottom: toRem(20);
+    }
+
+    &__money {
+        align-self: end;
+        font-size: toRem(24);
+        font-weight: 600;
+        color: $blue;
+        &::after{
+            content:'€';
+        }
+    }
+
+    &__main-text{
+        font-size: toRem(30);
+        font-weight: 500;
+        color: $royalBlue;
+    }
+
+    &__box {
+        padding: toRem(15);
+        @include box();
+        @include adaptiveValue("width", 800, 290, 0);
+    }
+
+    &__total {
+        font-size: toRem(24);
+        font-weight: 600;
+        color: $blue;
+        text-align: end;
+    }
+
+    &__button {
+        color: #ffffff;
+        @include buttonDefault($color: $skyBlue, $secondColor: $blue);
+    }
+}
