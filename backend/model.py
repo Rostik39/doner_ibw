@@ -1,9 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime, timezone
 
 db = SQLAlchemy()
 
 class User(db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
@@ -53,3 +55,28 @@ class PizzaPrice(db.Model):
     size_id = db.Column(db.Integer, db.ForeignKey('pizza_sizes.size_id'), primary_key=True)
     subcategory_id = db.Column(db.Integer, db.ForeignKey('pizza_subcategories.subcategory_id'), primary_key=True)
     price = db.Column(db.Numeric(10, 2))
+
+class Order(db.Model):
+    __tablename__ = 'order'
+
+    order_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    created = db.Column(db.DateTime, nullable=False, default=datetime.now(timezone.utc))
+
+class OrderItem(db.Model):
+    __tablename__ = 'orderitem'
+
+    item_id = db.Column(db.Integer, primary_key=True)
+    order_id = db.Column(db.Integer, db.ForeignKey('order.order_id'), nullable=False)
+    dish_id = db.Column(db.Integer, db.ForeignKey('dishes.dish_id'), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    size_id = db.Column(db.Integer, db.ForeignKey('pizza_sizes.size_id'), nullable=True)
+    sauce_id = db.Column(db.Integer, db.ForeignKey('sauce.id'), nullable=True)
+
+class Sauce(db.Model):
+    __tablename__ = 'sauce'
+
+    id = db.Column(db.Integer, primary_key=True)
+    herbs = db.Column(db.Boolean, nullable=False, default=False)
+    garlic = db.Column(db.Boolean, nullable=False, default=False)
+    spicy = db.Column(db.Boolean, nullable=False, default=False)

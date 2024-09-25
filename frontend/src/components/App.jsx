@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import Home from "./main/Home.jsx";
-import Menu from "./main/Menu.jsx";
+import Home from "./main/home/Home.jsx";
+import Menu from "./main/menu/Menu.jsx";
 import SignIn from "./authentication/SignIn.jsx";
 import SignUp from "./authentication/SignUp.jsx";
 import Header from "./header/Header.jsx";
-import Footer from "./footer/Footer.jsx";
 import useToken from "../functions/useToken.jsx";
 import { Cart } from "./main/cart/Cart.jsx";
 import {CartProvider} from "./main/cart/CartProvider.jsx";
-import ErrorPage from "./main/ErrorPage.jsx"
+import Error from "./main/error/Error.jsx"
 import init from '../js/app';
+import OrdersOverview from './main/orders/OrdersOverview.jsx'
 
 
 const AppContent = () => {
@@ -33,18 +33,17 @@ const AppContent = () => {
                     <CartProvider>
                         {location.pathname !== '/' &&
                             location.pathname !== '/cart' &&
-                            location.pathname !== '/menu' ? null : <Header logout={removeToken} />}
+                            location.pathname !== '/menu' &&
+                            location.pathname !== '/orders-overview' ? null : <Header logout={removeToken} />}
                         <main className="page">
                             <Routes>
                                 <Route path='/' element={<Home token={token} setToken={setToken} />} />
                                 <Route path='/menu' element={<Menu token={token} setToken={setToken} />} />
                                 <Route path='/cart' element={<Cart token={token} setToken={setToken} />} />
-                                <Route path="*" element={<ErrorPage />} />
+                                <Route path='/orders-overview' element={<OrdersOverview token={token} setToken={setToken}/>} />
+                                <Route path="*" element={<Error/>} />
                             </Routes>
                         </main>
-                        {location.pathname !== '/' &&
-                            location.pathname !== '/cart' &&
-                            location.pathname !== '/menu' ? null : <Footer />}
                     </CartProvider>
                 </>
             ) : (
@@ -53,7 +52,7 @@ const AppContent = () => {
                         <Route path='/' element={<Navigate to='/signIn'/>} />
                         <Route path='/signIn' element={<SignIn setToken={setToken} />} />
                         <Route path='/signUp' element={<SignUp />} />
-                        <Route path="*" element={<ErrorPage/>} />
+                        <Route path="*" element={<Error/>} />
                     </Routes>
                 </main>
             )}

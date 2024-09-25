@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Sticky from 'react-sticky-el';
-import PlusSvg from "../../img/plus.svg"
-import { CartContext } from './cart/CartProvider';
+import PlusSvg from "../../../img/plus.svg"
+import { CartContext } from '../cart/CartProvider';
 
 const MenuList = ({ dishes, activeCategory }) => {
 
@@ -20,7 +20,7 @@ const MenuList = ({ dishes, activeCategory }) => {
                             </div>
                         </div>
                         <div className="list__price">{item.price.toFixed(2)}</div>
-                        <button onClick={() => updateCart(item, activeCategory)} className="list__button">
+                        <button onClick={() => updateCart(item, activeCategory, null)} className="list__button">
                             <img src={PlusSvg} alt="Add Item"/>
                         </button>
                     </li>
@@ -47,7 +47,9 @@ const MenuList = ({ dishes, activeCategory }) => {
                             {['Kinder', 'Klein', 'Groß', 'Family', 'Party'].map((size) => (
                                 <div key={size} className="pricelist__item">
                                     <div className="pricelist__size">{size}</div>
-                                    <div className="pricelist__price">{groupedDishes[subcategory][0].price.find(p => p[size])[size]}</div>
+                                    <div className="pricelist__price">
+                                       {groupedDishes[subcategory][0].price.find(p => p[size])?.[size] || ''}
+                                    </div>
                                 </div>
                             ))}
                         </div>

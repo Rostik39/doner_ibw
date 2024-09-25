@@ -15,6 +15,14 @@ const init = () => {
 	flsFunctions.menuInit();
 	
 	dynamicAdapt.init();
+	
+	/*
+	Модуль "Спойлери"
+	Документація: https://template.fls.guru/template-docs/modul-spojlery.html
+	Сніппет (HTML): spollers
+	*/
+	// flsFunctions.spollers();
+
 }
 
 // Увімкнути/вимкнути FLS (Full Logging System) (в роботі)
@@ -44,13 +52,6 @@ import * as flsFunctions from "./files/functions.js";
 
 /* Форматування чисел */
 // import './libs/wNumb.min.js';
-
-/*
-Модуль "Спойлери"
-Документація: https://template.fls.guru/template-docs/modul-spojlery.html
-Сніппет (HTML): spollers
-*/
-// flsFunctions.spollers();
 
 /*
 Модуль "Таби"

@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from config import Config
 from model import db
-from populate import populateDB
+# from populate import populateDB
 from flask_jwt_extended import JWTManager
 
 def create_app():
@@ -32,9 +32,12 @@ def create_app():
     
     from routes.cart import cart
     app.register_blueprint(cart)
+    
+    from routes.orders import orders
+    app.register_blueprint(orders)
 
-    return app, jwt
+    return app
 
 if __name__ == '__main__':
-    app, jwt = create_app()
+    app = create_app()
     app.run()

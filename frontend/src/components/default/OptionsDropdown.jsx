@@ -1,14 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../main/cart/CartProvider';
 
-const OptionsDropdown = ({id, options, initValue=null}) => {
-  const [selectedOption, setSelectedOption] = useState("");
+const OptionsDropdown = ({id, options, initValue="Klein"}) => {
+  const [selectedOption, setSelectedOption] = useState(initValue);
 
   const {handleChangeOption} = useContext(CartContext)
-
-  useEffect(() => {
-    initValue ? setSelectedOption(initValue) : null;
-  }, [])
 
   useEffect(() => {
     handleChangeOption(id, selectedOption);

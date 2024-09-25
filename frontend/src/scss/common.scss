@@ -6,19 +6,33 @@
     gap: toRem(20);
     position: relative;
     z-index: 1;
-    
+
     &__item {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: toRem(20);
+        @include adaptiveValue("gap", 20, 10);
+
+        @media (max-width: toEm(1115)) {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
     }
 
     &__body {
         display: flex;
-        gap: toRem(30);
         align-items: center;
         flex: 0 1 75%;
+        @include adaptiveValue("gap", 30, 10);
+
+        @media (max-width: toEm(1115)) {
+            flex: 0 0 100%;
+        }
+
+        @media (max-width:$mobile) {
+            flex-wrap: wrap;
+        }
+
     }
 
     &__number {
@@ -26,28 +40,31 @@
         color: $royalBlue;
         flex: 0 0 toRem(40);
         text-align: center;
+        @include adaptiveValue("flex-basis", 40, 20);
     }
 
     &__title {
         color: $blue;
         font-weight: 800;
-        font-size: toRem(20);
-        &:not(:last-child) {
-            margin-bottom: toRem(8);
-        }
+        @include adaptiveValue("font-size", 20, 16);
     }
 
     &__text {}
 
     &__description {
-        @media (max-width: toEm(500)) {
-            font-size: toRem(15);
+        @include adaptiveValue("font-size", 16, 14);
+        &:not(:first-child) {
+            @include adaptiveValue("margin-top", 8, 4);
         }
     }
 
     &__price {
         color: $blue;
         font-weight: 800;
+        @media (max-width:$mobile){
+             font-weight: 600; 
+             font-size: toRem(16);
+        }
     }
 
     &__button {
@@ -71,19 +88,28 @@
             }
         }
     }
+
     &__empty {
         text-align: center;
     }
+
+    &__select {
+        @media (max-width: $mobile){
+            margin: 0 auto;
+        }
+    }
 }
+
 //============================================================INCREMENT DECREMENT COUNTER============================================================================================
 .quantity {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-  }
-  .quantity__minus,
-  .quantity__plus {
+}
+
+.quantity__minus,
+.quantity__plus {
     display: block;
     width: 22px;
     height: 23px;
@@ -93,19 +119,23 @@
     text-align: center;
     line-height: 23px;
     transition: all 0.3s;
-  }
-  .quantity__minus:hover,
-  .quantity__plus:hover {
+}
+
+.quantity__minus:hover,
+.quantity__plus:hover {
     background: #575b71;
     color: #fff;
-  } 
-  .quantity__minus {
+}
+
+.quantity__minus {
     border-radius: 3px 0 0 3px;
-  }
-  .quantity__plus {
+}
+
+.quantity__plus {
     border-radius: 0 3px 3px 0;
-  }
-  .quantity__input {
+}
+
+.quantity__input {
     width: 32px;
     height: 23px;
     margin: 0;
@@ -117,13 +147,16 @@
     border-right: 2px solid #dee0ee;
     background: #fff;
     color: #8184a1;
-  }
-  .quantity__minus:link,
-  .quantity__plus:link {
+}
+
+.quantity__minus:link,
+.quantity__plus:link {
     color: #8184a1;
-  } 
-  .quantity__minus:visited,
-  .quantity__plus:visited {
+}
+
+.quantity__minus:visited,
+.quantity__plus:visited {
     color: #fff;
-  }
-  //========================================================================================================================================================
+}
+
+//========================================================================================================================================================

@@ -1,0 +1,26 @@
+.input {
+    border: 2px solid transparent;
+    width: 15em;
+    height: 1.7em;
+    padding-left: 0.8em;
+    outline: none;
+    overflow: hidden;
+    background-color: #F3F3F3;
+    border-radius: 10px;
+    transition: all 0.5s;
+    box-shadow: 2px 2px 7px 0 rgb(0, 0, 0, 0.2);
+
+    @media (any-hover: hover) {
+
+        &:hover,
+        &:focus {
+            border: 2px solid #4A9DEC;
+            box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+            background-color: white;
+        }
+    }
+}
+
+.negative-value {
+    color: red;
+}

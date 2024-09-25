@@ -2,6 +2,9 @@
 .customCheckBoxHolder {
     margin: 5px;
     display: flex;
+    @media (max-width:$mobile){
+        margin: 0 auto; 
+    }
 }
 
 .customCheckBox {
@@ -24,6 +27,9 @@
     outline: none;
     justify-content: center;
     min-width: 55px;
+    @media (max-width:$mobile){
+        height: toRem(28); 
+    }
 }
 
 .customCheckBox:hover {
@@ -33,26 +39,26 @@
 }
 
 .customCheckBox .inner {
-    font-size: 18px;
     font-weight: 900;
     pointer-events: none;
     transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
     transition-duration: 300ms;
     transition-property: transform;
     transform: translateY(0px);
+    @include adaptiveValue("font-size", 18, 14);
 }
 
 .customCheckBox:hover .inner {
     transform: translateY(-2px);
 }
 
-.customCheckBoxWrapper:first-of-type .customCheckBox {
+.customCheckBoxBody:first-of-type .customCheckBox {
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
     border-right: 0px;
 }
 
-.customCheckBoxWrapper:last-of-type .customCheckBox {
+.customCheckBoxBody:last-of-type .customCheckBox {
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
     border-left: 0px;

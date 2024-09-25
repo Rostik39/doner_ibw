@@ -1,49 +1,63 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 
-const useFetch = (url, token, setToken) => {
+const useFetch = (token=null, setToken=null) => {
     const [data, setData] = useState(null)
-    const [isPending, setIsPending] = useState(true);
+    const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const abortCont = new AbortController();
-
-        fetch(url,{
+    const fetchData = useCallback(
+        (endOfUrl, method, options = {}) => {
+          const { body = null, doOnSuccess = () => {}, doOnError = () => {} } = options;
+          const abortCont = new AbortController();
+          setIsPending(true);
+          setError(null);
+      
+          fetch("http://127.0.0.1:5000/api" + endOfUrl, {
+            method: method,
             headers: {
-                Authorization: 'Bearer ' + token
-            }
-        })
-            .then(res => {
-                if(!res.ok){
-                    if (res.status === 401){
-                        alert("Session has expired");
-                        const buttonLogout = document.getElementById("logout");
-                        buttonLogout.click();
-                    }
-                    throw Error('could not fetch the data for that resource');
+              Authorization: token ? `Bearer ${token}` : null,
+              "Content-Type": "application/json",
+            },
+            body: body ? JSON.stringify(body) : null
+          })
+            .then((res) => {
+              return res.json().then((data) => {
+                if (!res.ok) {
+                  if (res.status === 401) {
+                    alert(data.error);
+                    const buttonLogout = document.getElementById("logout");
+                    buttonLogout.click();
+                  }
+                  throw Error(data.error);
                 }
-                const newToken = res.headers.get('New-Access-Token');
+      
+                const newToken = res.headers.get("New-Access-Token");
                 newToken && setToken(newToken);
-
-                return res.json();
+      
+                return data;
+              });
             })
             .then((data) => {
-                setData(data);
-                setIsPending(false);
+              setData(data);
+              setIsPending(false);
+              doOnSuccess(data);
             })
-            .catch(err => {
-                if (err.name === 'AbortError'){
-                    console.log('fetch aborted');
-                }
-                setIsPending(false);
+            .catch((err) => {
+              if (err.name === "AbortError") {
+                console.log("fetch aborted");
+              } else {
                 setError(err.message);
-            })
+                doOnError();
+                setIsPending(false);
+              }
+            });
+      
+          return () => abortCont.abort();
+        },
+        [token, setToken]
+    );
 
-        return () => abortCont.abort();
-
-    }, [url, token, setToken]);
-
-    return {data, isPending, error};
+    return {data, isPending, error, fetchData};
 }
 
 export default useFetch

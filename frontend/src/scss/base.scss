@@ -4,6 +4,7 @@
 
 @import "base/options";
 @import "base/checkBox";
+@import "base/input";
 
 // Стилі меню + бургер
 @import "base/menu";
@@ -12,7 +13,7 @@
 // @import "base/popup";
 
 // Стилі спойлерів
-// @import "base/spollers";
+@import "base/spollers";
 
 // Стилі табів
 // @import "base/tabs";

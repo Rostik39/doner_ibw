@@ -1,65 +1,48 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { CartContext } from '../main/cart/CartProvider';
 
-const CustomCheckBox = () => {
-  // State to track which checkboxes are checked
-  const [checkedState, setCheckedState] = useState({
-    cCB1: false,
-    cCB2: false,
-    cCB3: false,
-  });
+const CustomCheckBox = ({id, sauces}) => {
+  const [checkedState, setCheckedState] = useState(sauces);
+  const {handleSauceSelection} = useContext(CartContext)
 
-  // Function to handle checkbox changes
+  useEffect(() => {
+    handleSauceSelection(id, checkedState);
+  }, [checkedState])
+
   const handleCheckboxChange = (e) => {
-    const { id, checked } = e.target;
+    const inputElement = e.currentTarget.querySelector('input');
+
+    const { name } = inputElement;
+    const newCheckedState = !checkedState[name];
+
     setCheckedState((prevState) => ({
       ...prevState,
-      [id]: checked,
+      [name]: newCheckedState,
     }));
   };
 
   return (
     <div className="customCheckBoxHolder">
-      {/* Checkbox 1 */}
-      <input
-        className="customCheckBoxInput"
-        id="cCB1"
-        type="checkbox"
-        checked={checkedState.cCB1}
-        onChange={handleCheckboxChange}
-      />
-      <label className="customCheckBoxWrapper" htmlFor="cCB1">
-        <div className="customCheckBox">
-          <div className="inner">Kräuter</div>
+      {Object.keys(checkedState).map((sauce) => (
+        <div
+          className="customCheckBoxBody"
+          onClick={handleCheckboxChange}
+          key={sauce}
+        >
+          <input
+            className="customCheckBoxInput"
+            name={sauce}
+            type="checkbox"
+            checked={checkedState[sauce]}
+            onChange={() => {}}
+          />
+          <label className="customCheckBoxWrapper" htmlFor={sauce}>
+            <div className="customCheckBox">
+              <div className="inner">{sauce === "herbs" ? "Kräuter" : sauce === 'garlic' ? "Knoblauch" : "Scharf"}</div>
+            </div>
+          </label>
         </div>
-      </label>
-
-      {/* Checkbox 2 */}
-      <input
-        className="customCheckBoxInput"
-        id="cCB2"
-        type="checkbox"
-        checked={checkedState.cCB2}
-        onChange={handleCheckboxChange}
-      />
-      <label className="customCheckBoxWrapper" htmlFor="cCB2">
-        <div className="customCheckBox">
-          <div className="inner">Knoblauch</div>
-        </div>
-      </label>
-
-      {/* Checkbox 3 */}
-      <input
-        className="customCheckBoxInput"
-        id="cCB3"
-        type="checkbox"
-        checked={checkedState.cCB3}
-        onChange={handleCheckboxChange}
-      />
-      <label className="customCheckBoxWrapper" htmlFor="cCB3">
-        <div className="customCheckBox">
-          <div className="inner">Scharf</div>
-        </div>
-      </label>
+      ))}
     </div>
   );
 };

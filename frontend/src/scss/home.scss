@@ -3,10 +3,11 @@
     display: flex;
     flex-direction: column;
     color: #000;
-    margin-top: toRem(120);
+    @include adaptiveValue("margin-top", 120, 100);
 
-    @media (max-width:$mobile) {
-        margin-top: toRem(110);
+    &:has(.home){
+        align-items: center;
+        justify-content: center;
     }
 
     &__menu {
@@ -43,6 +44,18 @@
         }
     }
 
+    & .list {
+        &__body {
+            flex: 0 1 75%;
+            flex-wrap: nowrap;
+
+        }
+        &__item {
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+    }
+
     &__sidebar {}
 
     &__content {
@@ -63,7 +76,7 @@
         padding: toRem(15) toRem(25);
 
         @media (max-width: toEm(500)) {
-            padding: toRem(10) toRem(15);
+            padding: toRem(10) toRem(10);
         }
     }
 
@@ -109,7 +122,7 @@
     transition: all 0.5s;
     position: fixed;
     width: 30%;
-    height: 88%;
+    height: 90%;
     bottom: 0;
     left: 0;
     z-index: 2;
@@ -169,17 +182,18 @@
     &__nav {
         position: relative;
         z-index: 2;
-        margin: 0 9%;
+        height: 100%;
+        bottom: 0;
         text-align: right;
-        top: 50%;
-        transform: translateY(-50%);
         font-weight: bold;
+        padding: toRem(50) toRem(30) toRem(30) toRem(30);
+        overflow-y: scroll;
     }
 
     &__list {
         display: flex;
         flex-direction: column;
-        gap: toRem(20);
+        gap: toRem(25);
 
         @media (max-width: toEm(430)) {
             gap: toRem(25);
@@ -188,6 +202,7 @@
 
     &__item {
         position: relative;
+        flex: 1 0 toRem(50);
 
         &.active a {
             color: #fff;
@@ -206,22 +221,23 @@
             position: absolute;
             width: 100%;
             height: 0.2em;
-            left: 0;
-            bottom: 0;
+            right: 0;
+            bottom: toRem(-10);
             background-image: linear-gradient(to right, #5e42a6, #b74e91)
         }
     }
 
     &__link {
-        // text-transform: uppercase;
+        display: block;
+        min-height: 100%;
         text-decoration: none;
         color: rgba(#e6e2e2, 0.35);
-        display: block;
         transition: all ease-out 300ms;
         font-size: toRem(20);
+        letter-spacing: toRem(2);
+        line-height: toRem(20);
+        align-content: center;
         @include adaptiveValue("font-size", 20, 18, 1, $containerWidth, 430);
-        @include adaptiveValue("line-height", 60, 30, 0, $containerWidth, 430);
-        @include adaptiveValue("letter-spacing", 7, 2, 0, $containerWidth, 430);
 
         @media (any-hover: hover) {
             &:hover {
@@ -233,5 +249,6 @@
 .disabled {
     pointer-events: none;
 }
-
 //====================================================================================================
+.home {
+}

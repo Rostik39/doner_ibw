@@ -17,7 +17,7 @@ def populateDB() :
 
     category_id = 1
 
-    with open('menu.json', 'r', encoding='utf-8') as file:
+    with open('./backend/menu.json', 'r', encoding='utf-8') as file:
         menu_data = json.load(file)
 
     for category, items in menu_data.items():
@@ -37,6 +37,8 @@ def populateDB() :
         else :
             for dish_id, details in items.items():
                 name = details['Name']
+                if not details["Description"] :
+                    print()
                 description = details["Description"]
                 price = details['Price']
                 dishes.append(Dish(number=dish_id, name=name, category_id=category_id, description=description, price=price))

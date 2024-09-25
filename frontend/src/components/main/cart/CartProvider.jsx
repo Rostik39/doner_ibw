@@ -13,12 +13,6 @@ const CartProvider = ({ children }) => {
         if (savedCart) {
             const jsonSavedCart = JSON.parse(savedCart);
             setCart(jsonSavedCart);
-
-            let initCartCounter = 0;
-            for(let i = 0; i < jsonSavedCart.length; i++){
-                initCartCounter = initCartCounter + jsonSavedCart[i].quantity;
-            }
-            setCartCounter(initCartCounter);
         }
         setIsInitialized(true);
     }, []);
@@ -28,16 +22,21 @@ const CartProvider = ({ children }) => {
             const oldLocalStorage = localStorage.getItem('cart');
             const newLocalStorage = JSON.stringify(cart);
             localStorage.setItem('cart', newLocalStorage);
-            if(oldLocalStorage !== newLocalStorage) {
-                document.querySelector('.cart__amount').classList.add("impulse")
-                setTimeout(()=>{
-                    document.querySelector('.cart__amount').classList.remove("impulse");
-                }, 500)
-
+            let initCartCounter = 0;
+            for(let i = 0; i < cart.length; i++){
+                initCartCounter = initCartCounter + cart[i].quantity;
             }
+            setCartCounter(initCartCounter);
             setTotalPrice(countTotalPrice());
         }
     }, [cart, isInitialized]);
+
+    useEffect(() => {
+        document.querySelector('.cart__amount').classList.add("impulse")
+        setTimeout(()=>{
+            document.querySelector('.cart__amount').classList.remove("impulse");
+        }, 500)
+    }, [cartCounter])
 
     const countTotalPrice = () => {
         let result = 0;
@@ -59,7 +58,7 @@ const CartProvider = ({ children }) => {
         );
     };
 
-    const updateCart = (dish, category, newQuantity=null) => {
+    const updateCart = (dish, category=null, newQuantity=null) => {
         setCart((prevCart) => {
             const isDishInCart = prevCart.find((item) => dish.dish_id === item.dish_id);
             
@@ -86,7 +85,7 @@ const CartProvider = ({ children }) => {
                 if(Array.isArray(dish.price)) {
                     return [...prevCart, {...dish, selected_size: "Klein", quantity: 1}];
                 } else if (category === "Döner-Dürüm-Pide") {
-                    return [...prevCart, {...dish, sauces: [], quantity: 1}];
+                    return [...prevCart, {...dish, sauces: {herbs: false, garlic: false, spicy: false}, quantity: 1}];
                 } else {
                     return [...prevCart, {...dish, quantity: 1}];
                 }
@@ -102,8 +101,20 @@ const CartProvider = ({ children }) => {
         )
     }
 
+    const handleSauceSelection = (id, newSelection) => {
+        setCart((prevCart) => 
+            prevCart.map((item) => 
+                item.dish_id === id ? {...item, sauces: newSelection} : item
+            )
+        )
+    }
+
+    const clearCart = () => {
+        setCart([]);
+    }
+
     return (
-        <CartContext.Provider value={{ cart, cartCounter, totalPrice, removeFromCart, updateCart, handleChangeOption }}>
+        <CartContext.Provider value={{ cart, cartCounter, totalPrice, removeFromCart, updateCart, handleChangeOption, handleSauceSelection, clearCart }}>
             {children}
         </CartContext.Provider>
     );

@@ -548,6 +548,1386 @@
                     "Party": 25.50
                 }
             }
+        },
+        "7": {
+            "43a": {
+                "Name": "Thunfisch, Zwiebeln, Knoblauch",
+                "Description": "Paprika, Champignons, Curry",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 11.30,
+                    "Family": 21.20,
+                    "Party": 28.50
+                }
+            },
+            "44": {
+                "Name": "Marinara",
+                "Description": "Meeresfrüchte, Knoblauch",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 11.30,
+                    "Family": 21.20,
+                    "Party": 28.50
+                }
+            },
+            "44a": {
+                "Name": "Meeresfrüchte, Thunfisch, Sardellen",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 11.30,
+                    "Family": 21.20,
+                    "Party": 28.50
+                }
+            },
+            "44b": {
+                "Name": "Krabben, Thunfisch, Zwiebel, Ei, Knoblauch",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 11.30,
+                    "Family": 21.20,
+                    "Party": 28.50
+                }
+            },
+            "45": {
+                "Name": "Vegetaria",
+                "Description": "Brokkoli, Spinat, Paprika, Peperoni, Mozzarella",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.20,
+                    "Groß": 10.00,
+                    "Family": 18.70,
+                    "Party": 25.80
+                }
+            },
+            "45a": {
+                "Name": "Vegetaria 2",
+                "Description": "Artischocken, Oliven, Ananas, Zwiebel, Champignons, Paprika",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.20,
+                    "Groß": 10.00,
+                    "Family": 18.70,
+                    "Party": 25.80
+                }
+            },
+            "46": {
+                "Name": "Diavola",
+                "Description": "Peperoniwurst, Knoblauch, Paprika, Peperoni",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.20,
+                    "Groß": 10.00,
+                    "Family": 18.70,
+                    "Party": 25.80
+                }
+            },
+            "46a": {
+                "Name": "Peperoniwurst, Hähnchen, Mozzarella, Brokkoli",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.20,
+                    "Groß": 10.00,
+                    "Family": 18.70,
+                    "Party": 25.80
+                }
+            }
+        },
+        "8": {
+            "47": {
+                "Name": "Hawaii",
+                "Description": "Schinken, Ananas",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.20,
+                    "Groß": 10.00,
+                    "Family": 18.70,
+                    "Party": 25.80
+                }
+            },
+            "48": {
+                "Name": "Schinken, Spinat, Ei",
+                "Description": "",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.20,
+                    "Groß": 10.00,
+                    "Family": 18.70,
+                    "Party": 25.80
+                }
+            },
+            "49": {
+                "Name": "Gyros Pizza",
+                "Description": "Gyros, Paprika, Zwiebel, Knoblauch",
+                "Price": {
+                    "Kinder": 6.50,
+                    "Klein": 8.20,
+                    "Groß": 10.00,
+                    "Family": 18.70,
+                    "Party": 25.80
+                }
+            }
+        },
+        "9": {
+            "49a": {
+                "Name": "Rocky's",
+                "Description": "Tomaten- und Sahnesauce, Ananas, Hähnchenfleisch, Brokkoli oder Spinat oder Blumenkohl",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 8.70,
+                    "Groß": 10.20,
+                    "Family": 19.50,
+                    "Party": 26.50
+                }
+            },
+            "49b": {
+                "Name": "Rocky's 2",
+                "Description": "Sauce Hollandaise, Schnitzelstreifen, Tomaten, Brokkoli, grüner und weißer Spargel",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 8.70,
+                    "Groß": 10.20,
+                    "Family": 19.50,
+                    "Party": 26.50
+                }
+            }
+        },
+        "10": {
+            "50": {
+                "Name": "Pizza Calzone",
+                "Description": "Gefüllt mit Schinken, Salami, Champignons",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 10.30
+                }
+            },
+            "51": {
+                "Name": "Pizza Calzone 2",
+                "Description": "Gefüllt mit Schinken, Salami, Champignons, Hackfleisch, Paprika",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 10.30
+                }
+            },
+            "52": {
+                "Name": "Calzone vegetarisch",
+                "Description": "Gefüllt mit Champignons, Paprika, Zwiebel, Artischocken",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 10.30
+                }
+            },
+            "53": {
+                "Name": "Calzone vegetarisch 2",
+                "Description": "Gefüllt mit Champignons, Paprika, Zwiebel, Spinat, Brokkoli",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 10.30
+                }
+            },
+            "54": {
+                "Name": "Super Calzone",
+                "Description": "Gefüllt mit Schinken, Thunfisch, Peperoni, Zwiebel, Tomaten- und Sahnesauce",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 10.30
+                }
+            },
+            "55": {
+                "Name": "Calzone",
+                "Description": "Gefüllt mit Schinken, Champignons, Ananas, Peperoni, Paprika",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 10.30
+                }
+            },
+            "65": {
+                "Name": "Döner Calzone",
+                "Description": "Gyros, Schafskäse, Zwiebeln, frische Tomaten",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 10.30
+                }
+            },
+            "66": {
+                "Name": "Calzone Spaghetti",
+                "Description": "Mit Bolognese",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.00,
+                    "Groß": 10.30
+                }
+            }
+        },
+        "11": {
+            "56": {
+                "Name": "Fantasia",
+                "Description": "Salami, Schinken, Champignons, Artischocken, Ei",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "56a": {
+                "Name": "Salami, Schinken, Champignons, Curry, Zwiebeln, Knoblauch",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "57": {
+                "Name": "Quattro Formaggi",
+                "Description": "Tomaten, Mozzarella, Parmesan, Schafskäse, Goudakäse",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "57a": {
+                "Name": "Pizza mit Raguot fin",
+                "Description": "Worchestersauce und Käse",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "58": {
+                "Name": "Wunschpizza",
+                "Description": "Wählen Sie bis zu 5 Zutaten Ihrer Wahl",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "58a": {
+                "Name": "Rocky's Spezial",
+                "Description": "Hähnchen, Ananas, Spinat, Sauce Hollandaise",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "58b": {
+                "Name": "Pizza Amerikanisch",
+                "Description": "Salami, Schinken, Champignons, Zwiebeln, Peperoni, Sauce Hollandaise, mit Käserand",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "58c": {
+                "Name": "Pizza Amerikanisch",
+                "Description": "Salami, Schinken, Champignons, Krabben, Knoblauch, mit Käserand",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "58d": {
+                "Name": "Pizza Amerikanisch",
+                "Description": "Gyros, Tomaten, Zwiebeln, Sauce Hollandaise",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "59": {
+                "Name": "Pizza Chef",
+                "Description": "Salami, Schinken, Champignons, Artischocken, Thunfisch",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "60": {
+                "Name": "Pizza City",
+                "Description": "Mit allem - ohne Fisch",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "61": {
+                "Name": "Vier Jahreszeiten",
+                "Description": "Salami, Schinken, Champignons, Hackfleisch",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            },
+            "62": {
+                "Name": "Salami, Speck, Paprika, Hackfleisch, Peperoni",
+                "Description": "",
+                "Price": {
+                    "Kinder": 7.50,
+                    "Klein": 9.40,
+                    "Groß": 10.80,
+                    "Family": 21.80,
+                    "Party": 28.80
+                }
+            }
+        },
+        "12": {
+            "63": {
+                "Name": "Pizza Brot",
+                "Description": "mit oder ohne Knoblauch, Oregano",
+                "Price": {
+                    "Klein": 4.30,
+                    "Groß": 5.00
+                }
+            }
+        },
+        "13": {
+            "67": {
+                "Name": "Indisch",
+                "Description": "Salami, Schinken, Champignons, Curry, Knoblauch, Garam-Masala, Ingwer, Zwiebeln, Ei",
+                "Price": {
+                    "Klein": 7.50,
+                    "Groß": 9.40,
+                    "Family": 11.30,
+                    "Party": 21.50,
+                    "Special": 28.90
+                }
+            },
+            "68": {
+                "Name": "Pizza Spaghetti",
+                "Description": "Mit Bolognese",
+                "Price": {
+                    "Klein": 7.50,
+                    "Groß": 9.40,
+                    "Family": 11.30,
+                    "Party": 21.50,
+                    "Special": 28.90
+                }
+            },
+            "69": {
+                "Name": "Chicken Pizza",
+                "Description": "Hähnchen, Zwiebeln, Mais, Mozzarella, frische Tomatenscheiben",
+                "Price": {
+                    "Klein": 7.50,
+                    "Groß": 9.40,
+                    "Family": 11.30,
+                    "Party": 21.50,
+                    "Special": 28.90
+                }
+            },
+            "70": {
+                "Name": "Pizza mit Schafskäse",
+                "Description": "Schafskäse, Speck, Mais, Zwiebeln, frische Tomatenscheiben",
+                "Price": {
+                    "Klein": 7.50,
+                    "Groß": 9.40,
+                    "Family": 11.30,
+                    "Party": 21.50,
+                    "Special": 28.90
+                }
+            },
+            "71": {
+                "Name": "Pizza mit Spinat",
+                "Description": "Schafskäse, Spinat, Erbsen, Zwiebeln, frische Tomatenscheiben, Parmesankäse",
+                "Price": {
+                    "Klein": 7.50,
+                    "Groß": 9.40,
+                    "Family": 11.30,
+                    "Party": 21.50,
+                    "Special": 28.90
+                }
+            },
+            "72": {
+                "Name": "Pizza mit Lachs",
+                "Description": "Frische Tomatenscheiben, Lachs, Spinat",
+                "Price": {
+                    "Klein": 7.50,
+                    "Groß": 9.40,
+                    "Family": 11.30,
+                    "Party": 21.50,
+                    "Special": 28.90
+                }
+            },
+            "73": {
+                "Name": "Pizza Speziale",
+                "Description": "Hähnchen, Zwiebeln, Paprika, Champignons, Brokkoli, frische Tomatenscheiben",
+                "Price": {
+                    "Klein": 7.70,
+                    "Groß": 9.40,
+                    "Family": 11.40,
+                    "Party": 22.40,
+                    "Special": 29.90
+                }
+            }
+        },
+        "14": {
+            "73a": {
+                "Name": "Pizza Ruccola",
+                "Description": "Parmaschinken, Ruccola, Parmesankäse, frische Tomaten",
+                "Price": {
+                    "Klein": 7.70,
+                    "Groß": 9.40,
+                    "Family": 11.40,
+                    "Party": 22.40,
+                    "Special": 29.90
+                }
+            },
+            "73b": {
+                "Name": "Pizza Ruccola",
+                "Description": "Parmaschinken, Ruccola, Parmesan, Champignons, Oliven, frische Tomaten",
+                "Price": {
+                    "Klein": 7.70,
+                    "Groß": 9.40,
+                    "Family": 11.40,
+                    "Party": 22.40,
+                    "Special": 29.90
+                }
+            }
+        }
+    },
+    "Nudelgerichte": {
+        "75": {
+            "Name": "Napoli",
+            "Description": "Spaghetti, Tortellini, Rigatoni mit Tomatensauce",
+            "Price": 8.00
+        },
+        "76": {
+            "Name": "Bolognese",
+            "Description": "Spaghetti, Tortellini, Rigatoni mit Hackfleischsauce",
+            "Price": 8.00
+        },
+        "77": {
+            "Name": "Spaghetti Carbonara",
+            "Description": "Mit Schinken, Eier, Sahne, Parmesankäse",
+            "Price": 8.00
+        },
+        "78": {
+            "Name": "Spaghetti Frutti di Mare",
+            "Description": "Mit Meeresfrüchten, Knoblauch, Tomatensauce",
+            "Price": 8.00
+        },
+        "78a": {
+            "Name": "Spaghetti alla Tonno",
+            "Description": "Mit Thunfisch, Zwiebeln, Tomatensauce",
+            "Price": 8.00
+        },
+        "78b": {
+            "Name": "Spaghetti alla Pesto",
+            "Description": "Mit Basilikumpesto, Pinienkerne, Parmesan",
+            "Price": 8.00
+        },
+        "79": {
+            "Name": "Spaghetti Aglio e Olio",
+            "Description": "Mit pikanter Knoblauch- oder Chili-Ölsauce",
+            "Price": 8.00
+        },
+        "79a": {
+            "Name": "Spaghetti mit Spinat",
+            "Description": "Mit Sahnesauce",
+            "Price": 8.00
+        },
+        "79b": {
+            "Name": "Spaghetti mit Gorgonzola",
+            "Description": "Mit Sahnesauce",
+            "Price": 8.00
+        },
+        "80a": {
+            "Name": "Spaghetti mit Schinken",
+            "Description": "Mit Zwiebeln, Tomatensauce",
+            "Price": 8.00
+        },
+        "81": {
+            "Name": "Rigatoni alla Panna",
+            "Description": "Mit Schinken, Champignons, Sahne, Parmesankäse",
+            "Price": 8.00
+        },
+        "82": {
+            "Name": "Quattro Formaggi",
+            "Description": "Mit vier verschiedenen Käsesorten",
+            "Price": 8.00
+        },
+        "83": {
+            "Name": "Fusilli mit Schinken",
+            "Description": "Mit Sahnesauce",
+            "Price": 8.00
+        },
+        "84a": {
+            "Name": "Fusilli mit Dönerfleisch",
+            "Description": "Auf Wunsch mit Kräutersauce und Salat",
+            "Price": 8.00
+        },
+        "85": {
+            "Name": "Spaghetti City",
+            "Description": "Mit Schinken, Champignons, Erbsen, Krabben, Tomaten, Sahne, Hackfleischsauce",
+            "Price": 9.00
+        },
+        "86": {
+            "Name": "Salmone",
+            "Description": "Mit frischem Lachs, Tomaten und Sahnesauce",
+            "Price": 9.00
+        },
+        "89": {
+            "Name": "Tagliatelle al Salmone",
+            "Description": "Mit frischem Lachs, Tomaten und Sahnesauce",
+            "Price": 9.00
+        },
+        "92": {
+            "Name": "Nudeln Extra Spezial",
+            "Description": "Mit Schinken, Champignons, Krabben, Zwiebeln, Sahne, Hackfleischsauce",
+            "Price": 9.00
+        },
+        "94": {
+            "Name": "Tortellini alla Panna",
+            "Description": "Mit Schinken, Champignons, Sahne und Parmesankäse",
+            "Price": 9.00
+        },
+        "96": {
+            "Name": "Tortellini Primavera",
+            "Description": "Mit Schinken, Eier, Sahnesauce",
+            "Price": 9.00
+        },
+        "97": {
+            "Name": "Tortellini Quattro Formaggi",
+            "Description": "Mit vier verschiedenen Käsesorten",
+            "Price": 9.00
+        },
+        "98": {
+            "Name": "Paglia e Fiena Napoli",
+            "Description": "Grüne und weiße Bandnudeln, Schinken, Champignons, Sahnesauce",
+            "Price": 9.00
+        },
+        "100": {
+            "Name": "Maultaschen",
+            "Description": "Geröstet mit Ei und Zwiebeln",
+            "Price": 9.00
+        },
+        "101": {
+            "Name": "Käsespätzle",
+            "Description": "Mit Zwiebeln",
+            "Price": 9.00
+        },
+        "103": {
+            "Name": "Rigatoni mit Spinat",
+            "Description": "Mit Gorgonzolasauce",
+            "Price": 9.30
+        },
+        "104": {
+            "Name": "Rigatoni Verde",
+            "Description": "Mit Broccoli und Sahnesauce",
+            "Price": 9.30
+        },
+        "107": {
+            "Name": "Gnocchi mit Shrimps",
+            "Description": "Mit Tomaten und Sahnesauce",
+            "Price": 9.30
+        },
+        "108": {
+            "Name": "Gnocchi Bella Italia",
+            "Description": "Mit Schinken, Erbsen, Champignons, Tomaten, Parmesan, Sahne",
+            "Price": 9.30
+        }
+    },
+    "Überbackene Nudeln": {
+        "108a": {
+            "Name": "Quattro Formaggi",
+            "Description": "Nudeln Ihrer Wahl mit vier verschiedenen Käsesorten überbacken",
+            "Price": 9.80
+        },
+        "109": {
+            "Name": "Auberginen",
+            "Description": "Mit Hackfleisch und Tomatensauce, mit Ei überbacken",
+            "Price": 9.80
+        },
+        "110": {
+            "Name": "Fusilli alla forno",
+            "Description": "Mit Hackfleisch, Schinken, Pilze, Sahne, Käse überbacken",
+            "Price": 9.80
+        },
+        "111": {
+            "Name": "Kawatini",
+            "Description": "Mit Schinken, Pilze, Erbsen, Hackfleischsauce, Käse überbacken",
+            "Price": 9.80
+        },
+        "111a": {
+            "Name": "Lachs-Lasagne",
+            "Description": "Mit Lachs, Spinat und Tomatensauce",
+            "Price": 9.80
+        },
+        "112": {
+            "Name": "Lasagne",
+            "Description": "Mit Schinken, Pilze, Erbsen, Hackfleischsauce, Käse überbacken",
+            "Price": 9.80
+        },
+        "112a": {
+            "Name": "Lasagne vegetarisch",
+            "Description": "Mit frischem Gemüse, Champignons, Sahne, Tomatensauce, auf Wunsch mit Knoblauch und scharf",
+            "Price": 9.80
+        },
+        "113": {
+            "Name": "Cannelloni",
+            "Description": "Mit Hackfleischsauce",
+            "Price": 9.80
+        },
+        "114": {
+            "Name": "Rigatoni al forno",
+            "Description": "Mit Hackfleisch, Schinken, Pilze, Sahne, Käse überbacken",
+            "Price": 9.80
+        },
+        "115": {
+            "Name": "Maultaschen",
+            "Description": "Überbacken mit Käse und Tomaten",
+            "Price": 9.80
+        },
+        "116": {
+            "Name": "Tortellini al forno",
+            "Description": "Mit Hackfleisch, Schinken, Pilze, Sahne, Käse überbacken",
+            "Price": 9.80
+        },
+        "117": {
+            "Name": "Tagliatelle Della Casa",
+            "Description": "Mit Brokkoli, Erbsen, Pilze, Sahne, Käse überbacken",
+            "Price": 9.80
+        },
+        "118": {
+            "Name": "Gemüse überbacken",
+            "Description": "Mit Karotten, Brokkoli, Erbsen, Blumenkohl, gekocht mit Tomaten, Sahnesauce, Käse überbacken",
+            "Price": 9.80
+        },
+        "119": {
+            "Name": "City al forno",
+            "Description": "Vier Sorten Nudeln mit Schinken, Pilzen, Krabben, Zwiebeln und Käse überbacken - auf Wunsch mit Knoblauch scharf",
+            "Price": 9.80
+        },
+        "120": {
+            "Name": "Maultaschen",
+            "Description": "Mit Brokkoli, Zwiebeln, Pilze, Tomaten, Sahnesauce",
+            "Price": 9.80
+        },
+        "121": {
+            "Name": "Rigatoni al forno",
+            "Description": "Mit Brokkoli in Sahnesauce, mit Käse überbacken",
+            "Price": 9.80
+        },
+        "122": {
+            "Name": "Rigatoni",
+            "Description": "Mit Blumenkohl, Brokkoli, Tomaten, Sahnesauce, Knoblauch",
+            "Price": 9.80
+        },
+        "123": {
+            "Name": "Napoli",
+            "Description": "Indisch gebratene Zwiebeln, Schinken, Pilze, Tomaten, Sahnesauce",
+            "Price": 9.80
+        },
+        "124": {
+            "Name": "Bolognese indische Art",
+            "Description": "Indisch gebratene Zwiebeln, Schinken, Pilze",
+            "Price": 9.80
+        },
+        "125": {
+            "Name": "Nudeln mit Dönerfleisch",
+            "Description": "Mit Tomaten und Sahnesauce",
+            "Price": 9.80
+        },
+        "126": {
+            "Name": "Nudeln mit Hähnchenfleisch",
+            "Description": "Mit Sauce Hollandaise",
+            "Price": 9.80
+        }
+    },
+    "Putensteak überbacken": {
+        "127": {
+            "Name": "Putensteak mit Champignons",
+            "Description": "Brokkoli, Sahnesauce, Käse überbacken",
+            "Price": 11.50
+        },
+        "128": {
+            "Name": "Putensteak",
+            "Description": "Mit Spinat, Brokkoli, Sahnesauce, Käse überbacken",
+            "Price": 11.50
+        },
+        "128a": {
+            "Name": "Putensteak Milano",
+            "Description": "Mit Tomaten und Mozzarella überbacken und Spaghetti Napoli",
+            "Price": 11.50
+        }
+    },
+    "Salate": {
+        "128b": {
+            "Name": "Rocky's Spezial",
+            "Description": "Grüner Salat, Gurke, Tomate, Zwiebel, Ei, Lachs, Shrimps",
+            "Price": 8.40
+        },
+        "129": {
+            "Name": "Salat Hawaii",
+            "Description": "Salat, Schinken, Ananas, Mozzarella, Basilikum, Tomate, Gurke",
+            "Price": 8.40
+        },
+        "130": {
+            "Name": "Salat Caprese",
+            "Description": "Mit Mozzarella, Tomaten und Fladenbrot",
+            "Price": 8.40
+        },
+        "131": {
+            "Name": "Salat Pecorana",
+            "Description": "Feta, grüner Salat, Oliven, Paprika",
+            "Price": 8.40
+        },
+        "132": {
+            "Name": "Salat Formaggi",
+            "Description": "Salat, Käsewürfel",
+            "Price": 8.40
+        },
+        "133": {
+            "Name": "Gemischter Salat",
+            "Description": "Mit Gurke, grüner Paprika, Mozzarella, Feta, Mais, Bohnen, Tomaten, Ei",
+            "Price": 6.00
+        },
+        "134": {
+            "Name": "Tomatensalat",
+            "Description": "Mit Zwiebeln",
+            "Price": 6.00
+        },
+        "135": {
+            "Name": "Kartoffelsalat",
+            "Description": "Mit Tomaten und Gurken",
+            "Price": 6.00
+        },
+        "136": {
+            "Name": "Gurkensalat",
+            "Description": "",
+            "Price": 6.00
+        },
+        "137": {
+            "Name": "Salat Mista",
+            "Description": "Mit Kopfsalat, Tomaten und Gurken",
+            "Price": 6.00
+        },
+        "138": {
+            "Name": "Gemischter Salat",
+            "Description": "Kopfsalat, Karotten, Bohnen, Tomaten, Gurken",
+            "Price": 6.50
+        },
+        "138a": {
+            "Name": "Gemischter Salat mit Dönerfleisch",
+            "Description": "",
+            "Price": 6.50
+        },
+        "139": {
+            "Name": "Salat des Hauses",
+            "Description": "Kopfsalat, Tomaten, Gurken, Paprika, Zwiebeln",
+            "Price": 6.50
+        },
+        "140": {
+            "Name": "Thunfischsalat",
+            "Description": "Thunfisch, Oliven, Artischocken, Ei, Tomaten, Gurken",
+            "Price": 6.50
+        },
+        "141": {
+            "Name": "Salat Nizza",
+            "Description": "Mit grünem Salat, Oliven, Thunfisch, Zwiebeln, Tomaten, Gurken",
+            "Price": 8.40
+        },
+        "142": {
+            "Name": "Italienischer Salat",
+            "Description": "Mit grünem Salat, Oliven, Thunfisch, Ei, Schinken, Tomaten, Peperoni, Paprika, Käse",
+            "Price": 8.40
+        },
+        "143": {
+            "Name": "Mexikanischer Salat",
+            "Description": "Mit grünem Salat, Mais, Ei, Bohnen, Schinken, Tomaten, Peperoni, Alopinos, Käse, Oliven",
+            "Price": 8.40
+        },
+        "144": {
+            "Name": "Salat da Enzo",
+            "Description": "Kopfsalat, Tomaten, Gurken, Bohnen, Mais, Ei, Thunfisch, Spargel",
+            "Price": 8.40
+        },
+        "145": {
+            "Name": "Salat Acrobaleno",
+            "Description": "Salat, Hähnchenfleisch, Oliven, Ei, Tomate, Zwiebel, Pilze, Gurke",
+            "Price": 8.40
+        },
+        "146": {
+            "Name": "Krabben-Cocktail-Salat",
+            "Description": "",
+            "Price": 8.40
+        },
+        "147": {
+            "Name": "Tomatensalat mit Zwiebeln und Feta",
+            "Description": "",
+            "Price": 6.50
+        },
+        "148": {
+            "Name": "Salat City",
+            "Description": "Mit grünem Salat, Knoblauch, Gurken, Krabben, Mais, Bohnen, Tomaten, Zwiebeln und Alopinos",
+            "Price": 8.40
+        }
+    },
+    "Chinesische Gerichte": {
+        "204": {
+            "Name": "Chinesisches Gericht",
+            "Description": "Mit Hähnchen und Gemüse",
+            "Price": 6.50
+        },
+        "204a": {
+            "Name": "Chinesisches Gericht",
+            "Description": "Mit verschiedenem Gemüse",
+            "Price": 5.50
+        },
+        "205": {
+            "Name": "Chinesisches Gericht",
+            "Description": "Mit Schweinefleisch und Gemüse",
+            "Price": 6.50
+        },
+        "205a": {
+            "Name": "Chinesisches Gericht",
+            "Description": "Mit Meeresfrüchten und Knoblauch",
+            "Price": 7.00
+        },
+        "206": {
+            "Name": "Chinesisches Gericht",
+            "Description": "Mit Hühnchen, Schweinefleisch und Gemüse",
+            "Price": 7.00
+        },
+        "207": {
+            "Name": "Chinesisches Gericht",
+            "Description": "Mit Entenfleisch und Gemüse",
+            "Price": 7.00
+        }
+    },
+    "FLeischgerichte mit Saltbeilage": {
+        "149": {
+            "Name": "Schnitzel Hawaii",
+            "Description": "Mit Schinken, Ananas, Käse überbacken",
+            "Price": 10.50
+        },
+        "150": {
+            "Name": "Zwiebelschnitzel",
+            "Description": "Mit Zwiebeln, Käse überbacken",
+            "Price": 10.50
+        },
+        "151": {
+            "Name": "Champignonschnitzel",
+            "Description": "Mit Champignons, Käse überbacken",
+            "Price": 10.50
+        },
+        "152": {
+            "Name": "Brokkolischnitzel",
+            "Description": "Mit Brokkoli, Käse überbacken",
+            "Price": 10.50
+        },
+        "153": {
+            "Name": "Schnitzel griechisch",
+            "Description": "Mit Zwiebeln und Schafskäse überbacken",
+            "Price": 10.50
+        },
+        "154": {
+            "Name": "Zwiebel-Champignon-Schnitzel",
+            "Description": "Mit Zwiebeln und Pilzen überbacken",
+            "Price": 10.50
+        },
+        "154a": {
+            "Name": "Paniertes Schnitzel",
+            "Description": "Mit Champignonsauce",
+            "Price": 10.50
+        },
+        "154b": {
+            "Name": "Rahmschnitzel",
+            "Description": "Mit Rahmsauce",
+            "Price": 10.50
+        },
+        "155": {
+            "Name": "Paniertes Schnitzel mit Pommes frites",
+            "Description": "",
+            "Price": 10.50
+        },
+        "155a": {
+            "Name": "Paniertes Hähnchenschnitzel",
+            "Description": "",
+            "Price": 10.50
+        },
+        "156": {
+            "Name": "Cordon Bleu",
+            "Description": "Mit Schinken und Käse gefüllt",
+            "Price": 11.50
+        },
+        "157": {
+            "Name": "Schnitzel Spezial",
+            "Description": "Mit Schinken, Tomatenscheiben, Hackfleischsauce, Käse überbacken",
+            "Price": 11.50
+        },
+        "158": {
+            "Name": "Jägerschnitzel",
+            "Description": "",
+            "Price": 11.50
+        },
+        "159": {
+            "Name": "Zigeunerschnitzel",
+            "Description": "",
+            "Price": 11.50
+        },
+        "160": {
+            "Name": "Schweinelende",
+            "Description": "Mit Weinsauce",
+            "Price": 11.50
+        },
+        "161": {
+            "Name": "Schweinelende",
+            "Description": "Mit Champignonsauce",
+            "Price": 11.50
+        },
+        "161a": {
+            "Name": "Schnitzel mit Spargel",
+            "Description": "Und Sauce Hollandaise",
+            "Price": 11.50
+        },
+        "161b": {
+            "Name": "Salmone alla Casa",
+            "Description": "Lachsfilet in würziger Sauce",
+            "Price": 11.50
+        },
+        "162": {
+            "Name": "Gyrosteller",
+            "Description": "Mit Knoblauchsauce, frischen Tomaten, Paprika, Zwiebel",
+            "Price": 11.50
+        },
+        "162a": {
+            "Name": "Gyrosteller",
+            "Description": "Mit Zwiebeln, Tomatenscheiben, Sahnesauce, Käse überbacken",
+            "Price": 11.50
+        },
+        "163": {
+            "Name": "Putengeschnetzeltes",
+            "Description": "In Sahnesauce auf Wunsch mit Champignons",
+            "Price": 11.50
+        },
+        "166": {
+            "Name": "Gyros griechische Art",
+            "Description": "Mit Tzatziki",
+            "Price": 11.50
+        },
+        "167": {
+            "Name": "Tintenfischringe",
+            "Description": "Gebakken",
+            "Price": 11.50
+        },
+        "165": {
+            "Name": "Rumpsteak",
+            "Description": "Mit Champignonsauce",
+            "Price": 13.00
+        }
+    },
+    "Mexikanische Gerichte": {
+        "171": {
+            "Name": "Drei Tacos",
+            "Description": "Tortillas aus Mais, gefüllt mit Fleisch",
+            "Price": 8.80
+        },
+        "172": {
+            "Name": "Enchilladas groß",
+            "Description": "Gefüllt mit Hackfleisch, Alopinos, Käse & Knoblauch",
+            "Price": 8.80
+        },
+        "173": {
+            "Name": "Tortilla",
+            "Description": "30cm mit Speck, Bohnen, Käse, Alopinos, Knoblauch, Mais, Schrotpfeffer und Salat",
+            "Price": 10.40
+        },
+        "174": {
+            "Name": "Quesadilla de Attun",
+            "Description": "Teigtasche gefüllt mit Thunfisch, Tomaten, Zwiebeln, Knoblauch, Alopinos, Ei überbacken mit scharfer Tomatensauce",
+            "Price": 10.40
+        },
+        "175": {
+            "Name": "Quesadilla Verduras",
+            "Description": "Teigtasche gefüllt mit Spinat, Champignons, Tomaten, Zwiebeln, Knoblauch, Alopinos, überbacken mit scharfer Tomatensauce und Käse",
+            "Price": 10.40
+        },
+        "176": {
+            "Name": "Quesadilla de Pollo Gusto",
+            "Description": "Teigtasche gefüllt mit Hähnchenbrust, Tomaten, Zwiebeln, Knoblauch, Alopinos, Champignons, überbacken mit scharfer Tomatensauce",
+            "Price": 10.40
+        },
+        "177": {
+            "Name": "Quesadilla de Pollo y Arroz",
+            "Description": "Mit Hähnchenbrust, Tomaten, Zwiebeln, Knoblauch, Alopinos, Champignons, überbacken mit scharfer Tomatensauce, Reis",
+            "Price": 10.40
+        },
+        "177a": {
+            "Name": "Salamibaguette",
+            "Description": "",
+            "Price": 7.70
+        },
+        "177b": {
+            "Name": "Schinkenbaguette",
+            "Description": "",
+            "Price": 7.70
+        },
+        "177c": {
+            "Name": "Thunfischbaguette",
+            "Description": "Mit Zwiebeln",
+            "Price": 8.20
+        },
+        "178": {
+            "Name": "Baguette Hawaii",
+            "Description": "Mit Schinken und Ananas",
+            "Price": 8.20
+        },
+        "178a": {
+            "Name": "Baguette Romy Schneider",
+            "Description": "Mit Schinken, Salami, Ei",
+            "Price": 8.20
+        },
+        "179": {
+            "Name": "Hähnchenbaguette",
+            "Description": "Mit Hähnchengyros, Zwiebeln",
+            "Price": 8.20
+        }
+    },
+    "Toasts & Omelettes": {
+        "180": {
+            "Name": "Hawaii Toast",
+            "Description": "Mit Schinken, Ananas und Käse überbacken",
+            "Price": 6.50
+        },
+        "181": {
+            "Name": "American Toast",
+            "Description": "Mit Schinken, Salami und Käse überbacken",
+            "Price": 6.50
+        },
+        "182": {
+            "Name": "City-Toast",
+            "Description": "Mit Schinken, Salami, Käse, Zwiebeln, Salat, Mayonnaise",
+            "Price": 6.50
+        },
+        "182a": {
+            "Name": "Bauernfrühstück",
+            "Description": "3 Eier, Bratkartoffeln, Schinkenspeck, Zwiebeln, Gewürzgurken",
+            "Price": 7.00
+        },
+        "182b": {
+            "Name": "Omelette",
+            "Description": "Mit Schinken und Käse gefüllt",
+            "Price": 7.00
+        },
+        "183": {
+            "Name": "Schnitzeltoast",
+            "Description": "Mit Eisbergsalat",
+            "Price": 7.00
+        }
+    },
+    "Frische Aufläufe": {
+        "183a": {
+            "Name": "Röstis mit Blumenkohl und Brokkoli",
+            "Description": "",
+            "Price": 8.90
+        },
+        "183b": {
+            "Name": "Röstis mit Rahmchampignons",
+            "Description": "",
+            "Price": 8.90
+        },
+        "183c": {
+            "Name": "Röstis Rocky's Spezial",
+            "Description": "Mit Schinken, Erbsen, Champignons und Hackfleischsauce",
+            "Price": 8.90
+        },
+        "184": {
+            "Name": "Brokkoli-Kartoffel-Auflauf",
+            "Description": "Mit Schinken, Champignons und Sahnesauce",
+            "Price": 10.50
+        },
+        "184a": {
+            "Name": "Brokkoli al forno",
+            "Description": "Brokkoli, Schinken, Champignons, Tomaten, Fleischsauce, Pizzabrot",
+            "Price": 10.50
+        },
+        "184b": {
+            "Name": "Champignon-Brokkoli-Blumenkohl-Auflauf",
+            "Description": "In Tomaten-Sahnesauce",
+            "Price": 10.50
+        },
+        "185": {
+            "Name": "Bratkartoffel-Auflauf",
+            "Description": "Mit Speck, Zwiebeln und Ei",
+            "Price": 10.50
+        },
+        "185a": {
+            "Name": "Spinat mit Hühnchen",
+            "Description": "In Sahnesauce",
+            "Price": 10.50
+        },
+        "186": {
+            "Name": "Mexiko-Topf",
+            "Description": "Mais, Bohnen, Paprika, Hackfleisch, Sahnesauce, Kartoffeln (scharf)",
+            "Price": 10.50
+        },
+        "187": {
+            "Name": "Hackfleisch-Auflauf",
+            "Description": "Mit Kartoffeln, Blumenkohl, Schinken und Sahnesauce",
+            "Price": 10.50
+        },
+        "188": {
+            "Name": "Hähnchen-Ananas-Auflauf",
+            "Description": "Mit Hähnchenbrust, Kartoffeln, Tomatensauce",
+            "Price": 10.50
+        },
+        "189": {
+            "Name": "Bratkartoffel-Hackfleisch-Auflauf",
+            "Description": "Mit Schinken und Sahnesauce",
+            "Price": 10.50
+        },
+        "190": {
+            "Name": "City-Topf",
+            "Description": "Brokkoli, Blumenkohl, Champignons, Bratkartoffeln, Hähnchenbrust, Sahnesauce",
+            "Price": 10.50
+        }
+    },
+    "Indische Spezialitäten": {
+        "191": {
+            "Name": "Chicken Curry",
+            "Description": "Hähnchen in Currysauce - mittelscharf",
+            "Price": 11.60
+        },
+        "192": {
+            "Name": "Chicken Corma",
+            "Description": "Curry mit Mandeln, Kokos, Kardamon und Sahne",
+            "Price": 11.60
+        },
+        "193": {
+            "Name": "Butter-Chicken",
+            "Description": "Spezielles Currysauce mit Sahne und indischen Gewürzen",
+            "Price": 11.60
+        },
+        "193a": {
+            "Name": "Chicken Bombay",
+            "Description": "Knusprig gegrilltes Hähnchenbrustfilet mit Kokos mild gewürzt, in Cashew-Sauce nach indischer Art - auf Wunsch scharf",
+            "Price": 11.60
+        },
+        "194": {
+            "Name": "Chicken Masala",
+            "Description": "Hähnchen mit Curry, Tomaten, Koriander, gekochtem Ei",
+            "Price": 11.60
+        },
+        "194a": {
+            "Name": "Chicken Mango Curry",
+            "Description": "Huhn mit Mango-Currysauce und Mandeln",
+            "Price": 11.60
+        },
+        "195": {
+            "Name": "Murgh Madras",
+            "Description": "Hähnchen mit Curry, nach orientalischer Art zubereitet, scharf",
+            "Price": 11.60
+        },
+        "195a": {
+            "Name": "Chicken-Champignons",
+            "Description": "Huhn mit Champignons in würziger Sauce",
+            "Price": 11.60
+        },
+        "195b": {
+            "Name": "Chicken mit Kokosmilch",
+            "Description": "In Currysauce und Reis",
+            "Price": 11.60
+        },
+        "196": {
+            "Name": "Chicken Palak",
+            "Description": "Spinat mit Huhn und Sahnesauce",
+            "Price": 11.60
+        },
+        "203": {
+            "Name": "Hähnchenfleisch mit Ananas und Rosinen",
+            "Description": "In milder Sauce",
+            "Price": 11.60
+        },
+        "196a": {
+            "Name": "Lamb Khumb Wala",
+            "Description": "Lamm mit frischen Champignons, Knoblauch Ingwer in Mandelsahnesauce",
+            "Price": 12.60
+        },
+        "197": {
+            "Name": "Lamb Curry",
+            "Description": "Lammfleisch in Currysauce, mittelscharf",
+            "Price": 12.60
+        },
+        "197a": {
+            "Name": "Bhunna Goasht",
+            "Description": "Lammfleisch mit gerösteten Zwiebeln, fr. Tomaten und Reis",
+            "Price": 12.60
+        },
+        "198": {
+            "Name": "Lamb Korma",
+            "Description": "Lammfleisch mit Mandeln, Kokos, Curry und Sahnesauce",
+            "Price": 12.60
+        },
+        "198a": {
+            "Name": "Lamb Speziale",
+            "Description": "Lamm und Huhn, Tomate, Koriander, Curry, Gewürze",
+            "Price": 12.60
+        },
+        "199": {
+            "Name": "Lamb Madras",
+            "Description": "Lammfleisch mit Curry, nach orientalischer Art zubereitet, scharf",
+            "Price": 12.60
+        },
+        "200": {
+            "Name": "Lamb Palak",
+            "Description": "Spinat mit Lammfleisch und Sahnesauce",
+            "Price": 12.60
+        },
+        "201": {
+            "Name": "Lamb Vindaloo",
+            "Description": "Lammfleisch in sehr scharfer Currysauce mit Kartoffeln",
+            "Price": 12.60
+        },
+        "202": {
+            "Name": "Lamb Masala",
+            "Description": "Lammfleisch mit Curry, Tomaten, Koriander, gekocht Ei, Gewürze",
+            "Price": 12.60
+        }
+    },
+    "Biryani": {
+        "209": {
+            "Name": "Vegetable Biryani",
+            "Description": "Reisgericht, frisches Gemüse, Mandeln und Rosinen",
+            "Price": 11.60
+        },
+        "210": {
+            "Name": "Chicken Biryani",
+            "Description": "Reisgericht, Hähnchenfleisch und Gemüse",
+            "Price": 11.60
+        },
+        "211": {
+            "Name": "Krabben Biryani",
+            "Description": "Reisgericht mit Krabben in Curry-Sahnesauce",
+            "Price": 11.60
+        },
+        "212": {
+            "Name": "Gemüse Biryani",
+            "Description": "Reisgericht mit Gemüse",
+            "Price": 11.60
+        },
+        "213": {
+            "Name": "Biryani Spezial",
+            "Description": "Reisgericht mit Hähnchen, Lammfleisch und Krabben",
+            "Price": 12.50
+        },
+        "214": {
+            "Name": "Meeresfrüchte-Krabben-Biryani",
+            "Description": "Reisgericht mit Mandeln",
+            "Price": 12.50
+        },
+        "208": {
+            "Name": "Mutton Biryani",
+            "Description": "Reisgericht mit Lammfleisch, Reis, Mandeln und Rosinen",
+            "Price": 12.50
+        }
+    },
+    "Burger": {
+        "317": {
+            "Name": "Hamburger",
+            "Description": "mit Rindfleisch, rote Zwiebeln, Gewürzgurken, Salat, Tomaten, Spezialsauce",
+            "Price": 7.50
+        },
+        "318": {
+            "Name": "Cheeseburger",
+            "Description": "mit Rindfleisch, rote Zwiebeln, Gewürzgurken, Salat, Tomaten, Spezialsauce, Käse",
+            "Price": 7.90
+        },
+        "319": {
+            "Name": "Burger Rösti Bacon",
+            "Description": "mit Rindfleisch, Bacon, Gewürzgurken, Salat, Röstzwiebeln, Tomaten, Spezialsauce",
+            "Price": 7.90
+        },
+        "320": {
+            "Name": "Burger Hot Chili",
+            "Description": "mit Rindfleisch, rote Zwiebeln, Jalapenos, Salat, Tomaten, Spezialsauce, Chili-Cheese-Sauce (scharf)",
+            "Price": 7.90
+        },
+        "321": {
+            "Name": "Burger BBQ Bacon",
+            "Description": "mit Rindfleisch, Bacon, rote Zwiebeln, Gewürzgurken, Salat, Tomaten, BBQ-Sauce",
+            "Price": 7.90
+        },
+        "322": {
+            "Name": "Burger Rocky's House",
+            "Description": "mit Rindfleisch, Gewürzgurken, Röstzwiebeln, Salat, Tomaten, Chesterkäse, DK-Burgersauce, Tomatenketchup",
+            "Price": 7.90
+        },
+        "323": {
+            "Name": "Burger Crispy Chicken",
+            "Description": "mit Crispy Chicken (135g), Salat, Gewürzgurken, Tomaten, Spezialsauce, Mayo",
+            "Price": 7.90
+        },
+        "324": {
+            "Name": "Burger Veggie",
+            "Description": "mit Gemüsepatty (Mais, Karotten, Blumenkohl, rote Zwiebeln, Paprika), Zwiebeln, Salat, Tomaten, Gewürzgurken, Spezialsauce",
+            "Price": 7.90
+        },
+        "325": {
+            "Name": "Schnitzel Burger",
+            "Description": "mit Schweineschnitzel, Salat, Gewürzgurken, Tomaten, Spezialsauce, Mayo",
+            "Price": 7.90
+        },
+        "326": {
+            "Name": "Hawaii Burger",
+            "Description": "1x 180g saftiges gegrilltes Rinderhack auf grünem Salat, Tomatenscheiben, Ananas, mit Käse überbacken, GG-Dressing im Sesambrötchen",
+            "Price": 8.90
+        },
+        "327": {
+            "Name": "Asia Crunchy-Chicken Burger",
+            "Description": "mit 135g Chicken-Fleisch, roten Zwiebeln, Tomaten, Salat und Sweet-Chilisauce",
+            "Price": 7.90
+        },
+        "328": {
+            "Name": "Hot Crunchy Chili-Cheese Burger",
+            "Description": "mit Käse, Tomaten, Salat, frischen indischen Chili u. Ketchup",
+            "Price": 8.90
         }
     }
 }

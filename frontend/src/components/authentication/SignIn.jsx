@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import React from 'react';
+import useFetch from "../../functions/useFetch";
 
 const SignIn = (props) => {
-    const url = "http://127.0.0.1:5000/signIn";
     const navigate = useNavigate();
+    const {data, error, isPending, fetchData} = useFetch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -12,30 +13,18 @@ const SignIn = (props) => {
             username: formData.get('username').trim(),
             password: formData.get('password').trim()
         };
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        })
-            .then(res => {
-                return res.json().then(data => {
-                    if (!res.ok) {
-                        throw new Error(data.message || 'Could not fetch the data for that resource');
+        fetchData("/signIn", 
+                    "POST",
+                    {
+                        body: userData,
+                        doOnSuccess: (data)=>{
+                            props.setToken(data.token);
+                            document.cookie = `token=${data.token}; path=/`;
+                            navigate('/menu');
+                        },
+                        doOnError:()=>e.target.reset()
                     }
-                    return data;
-                });
-            })
-            .then((data) => {
-                props.setToken(data.token);
-                document.cookie = `token=${data.token}; path=/`;
-                navigate('/menu');
-            })
-            .catch(err => {
-                alert(err.message);
-                e.target.reset();
-            })
+                )
     }
 
     return (

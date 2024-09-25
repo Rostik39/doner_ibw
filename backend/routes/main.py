@@ -19,7 +19,7 @@ def refresh_expiring_jwts(response):
         # Case where there is not a valid JWT. Just return the original response
         return response
 
-@main.route('/menu/<string:category_name>', methods=['GET'])
+@main.route('/api/menu/<string:category_name>', methods=['GET'])
 @jwt_required()
 def get_menu_by_category(category_name):
     category = Category.query.filter_by(name=category_name).first()
@@ -59,7 +59,7 @@ def get_menu_by_category(category_name):
 
     return jsonify(result), 201
 
-@main.route('/menu/categories', methods=["GET"])
+@main.route('/api/menu/categories', methods=["GET"])
 @jwt_required()
 def get_all_categories():
     result = []

@@ -5,32 +5,25 @@ import { CartContext } from "../main/cart/CartProvider";
 
 // images
 import Logo from "../../img/ibw_logo.svg";
+import useFetch from "../../functions/useFetch";
 
 
 const Header = (props) => {
     const url = "http://127.0.0.1:5000/logout";
     const navigate = useNavigate();
     const {cartCounter} = useContext(CartContext);
+    const {data, error, isPending, fetchData} = useFetch();
 
     const logMeOut = () => {
-        fetch(url,{
-                method: 'POST'
-        })
-            .then(res => {
-                return res.json().then(data => {
-                    if (!res.ok) {
-                        throw new Error(data.message || 'Could not fetch the data for that resource');
-                    }
-                    return data;
-                });
-            })
-            .then((data) => {
-                props.logout();
-                navigate('/signIn');
-            })
-            .catch(err => {
-                alert(err.message);
-            })
+        fetchData("/logout",
+            "POST",
+            {
+                doOnSuccess : () => {
+                    props.logout();
+                    navigate('/signIn');
+                }
+            }
+        )
     }
 
     return ( 
@@ -45,7 +38,8 @@ const Header = (props) => {
                     <nav className="menu__body">
                         <ul className="menu__list">
                             <li className="menu__item"><Link to="/menu" className="menu__link">Speisekarte</Link></li>
-                            <li className="menu__item"><Link to="/user" className="menu__link">User</Link></li>
+                            {/* <li className="menu__item"><Link to="/user" className="menu__link">User</Link></li> */}
+                            <li className="menu__item"><Link to="/orders-overview" className="menu__link">Gesamtbestellung</Link></li>
                         </ul>
                     </nav>
                 </div>

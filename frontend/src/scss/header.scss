@@ -20,7 +20,7 @@
         position: relative;
         z-index: 4;
 
-        svg {
+        img {
             max-width: 100%;
             @include adaptiveValue("height", 100, 80);
         }

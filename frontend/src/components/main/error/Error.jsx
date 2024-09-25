@@ -1,7 +1,6 @@
-// ErrorPage.js
 import React from 'react';
 
-const ErrorPage = () => {
+const Error = () => {
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
       <h1>404 - Route does not exist</h1>
@@ -10,4 +9,4 @@ const ErrorPage = () => {
   );
 };
 
-export default ErrorPage;
+export default Error;
