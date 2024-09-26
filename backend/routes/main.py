@@ -1,9 +1,9 @@
 from model import Dish, PizzaPrice, PizzaSize, Category
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, send_from_directory
 from datetime import timezone, datetime, timedelta
 from flask_jwt_extended import jwt_required, get_jwt, create_access_token, get_jwt_identity
 
-main = Blueprint('main', __name__)
+main = Blueprint('main', __name__, static_folder='../dist')
 
 @main.after_request
 def refresh_expiring_jwts(response):
@@ -18,6 +18,10 @@ def refresh_expiring_jwts(response):
     except (RuntimeError, KeyError):
         # Case where there is not a valid JWT. Just return the original response
         return response
+
+@main.route('/')
+def index():
+    return send_from_directory(main.static_folder, 'index.html')
 
 @main.route('/api/menu/<string:category_name>', methods=['GET'])
 @jwt_required()

@@ -17,14 +17,14 @@ const AppContent = () => {
     const { token, removeToken, setToken } = useToken();
     const location = useLocation();
 
-    useEffect(()=>{
-        const rootEl = document.querySelector('.wrapper');
-        if (location.pathname === '/signIn' || location.pathname === '/signUp') {
-            rootEl.classList.add('bg-fs');
-        } else {
-            rootEl.classList.remove('bg-fs');
-        }
-    }, [location.pathname])
+    // useEffect(()=>{
+    //     const rootEl = document.querySelector('.wrapper');
+    //     if (location.pathname === '/signIn' || location.pathname === '/signUp') {
+    //         rootEl.classList.add('bg-fs');
+    //     } else {
+    //         rootEl.classList.remove('bg-fs');
+    //     }
+    // }, [location.pathname])
 
     return (
         <>

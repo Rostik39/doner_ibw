@@ -23,7 +23,7 @@
         "05": {
             "Name": "Döner Hawaii",
             "Description": "Fleisch, Salat, Ananas, Sauce",
-            "Price": 5.50
+            "Price": 5.00
         },
         "06": {
             "Name": "Döner",
@@ -33,12 +33,12 @@
         "07": {
             "Name": "Döner Vegetarisch",
             "Description": "Salat, Käse, Sauce",
-            "Price": 3.50
+            "Price": 4.00
         },
         "08": {
             "Name": "Döner Vegetarisch",
             "Description": "Salat, Sauce",
-            "Price": 4.00
+            "Price": 3.50
         },
         "08a": {
             "Name": "Döner Teller",
@@ -53,22 +53,22 @@
         "10": {
             "Name": "XXL Döner Teller",
             "Description": "extra viel Fleisch, Käse, Salat, Sauce, Fladenbrot",
-            "Price": 9.00
+            "Price": 8.00
         },
         "11": {
             "Name": "Dürüm normal",
             "Description": "Fleisch, Salat, Sauce",
-            "Price": 4.00
+            "Price": 4.50
         },
         "11a": {
             "Name": "Dürüm mit Käse",
             "Description": "Fleisch, Salat, Käse, Sauce",
-            "Price": 4.00
+            "Price": 5.50
         },
         "12": {
             "Name": "Dürüm super",
             "Description": "viel Fleisch, Salat, Sauce",
-            "Price": 5.00
+            "Price": 6.00
         },
         "13": {
             "Name": "Dürüm Hawaii",
@@ -138,8 +138,8 @@
                 "Description": "",
                 "Price": {
                     "Kinder": 5.90,
-                    "Klein": 7.90,
-                    "Groß": 9.10,
+                    "Klein": 7.70,
+                    "Groß": 9.00,
                     "Family": 17.20,
                     "Party": 22.40
                 }
@@ -149,8 +149,8 @@
                 "Description": "",
                 "Price": {
                     "Kinder": 5.90,
-                    "Klein": 7.90,
-                    "Groß": 9.10,
+                    "Klein": 7.70,
+                    "Groß": 9.00,
                     "Family": 17.20,
                     "Party": 22.40
                 }
@@ -160,8 +160,8 @@
                 "Description": "",
                 "Price": {
                     "Kinder": 5.90,
-                    "Klein": 7.90,
-                    "Groß": 9.10,
+                    "Klein": 7.70,
+                    "Groß": 9.00,
                     "Family": 17.20,
                     "Party": 22.40
                 }
@@ -171,8 +171,8 @@
                 "Description": "",
                 "Price": {
                     "Kinder": 5.90,
-                    "Klein": 7.90,
-                    "Groß": 9.10,
+                    "Klein": 7.70,
+                    "Groß": 9.00,
                     "Family": 17.20,
                     "Party": 22.40
                 }
@@ -182,8 +182,8 @@
                 "Description": "",
                 "Price": {
                     "Kinder": 5.90,
-                    "Klein": 7.90,
-                    "Groß": 9.10,
+                    "Klein": 7.70,
+                    "Groß": 9.00,
                     "Family": 17.20,
                     "Party": 22.40
                 }
@@ -297,8 +297,8 @@
                 "Price": {
                     "Kinder": 7.00,
                     "Klein": 8.50,
-                    "Groß": 10.20,
-                    "Family": 19.90,
+                    "Groß": 9.90,
+                    "Family": 19.00,
                     "Party": 25.50
                 }
             },
@@ -308,8 +308,8 @@
                 "Price": {
                     "Kinder": 7.00,
                     "Klein": 8.50,
-                    "Groß": 10.20,
-                    "Family": 19.90,
+                    "Groß": 9.90,
+                    "Family": 19.00,
                     "Party": 25.50
                 }
             },
@@ -319,8 +319,8 @@
                 "Price": {
                     "Kinder": 7.00,
                     "Klein": 8.50,
-                    "Groß": 10.20,
-                    "Family": 19.90,
+                    "Groß": 9.90,
+                    "Family": 19.00,
                     "Party": 25.50
                 }
             },
@@ -330,8 +330,8 @@
                 "Price": {
                     "Kinder": 7.00,
                     "Klein": 8.50,
-                    "Groß": 10.20,
-                    "Family": 19.90,
+                    "Groß": 9.90,
+                    "Family": 19.00,
                     "Party": 25.50
                 }
             },
@@ -341,8 +341,8 @@
                 "Price": {
                     "Kinder": 7.00,
                     "Klein": 8.50,
-                    "Groß": 10.20,
-                    "Family": 19.90,
+                    "Groß": 9.90,
+                    "Family": 19.00,
                     "Party": 25.50
                 }
             },
@@ -352,8 +352,8 @@
                 "Price": {
                     "Kinder": 7.00,
                     "Klein": 8.50,
-                    "Groß": 10.20,
-                    "Family": 19.90,
+                    "Groß": 9.90,
+                    "Family": 19.00,
                     "Party": 25.50
                 }
             },
@@ -363,8 +363,8 @@
                 "Price": {
                     "Kinder": 7.00,
                     "Klein": 8.50,
-                    "Groß": 10.20,
-                    "Family": 19.90,
+                    "Groß": 9.90,
+                    "Family": 19.00,
                     "Party": 25.50
                 }
             },
@@ -374,8 +374,8 @@
                 "Price": {
                     "Kinder": 7.00,
                     "Klein": 8.50,
-                    "Groß": 10.20,
-                    "Family": 19.90,
+                    "Groß": 9.90,
+                    "Family": 19.00,
                     "Party": 25.50
                 }
             },
@@ -385,8 +385,8 @@
                 "Price": {
                     "Kinder": 7.00,
                     "Klein": 8.50,
-                    "Groß": 10.20,
-                    "Family": 19.90,
+                    "Groß": 9.90,
+                    "Family": 19.00,
                     "Party": 25.50
                 }
             }
@@ -397,9 +397,9 @@
                 "Description": "Salami, Schinken, Champignons, Zwiebeln",
                 "Price": {
                     "Kinder": 7.50,
-                    "Klein": 9.10,
-                    "Groß": 10.90,
-                    "Family": 20.90,
+                    "Klein": 8.70,
+                    "Groß": 10.20,
+                    "Family": 19.20,
                     "Party": 26.50
                 }
             },
@@ -408,9 +408,9 @@
                 "Description": "",
                 "Price": {
                     "Kinder": 7.50,
-                    "Klein": 9.10,
-                    "Groß": 10.90,
-                    "Family": 20.90,
+                    "Klein": 8.70,
+                    "Groß": 10.20,
+                    "Family": 19.20,
                     "Party": 26.50
                 }
             },
@@ -419,9 +419,9 @@
                 "Description": "",
                 "Price": {
                     "Kinder": 7.50,
-                    "Klein": 9.10,
-                    "Groß": 10.90,
-                    "Family": 20.90,
+                    "Klein": 8.70,
+                    "Groß": 10.20,
+                    "Family": 19.20,
                     "Party": 26.50
                 }
             },
@@ -430,9 +430,9 @@
                 "Description": "Salami, Paprika, Champignons, Oliven, Sardellen",
                 "Price": {
                     "Kinder": 7.50,
-                    "Klein": 9.10,
-                    "Groß": 10.90,
-                    "Family": 20.90,
+                    "Klein": 8.70,
+                    "Groß": 10.20,
+                    "Family": 19.20,
                     "Party": 26.50
                 }
             },
@@ -441,9 +441,9 @@
                 "Description": "",
                 "Price": {
                     "Kinder": 7.50,
-                    "Klein": 9.10,
-                    "Groß": 10.90,
-                    "Family": 20.90,
+                    "Klein": 8.70,
+                    "Groß": 10.20,
+                    "Family": 19.20,
                     "Party": 26.50
                 }
             },
@@ -452,9 +452,9 @@
                 "Description": "",
                 "Price": {
                     "Kinder": 7.50,
-                    "Klein": 9.10,
-                    "Groß": 10.90,
-                    "Family": 20.90,
+                    "Klein": 8.70,
+                    "Groß": 10.20,
+                    "Family": 19.20,
                     "Party": 26.50
                 }
             },
@@ -463,9 +463,9 @@
                 "Description": "",
                 "Price": {
                     "Kinder": 7.50,
-                    "Klein": 9.10,
-                    "Groß": 10.90,
-                    "Family": 20.90,
+                    "Klein": 8.70,
+                    "Groß": 10.20,
+                    "Family": 19.20,
                     "Party": 26.50
                 }
             },
@@ -474,9 +474,9 @@
                 "Description": "",
                 "Price": {
                     "Kinder": 7.50,
-                    "Klein": 9.10,
-                    "Groß": 10.90,
-                    "Family": 20.90,
+                    "Klein": 8.70,
+                    "Groß": 10.20,
+                    "Family": 19.20,
                     "Party": 26.50
                 }
             },
@@ -485,9 +485,9 @@
                 "Description": "doppelt Salami, Schinken, Käse, extra scharf",
                 "Price": {
                     "Kinder": 7.50,
-                    "Klein": 9.10,
-                    "Groß": 10.90,
-                    "Family": 20.90,
+                    "Klein": 8.70,
+                    "Groß": 10.20,
+                    "Family": 19.20,
                     "Party": 26.50
                 }
             }

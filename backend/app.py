@@ -7,7 +7,7 @@ from model import db
 from flask_jwt_extended import JWTManager
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='dist', static_url_path='/')
     app.config.from_object(Config)
     jwt = JWTManager(app)
     db.init_app(app)
@@ -41,3 +41,5 @@ def create_app():
 if __name__ == '__main__':
     app = create_app()
     app.run()
+
+app = create_app()

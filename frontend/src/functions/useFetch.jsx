@@ -12,7 +12,7 @@ const useFetch = (token=null, setToken=null) => {
           setIsPending(true);
           setError(null);
       
-          fetch("http://127.0.0.1:5000/api" + endOfUrl, {
+          fetch("/api" + endOfUrl, {
             method: method,
             headers: {
               Authorization: token ? `Bearer ${token}` : null,
