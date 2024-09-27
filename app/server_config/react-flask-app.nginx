@@ -1,0 +1,20 @@
+cd /etc/nginx/sites-available/
+nano react-flask-app.nginx
+
+server {
+    listen 80;
+    root /app/dist;
+    index index.html;
+
+    location / {
+        try_files $uri /index.html;
+    }
+    location /api {
+        include proxy_params;
+        proxy_pass http://localhost:5000;
+    }
+    error_page 404 /index.html;
+    location = /index.html {
+        internal;
+    }
+}
