@@ -6,6 +6,7 @@ import CustomCheckBox from "../../default/CustomCheckBox";
 import useFetch from "../../../functions/useFetch";
 import Loading from "../../default/Loading";
 import Quantity from "../../default/Quantity";
+import DeleteButton from "../../default/DeleteButton";
 
 
 const Cart = (props) => {
@@ -70,6 +71,7 @@ const Cart = (props) => {
                                                 : (item.price * item.quantity).toFixed(2)}
                                             </div>
                                             <Quantity parentClass={"list"} item={item}/>
+                                            <DeleteButton parentClass={"list"} dish={item}/>
                                         </li>
                                     ))}
                                     <div className="cart--page__total">Gesamtsumme : {totalPrice.toFixed(2)}€</div>

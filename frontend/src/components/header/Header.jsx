@@ -2,10 +2,10 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useContext } from 'react';
 import Cart from "../../img/box.svg";
 import { CartContext } from "../main/cart/CartProvider";
+import useFetch from "../../functions/useFetch";
 
 // images
 import Logo from "../../img/ibw_logo.svg";
-import useFetch from "../../functions/useFetch";
 
 
 const Header = (props) => {
