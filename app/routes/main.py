@@ -1,9 +1,10 @@
-from model import Dish, PizzaPrice, PizzaSize, Category
-from flask import Blueprint, jsonify, send_from_directory
+from model import Dish, PizzaPrice, PizzaSize, Category, Tip, db
+from flask import Blueprint, jsonify
 from datetime import timezone, datetime, timedelta
 from flask_jwt_extended import jwt_required, get_jwt, create_access_token, get_jwt_identity
 
 main = Blueprint('main', __name__)
+last_request_date = datetime.now(timezone.utc).date()
 
 @main.after_request
 def refresh_expiring_jwts(response):
@@ -19,6 +20,22 @@ def refresh_expiring_jwts(response):
         # Case where there is not a valid JWT. Just return the original response
         return response
     
+
+# function to refresh withTip state
+@main.after_request
+def refresh_tip_state(response):
+    global last_request_date
+    current_request_date = datetime.now(timezone.utc).date()
+
+    if current_request_date != last_request_date:
+        tip_state = Tip.query.first()
+        tip_state.with_tip = False
+        db.session.add(tip_state)
+        db.session.commit()
+        last_request_date = current_request_date
+    
+    return response
+
 
 @main.route('/api/menu/<string:category_name>', methods=['GET'])
 @jwt_required()

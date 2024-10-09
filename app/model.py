@@ -80,3 +80,9 @@ class Sauce(db.Model):
     herbs = db.Column(db.Boolean, nullable=False, default=False)
     garlic = db.Column(db.Boolean, nullable=False, default=False)
     spicy = db.Column(db.Boolean, nullable=False, default=False)
+
+class Tip(db.Model):
+    __tablename__ = 'tip'
+
+    id = db.Column(db.Integer, primary_key=True)
+    with_tip = db.Column(db.Boolean, nullable=False)
