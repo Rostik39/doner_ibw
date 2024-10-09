@@ -7,6 +7,57 @@
             });
             var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(540);
             var _functions_useFetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(212);
+            function _typeof(o) {
+                "@babel/helpers - typeof";
+                return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o) {
+                    return typeof o;
+                } : function(o) {
+                    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+                }, _typeof(o);
+            }
+            function ownKeys(e, r) {
+                var t = Object.keys(e);
+                if (Object.getOwnPropertySymbols) {
+                    var o = Object.getOwnPropertySymbols(e);
+                    r && (o = o.filter((function(r) {
+                        return Object.getOwnPropertyDescriptor(e, r).enumerable;
+                    }))), t.push.apply(t, o);
+                }
+                return t;
+            }
+            function _objectSpread(e) {
+                for (var r = 1; r < arguments.length; r++) {
+                    var t = null != arguments[r] ? arguments[r] : {};
+                    r % 2 ? ownKeys(Object(t), !0).forEach((function(r) {
+                        _defineProperty(e, r, t[r]);
+                    })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach((function(r) {
+                        Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
+                    }));
+                }
+                return e;
+            }
+            function _defineProperty(e, r, t) {
+                return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
+                    value: t,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }) : e[r] = t, e;
+            }
+            function _toPropertyKey(t) {
+                var i = _toPrimitive(t, "string");
+                return "symbol" == _typeof(i) ? i : i + "";
+            }
+            function _toPrimitive(t, r) {
+                if ("object" != _typeof(t) || !t) return t;
+                var e = t[Symbol.toPrimitive];
+                if (void 0 !== e) {
+                    var i = e.call(t, r || "default");
+                    if ("object" != _typeof(i)) return i;
+                    throw new TypeError("@@toPrimitive must return a primitive value.");
+                }
+                return ("string" === r ? String : Number)(t);
+            }
             function _slicedToArray(r, e) {
                 return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
             }
@@ -50,11 +101,11 @@
                 if (Array.isArray(r)) return r;
             }
             var NumberInput = function NumberInput(_ref) {
-                var className = _ref.className, initValue = _ref.initValue, username = _ref.username;
+                var className = _ref.className, initValue = _ref.initValue, username = _ref.username, token = _ref.token, setToken = _ref.setToken, updateBalance = _ref.updateBalance, orders = _ref.orders, today = _ref.today;
                 var _useState = (0, react__WEBPACK_IMPORTED_MODULE_0__.useState)(initValue), _useState2 = _slicedToArray(_useState, 2), value = _useState2[0], setValue = _useState2[1];
                 var _useState3 = (0, react__WEBPACK_IMPORTED_MODULE_0__.useState)(value), _useState4 = _slicedToArray(_useState3, 2), inputValue = _useState4[0], setInputValue = _useState4[1];
                 var inputRef = (0, react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-                var _useFetch = (0, _functions_useFetch__WEBPACK_IMPORTED_MODULE_1__.A)(), data = _useFetch.data, error = _useFetch.error, isPending = _useFetch.isPending, fetchData = _useFetch.fetchData;
+                var _useFetch = (0, _functions_useFetch__WEBPACK_IMPORTED_MODULE_1__.A)(token, setToken), fetchData = _useFetch.fetchData;
                 (0, react__WEBPACK_IMPORTED_MODULE_0__.useEffect)((function() {
                     fetchData("/balance", "PUT", {
                         body: {
@@ -62,7 +113,19 @@
                             username
                         }
                     });
+                    updateBalance(orders.map((function(order) {
+                        if (today === order.date) if (username === order.user.username) return _objectSpread(_objectSpread({}, order), {}, {
+                            user: _objectSpread(_objectSpread({}, order.user), {}, {
+                                balance: value
+                            })
+                        });
+                        return order;
+                    })));
                 }), [ value ]);
+                (0, react__WEBPACK_IMPORTED_MODULE_0__.useEffect)((function() {
+                    setValue(initValue);
+                    setInputValue(initValue);
+                }), [ initValue ]);
                 var handleInputChange = function handleInputChange(e) {
                     setInputValue(e.target.value);
                 };
@@ -149,7 +212,7 @@
                     var abortCont = new AbortController;
                     setIsPending(true);
                     setError(null);
-                    fetch("/api" + endOfUrl, {
+                    fetch("http://127.0.0.1:5000/api" + endOfUrl, {
                         method,
                         headers: {
                             Authorization: token ? "Bearer ".concat(token) : null,
@@ -160,7 +223,7 @@
                         return res.json().then((function(data) {
                             if (!res.ok) {
                                 if (res.status === 401) {
-                                    alert(data.error);
+                                    alert(data.msg);
                                     var buttonLogout = document.getElementById("logout");
                                     buttonLogout.click();
                                 }
@@ -8950,7 +9013,7 @@
         var react_namespaceObject = __webpack_require__.t(react, 2);
         var client = __webpack_require__(338);
         /**
- * @remix-run/router v1.19.1
+ * @remix-run/router v1.19.2
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -9422,7 +9485,7 @@
         new Set([ 307, 308 ]);
         Symbol("deferred");
         /**
- * React Router v6.26.1
+ * React Router v6.26.2
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -9896,7 +9959,7 @@
         var react_dom = __webpack_require__(961);
         var react_dom_namespaceObject = __webpack_require__.t(react_dom, 2);
         /**
- * React Router DOM v6.26.1
+ * React Router DOM v6.26.2
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -11745,6 +11808,21 @@
             }, react.createElement("span", null, "+")));
         };
         const default_Quantity = Quantity;
+        const img_delete = __webpack_require__.p + "../img/b9f07c2e2ee7bbcb538d1c1c6ff66bb4.svg";
+        var DeleteButton = function DeleteButton(_ref) {
+            var parentClass = _ref.parentClass, dish = _ref.dish;
+            var _useContext = (0, react.useContext)(CartContext), removeFromCart = _useContext.removeFromCart;
+            return react.createElement("button", {
+                className: "".concat(parentClass, "__delete"),
+                onClick: function onClick() {
+                    return removeFromCart(dish);
+                }
+            }, react.createElement("img", {
+                src: img_delete,
+                alt: "delete"
+            }));
+        };
+        const default_DeleteButton = DeleteButton;
         function Cart_slicedToArray(r, e) {
             return Cart_arrayWithHoles(r) || Cart_iterableToArrayLimit(r, e) || Cart_unsupportedIterableToArray(r, e) || Cart_nonIterableRest();
         }
@@ -11858,6 +11936,9 @@
                 }))) === null || _item$price$find === void 0 ? void 0 : _item$price$find[item.selected_size]) * item.quantity).toFixed(2) : (item.price * item.quantity).toFixed(2)), react.createElement(default_Quantity, {
                     parentClass: "list",
                     item
+                }), react.createElement(default_DeleteButton, {
+                    parentClass: "list",
+                    dish: item
                 }));
             })), react.createElement("div", {
                 className: "cart--page__total"
@@ -12022,6 +12103,57 @@
         var dist = __webpack_require__(614);
         var dist_default = __webpack_require__.n(dist);
         var NumberInput = __webpack_require__(363);
+        function OrdersOverview_typeof(o) {
+            "@babel/helpers - typeof";
+            return OrdersOverview_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o) {
+                return typeof o;
+            } : function(o) {
+                return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+            }, OrdersOverview_typeof(o);
+        }
+        function OrdersOverview_ownKeys(e, r) {
+            var t = Object.keys(e);
+            if (Object.getOwnPropertySymbols) {
+                var o = Object.getOwnPropertySymbols(e);
+                r && (o = o.filter((function(r) {
+                    return Object.getOwnPropertyDescriptor(e, r).enumerable;
+                }))), t.push.apply(t, o);
+            }
+            return t;
+        }
+        function OrdersOverview_objectSpread(e) {
+            for (var r = 1; r < arguments.length; r++) {
+                var t = null != arguments[r] ? arguments[r] : {};
+                r % 2 ? OrdersOverview_ownKeys(Object(t), !0).forEach((function(r) {
+                    OrdersOverview_defineProperty(e, r, t[r]);
+                })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : OrdersOverview_ownKeys(Object(t)).forEach((function(r) {
+                    Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
+                }));
+            }
+            return e;
+        }
+        function OrdersOverview_defineProperty(e, r, t) {
+            return (r = OrdersOverview_toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
+                value: t,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[r] = t, e;
+        }
+        function OrdersOverview_toPropertyKey(t) {
+            var i = OrdersOverview_toPrimitive(t, "string");
+            return "symbol" == OrdersOverview_typeof(i) ? i : i + "";
+        }
+        function OrdersOverview_toPrimitive(t, r) {
+            if ("object" != OrdersOverview_typeof(t) || !t) return t;
+            var e = t[Symbol.toPrimitive];
+            if (void 0 !== e) {
+                var i = e.call(t, r || "default");
+                if ("object" != OrdersOverview_typeof(i)) return i;
+                throw new TypeError("@@toPrimitive must return a primitive value.");
+            }
+            return ("string" === r ? String : Number)(t);
+        }
         function OrdersOverview_slicedToArray(r, e) {
             return OrdersOverview_arrayWithHoles(r) || OrdersOverview_iterableToArrayLimit(r, e) || OrdersOverview_unsupportedIterableToArray(r, e) || OrdersOverview_nonIterableRest();
         }
@@ -12067,17 +12199,73 @@
         var OrdersOverview = function OrdersOverview(_ref) {
             var token = _ref.token, setToken = _ref.setToken;
             var _useState = (0, react.useState)([]), _useState2 = OrdersOverview_slicedToArray(_useState, 2), orders = _useState2[0], setOrders = _useState2[1];
-            var _useFetch = (0, useFetch.A)(token, setToken), data = _useFetch.data, error = _useFetch.error, isPending = _useFetch.isPending, fetchData = _useFetch.fetchData;
+            var _useState3 = (0, react.useState)(false), _useState4 = OrdersOverview_slicedToArray(_useState3, 2), withTip = _useState4[0], setTip = _useState4[1];
+            var _useState5 = (0, react.useState)(0), _useState6 = OrdersOverview_slicedToArray(_useState5, 2), totalPrice = _useState6[0], setTotalPrice = _useState6[1];
+            var _useFetch = (0, useFetch.A)(token, setToken), data = _useFetch.data, error = _useFetch.error, fetchData = (_useFetch.isPending, 
+            _useFetch.fetchData);
+            var todaysDate = (new Date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "2-digit"
+            });
             (0, react.useEffect)((function() {
                 fetchData("/orders", "GET", {
                     doOnSuccess: function doOnSuccess(data) {
                         return setOrders(data);
                     }
                 });
+                fetchData("/tip", "GET", {
+                    doOnSuccess: function doOnSuccess(data) {
+                        return setTip(data);
+                    }
+                });
             }), []);
+            (0, react.useEffect)((function() {
+                var calculatedTotalPrice = 0;
+                orders.forEach((function(order) {
+                    if (todaysDate === order.date) {
+                        order.cart.forEach((function(item) {
+                            var price;
+                            if (Array.isArray(item.price)) {
+                                var selectedSize = item.selected_size;
+                                var priceObject = item.price.find((function(p) {
+                                    return p[selectedSize] !== void 0;
+                                }));
+                                price = priceObject[selectedSize];
+                            } else price = parseFloat(item.price);
+                            calculatedTotalPrice += price * item.quantity;
+                        }));
+                        if (withTip) calculatedTotalPrice += .5;
+                    }
+                }));
+                setTotalPrice(calculatedTotalPrice);
+            }), [ orders ]);
+            var handleCheckState = function handleCheckState() {
+                if (!withTip) setOrders(orders.map((function(order) {
+                    if (todaysDate === order.date) return OrdersOverview_objectSpread(OrdersOverview_objectSpread({}, order), {}, {
+                        user: OrdersOverview_objectSpread(OrdersOverview_objectSpread({}, order.user), {}, {
+                            balance: (parseFloat(order.user.balance) - .5).toFixed(2)
+                        })
+                    });
+                    return order;
+                }))); else setOrders(orders.map((function(order) {
+                    if (todaysDate === order.date) return OrdersOverview_objectSpread(OrdersOverview_objectSpread({}, order), {}, {
+                        user: OrdersOverview_objectSpread(OrdersOverview_objectSpread({}, order.user), {}, {
+                            balance: (parseFloat(order.user.balance) + .5).toFixed(2)
+                        })
+                    });
+                    return order;
+                })));
+                setTip(!withTip);
+                fetchData("/tip", "POST", {
+                    body: {
+                        withTip: !withTip
+                    }
+                });
+            };
             return react.createElement("div", {
                 className: "page__orders orders"
-            }, isPending && react.createElement(default_Loading, null), error && react.createElement("div", null, error), data && react.createElement("div", {
+            }, error && react.createElement("div", null, error), data && react.createElement(react.Fragment, null, react.createElement("div", {
                 className: "orders__container"
             }, orders.map((function(order) {
                 return react.createElement(dist_default(), {
@@ -12092,7 +12280,12 @@
                 }, "Guthaben : "), react.createElement(NumberInput.A, {
                     className: "balance",
                     initValue: order.user.balance,
-                    username: order.user.username
+                    username: order.user.username,
+                    token,
+                    setToken,
+                    updateBalance: setOrders,
+                    orders,
+                    today: todaysDate
                 })), react.createElement("div", {
                     className: "Collapsible__date"
                 }, "Datum : ", order.date), react.createElement("ul", {
@@ -12127,12 +12320,30 @@
                         isDisabled: true
                     }));
                 })))));
-            }))));
+            }))), react.createElement("div", {
+                className: "orders__box"
+            }, react.createElement("div", {
+                className: "orders__total"
+            }, "Gesamtsumme : ", totalPrice.toFixed(2)), react.createElement("div", {
+                className: "orders__"
+            }, react.createElement("input", {
+                type: "checkbox",
+                id: "tip",
+                checked: withTip,
+                className: "orders__checkbox",
+                onChange: handleCheckState
+            }), react.createElement("label", {
+                htmlFor: "tip"
+            }, "Trinkgeld")))));
         };
         const orders_OrdersOverview = OrdersOverview;
         var AppContent = function AppContent() {
             var _useToken = functions_useToken(), token = _useToken.token, removeToken = _useToken.removeToken, setToken = _useToken.setToken;
             var location = dist_useLocation();
+            (0, react.useEffect)((function() {
+                var rootEl = document.querySelector(".wrapper");
+                if (location.pathname === "/signIn" || location.pathname === "/signUp") rootEl.classList.add("bg-fs"); else rootEl.classList.remove("bg-fs");
+            }), [ location.pathname ]);
             return react.createElement(react.Fragment, null, token && token !== "" && token !== void 0 ? react.createElement(react.Fragment, null, react.createElement(CartProvider, null, location.pathname !== "/" && location.pathname !== "/cart" && location.pathname !== "/menu" && location.pathname !== "/orders-overview" ? null : react.createElement(header_Header, {
                 logout: removeToken
             }), react.createElement("main", {

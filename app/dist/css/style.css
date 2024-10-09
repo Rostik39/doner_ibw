@@ -177,14 +177,14 @@ body #root {
   padding: 2px 8px;
   background-color: rgba(7,48,171,.16);
   border-radius: 0;
-  color: rgba(255,255,255,.7);
+  color: hsla(0,0%,100%,.7);
   transition-timing-function: cubic-bezier(.25,.8,.25,1);
   transition-duration: .3s;
   transition-property: color,background-color,box-shadow;
   display: flex;
   height: 32px;
   align-items: center;
-  box-shadow: rgba(0,0,0,.15) 0 2px 1px 0 inset,rgba(255,255,255,.17) 0 1px 1px 0;
+  box-shadow: rgba(0,0,0,.15) 0 2px 1px 0 inset,hsla(0,0%,100%,.17) 0 1px 1px 0;
   outline: 0;
   justify-content: center;
   min-width: 55px
@@ -192,7 +192,7 @@ body #root {
 .customCheckBox:hover {
   background-color: #1e77c0;
   color: #fff;
-  box-shadow: rgba(0,0,0,.23) 0 -4px 1px 0 inset,rgba(255,255,255,.17) 0 -1px 1px 0,rgba(0,0,0,.17) 0 2px 4px 1px
+  box-shadow: rgba(0,0,0,.23) 0 -4px 1px 0 inset,hsla(0,0%,100%,.17) 0 -1px 1px 0,rgba(0,0,0,.17) 0 2px 4px 1px
 }
 .customCheckBox .inner {
   font-weight: 900;
@@ -225,7 +225,7 @@ body #root {
 .customCheckBoxInput:checked+.customCheckBoxWrapper .customCheckBox {
   background-color: #1184cb;
   color: #fff;
-  box-shadow: rgba(0,0,0,.23) 0 -4px 1px 0 inset,rgba(255,255,255,.17) 0 -1px 1px 0,rgba(0,0,0,.17) 0 2px 4px 1px
+  box-shadow: rgba(0,0,0,.23) 0 -4px 1px 0 inset,hsla(0,0%,100%,.17) 0 -1px 1px 0,rgba(0,0,0,.17) 0 2px 4px 1px
 }
 .customCheckBoxInput:checked+.customCheckBoxWrapper .customCheckBox .inner {
   -webkit-transform: translateY(-2px);
@@ -233,7 +233,7 @@ body #root {
 }
 .customCheckBoxInput:checked+.customCheckBoxWrapper .customCheckBox:hover {
   background-color: #73b4dd;
-  box-shadow: rgba(0,0,0,.26) 0 -4px 1px 0 inset,rgba(255,255,255,.17) 0 -1px 1px 0,rgba(0,0,0,.15) 0 3px 6px 2px
+  box-shadow: rgba(0,0,0,.26) 0 -4px 1px 0 inset,hsla(0,0%,100%,.17) 0 -1px 1px 0,rgba(0,0,0,.15) 0 3px 6px 2px
 }
 .customCheckBoxWrapper .customCheckBox:hover .inner {
   -webkit-transform: translateY(-2px);
@@ -378,6 +378,14 @@ body #root {
 .list__price {
   color: #00b4d8;
   font-weight: 800
+}
+.list__delete {
+  align-content: center;
+  padding: .25rem;
+  border: 0 solid transparent;
+  background-color: rgba(100,77,237,.08);
+  border-radius: .3125rem;
+  transition: all .2s linear
 }
 .list__button {
   border: solid 3px #0077b6;
@@ -833,7 +841,7 @@ body #root {
   opacity: .4
 }
 .sidebar__item:not(.active):hover a {
-  color: rgba(255,255,255,.75)
+  color: hsla(0,0%,100%,.75)
 }
 .sidebar__item::after {
   content: "";
@@ -869,7 +877,6 @@ body #root {
   border-radius: 10px;
   background-color: rgba(0,0,0,.289);
   box-shadow: 0 0 10px 1px rgba(0,0,0,.25);
-  -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px)
 }
 .auth-box .user-box {
@@ -1022,6 +1029,22 @@ body #root {
   display: grid;
   gap: .9375rem;
   padding-top: 1.25rem
+}
+.orders__box {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 20%;
+  bottom: .625rem;
+  right: 25%;
+  padding: .9375rem;
+  border: solid .125rem #00b4d8;
+  border-radius: .25rem;
+  box-shadow: 5px 5px 0 0 #90e0ef
+}
+.orders__checkbox {
+  width: auto;
+  margin-right: .3125rem
 }
 .Collapsible {
   border: 1px solid #00b4d8;
@@ -1508,6 +1531,9 @@ body #root {
     border: 2px solid #4a9dec;
     box-shadow: 0 0 0 7px rgba(74,157,236,.2);
     background-color: #fff
+  }
+  .list__delete:hover {
+    box-shadow: 3.4px 2.5px 4.9px rgba(0,0,0,.025),8.6px 6.3px 12.4px rgba(0,0,0,.035),17.5px 12.8px 25.3px rgba(0,0,0,.045),36.1px 26.3px 52.2px rgba(0,0,0,.055),99px 72px 143px rgba(0,0,0,.08)
   }
   .list__button:hover {
     background-color: #caf0f8
