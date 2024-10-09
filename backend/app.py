@@ -36,6 +36,9 @@ def create_app():
     from routes.orders import orders
     app.register_blueprint(orders)
 
+    from routes.user import user
+    app.register_blueprint(user)
+
     return app
 
 if __name__ == '__main__':

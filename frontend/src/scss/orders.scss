@@ -3,12 +3,33 @@
         display: grid;
         gap: toRem(15);
         padding-top: toRem(20);
-        @media (min-width: toEm(1215)){
+
+        @media (min-width: toEm(1215)) {
             grid-template-columns: repeat(2, 1fr);
             align-items: start;
         }
-}
+    }
 
+    &__box {
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        width: 20%;
+        bottom: toRem(10);
+        right: 25%;
+        padding: 0.9375rem;
+        border: solid 0.125rem #00b4d8;
+        border-radius: 0.25rem;
+        box-shadow: 5px 5px 0px 0px #90e0ef;
+    }
+
+    &__total {
+    }
+
+    &__checkbox {
+        width: auto;
+        margin-right: toRem(5);
+    }
 }
 
 .Collapsible {
@@ -17,7 +38,7 @@
     overflow: hidden;
     box-shadow: 8px 8px 24px 0px rgba(54, 220, 229, 0.527);
 
-    & > span {
+    &>span {
         display: block;
         background-color: $skyBlue;
         color: white;
@@ -25,7 +46,8 @@
         font-size: toRem(20);
         font-weight: 600;
         position: relative;
-        &::after{
+
+        &::after {
             content: url('../img/arrow.svg');
             // transform: rotateX(180deg);
             position: absolute;
@@ -36,19 +58,20 @@
     }
 
     & .is-open {
-        &::after{
+        &::after {
             transform: rotate(90deg);
         }
     }
 
-    & .list{
+    & .list {
         &__body {
-            @media (min-width:$mobile){
+            @media (min-width:$mobile) {
                 flex: 0 1 75%;
             }
         }
+
         &__item {
-            @media (min-width:$mobile){
+            @media (min-width:$mobile) {
                 justify-content: space-between;
             }
         }
@@ -66,6 +89,7 @@
     display: flex;
     gap: toRem(10);
     align-items: center;
+
     &__input {
         @include adaptiveValue("width", 150, 100);
     }

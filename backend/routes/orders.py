@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt, create_access_token, get_jwt_identity
 from datetime import timezone, datetime, timedelta
-from model import User, Order, OrderItem, Sauce, PizzaSize, Dish, PizzaPrice, db
+from model import User, Order, OrderItem, Sauce, PizzaSize, Dish, PizzaPrice, Tip, db
 
 orders = Blueprint('orders', __name__)
 
@@ -18,6 +18,7 @@ def refresh_expiring_jwts(response):
     except (RuntimeError, KeyError):
         # Case where there is not a valid JWT. Just return the original response
         return response
+
 
 @orders.route('/api/orders', methods=["GET"])
 @jwt_required()
@@ -38,7 +39,7 @@ def get_orders():
                 "balance": user.balance
             },
             "date": formatted_date,
-            "cart": []
+            "cart": [],
         }
 
         for item in items:
@@ -86,6 +87,7 @@ def get_orders():
 
 
 @orders.route("/api/balance", methods=["PUT"])
+@jwt_required()
 def update_balance():
     data = request.json
 
@@ -110,3 +112,23 @@ def update_balance():
     db.session.commit()  # Commit the changes to the database
 
     return jsonify({"message": f"Balance for {username} updated successfully", "new_balance": new_balance}), 200
+
+
+@orders.route("/api/tip", methods=["GET"])
+@jwt_required()
+def get_tip():
+    tip = Tip.query.first()
+    
+    return jsonify(tip.with_tip), 200
+
+
+@orders.route("/api/tip", methods=["POST"])
+@jwt_required()
+def update_tip():
+    tip = Tip.query.first()
+    data = request.json
+    tip.with_tip = data["withTip"]
+    db.session.add(tip)
+    db.session.commit()
+
+    return jsonify({"message": "Success"}), 200

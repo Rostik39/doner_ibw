@@ -1,5 +1,5 @@
 import json
-from model import Category, Dish, PizzaPrice, PizzaSize, PizzaSubcategory, db
+from model import Category, Dish, PizzaPrice, PizzaSize, PizzaSubcategory, Tip, db
 
 def populateDB() :
 
@@ -45,7 +45,9 @@ def populateDB() :
 
         category_id+=1
                 
-    return dishes, categories, pizza_sizes, pizza_prices, pizza_subcategories
+    tip = [Tip(with_tip=False)]
+
+    return dishes, categories, pizza_sizes, pizza_prices, pizza_subcategories, tip
 
     db.session.add_all(dishes)
     db.session.add_all(categories)

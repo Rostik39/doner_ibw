@@ -24,7 +24,7 @@ const useFetch = (token=null, setToken=null) => {
               return res.json().then((data) => {
                 if (!res.ok) {
                   if (res.status === 401) {
-                    alert(data.error);
+                    alert(data.msg);
                     const buttonLogout = document.getElementById("logout");
                     buttonLogout.click();
                   }
