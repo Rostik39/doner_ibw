@@ -9,7 +9,6 @@ import Logo from "../../img/ibw_logo.svg";
 
 
 const Header = (props) => {
-    const url = "http://127.0.0.1:5000/logout";
     const navigate = useNavigate();
     const {cartCounter} = useContext(CartContext);
     const {data, error, isPending, fetchData} = useFetch();
