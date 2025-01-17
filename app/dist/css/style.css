@@ -1033,10 +1033,9 @@ body #root {
 .orders__box {
   display: flex;
   justify-content: space-between;
+  gap: .625rem;
   position: fixed;
-  width: 20%;
   bottom: .625rem;
-  right: 25%;
   padding: .9375rem;
   border: solid .125rem #00b4d8;
   border-radius: .25rem;
@@ -1140,6 +1139,9 @@ body #root {
   .cart--page__total {
     font-size: 1.5rem
   }
+  .orders__box {
+    right: 18.75rem
+  }
   .balance__input {
     width: 9.375rem
   }
@@ -1186,6 +1188,9 @@ body #root {
   }
   .cart--page__total {
     font-size: 1.25rem
+  }
+  .orders__box {
+    right: .25rem
   }
   .balance__input {
     width: 6.25rem
@@ -1500,6 +1505,16 @@ body #root {
   @supports not (font-size:clamp(1.25rem ,1.1707920792rem + 0.396039604vw ,1.5rem)) {
     .cart--page__total {
       font-size: calc(1.25rem + .25*(100vw - 20rem)/ 63.125)
+    }
+  }
+  @supports (right:clamp(0.25rem ,-5.6113861386rem + 29.3069306931vw ,18.75rem)) {
+    .orders__box {
+      right: clamp(.25rem ,-5.6113861386rem + 29.3069306931vw ,18.75rem)
+    }
+  }
+  @supports not (right:clamp(0.25rem ,-5.6113861386rem + 29.3069306931vw ,18.75rem)) {
+    .orders__box {
+      right: calc(.25rem + 18.5*(100vw - 20rem)/ 63.125)
     }
   }
   @supports (width:clamp(6.25rem ,5.2599009901rem + 4.9504950495vw ,9.375rem)) {
