@@ -13,10 +13,10 @@
     &__box {
         display: flex;
         justify-content: space-between;
+        gap: toRem(10);
         position: fixed;
-        width: 20%;
         bottom: toRem(10);
-        right: 25%;
+        @include adaptiveValue("right", 300, 4);
         padding: 0.9375rem;
         border: solid 0.125rem #00b4d8;
         border-radius: 0.25rem;
