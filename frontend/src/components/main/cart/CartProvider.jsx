@@ -32,10 +32,12 @@ const CartProvider = ({ children }) => {
     }, [cart, isInitialized]);
 
     useEffect(() => {
-        document.querySelector('.cart__amount').classList.add("impulse")
-        setTimeout(()=>{
-            document.querySelector('.cart__amount').classList.remove("impulse");
-        }, 500)
+        if (cartCounter > 0) {
+            document.querySelector('.cart__amount').classList.add("impulse")
+            setTimeout(()=>{
+                document.querySelector('.cart__amount').classList.remove("impulse");
+            }, 500)
+        }
     }, [cartCounter])
 
     const countTotalPrice = () => {

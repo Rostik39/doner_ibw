@@ -18,6 +18,8 @@ const OrdersOverview = ({ token, setToken }) => {
         month: 'long',
         day: '2-digit'
     });
+    const [openState, setOpenState] = useState(false);
+    const [buttonText, setButtonText] = useState('');
 
 
     useEffect(() => {
@@ -104,62 +106,77 @@ const OrdersOverview = ({ token, setToken }) => {
         })
     }
 
+    useEffect(() => {
+        if (buttonText === "anzeigen") {
+            setButtonText("schließen")
+        } else {
+            setButtonText("anzeigen")
+        }
+    }, [openState]);
+
+    const handleCollapseAll = () => {
+        setOpenState(!openState);
+    }
+
 
     return (
         <div className="page__orders orders">
-            {/* {isPending &&
+            {isPending &&
                 <Loading />
-            } */}
+            }
             {error &&
                 <div>{error}</div>
             }
             {data &&
                 <>
                     <div className="orders__container">
-                        {orders.map((order) =>
-                            <Collapsible trigger={order.user.username} key={order.user.username}>
-                                <div className="Collapsible__body">
-                                    <div className="Collapsible__balance balance">
-                                        <div className="balance__text">Guthaben : </div>
-                                        <NumberInput 
-                                            className={"balance"} 
-                                            initValue={order.user.balance} 
-                                            username={order.user.username} 
-                                            token={token} 
-                                            setToken={setToken}
-                                            updateBalance={setOrders}
-                                            orders={orders}
-                                            today={todaysDate}
-                                        />
-                                    </div>
-                                    <div className="Collapsible__date">Datum : {order.date}</div>
-                                    <ul className="cart--page__list list">
-                                        {order.cart.map((item) => (
-                                            <li className="list__item" key={item.dish_id}>
-                                                <div className="list__body">
-                                                    <div className="list__number">{item.number}</div>
-                                                    <div className="list__text">
-                                                        <div className="list__title">{item.name}</div>
+                        <button className="orders__button" onClick={handleCollapseAll}>Alle Bestellungen {buttonText}</button>
+                        <div className="orders__items">
+                            {orders.map((order, index) =>
+                                <Collapsible trigger={order.user.username} key={order.user.username} open={openState} handleTriggerClick={() => {}}>
+                                    <div className="Collapsible__body">
+                                        <div className="Collapsible__balance balance">
+                                            <div className="balance__text">Guthaben : </div>
+                                            <NumberInput 
+                                                className={"balance"} 
+                                                initValue={order.user.balance} 
+                                                username={order.user.username} 
+                                                token={token} 
+                                                setToken={setToken}
+                                                updateBalance={setOrders}
+                                                orders={orders}
+                                                today={todaysDate}
+                                            />
+                                        </div>
+                                        <div className="Collapsible__date">Datum : {order.date}</div>
+                                        <ul className="cart--page__list list">
+                                            {order.cart.map((item) => (
+                                                <li className="list__item" key={item.dish_id}>
+                                                    <div className="list__body">
+                                                        <div className="list__number">{item.number}</div>
+                                                        <div className="list__text">
+                                                            <div className="list__title">{item.name}</div>
+                                                        </div>
+                                                        {Array.isArray(item.price) && <OptionsDropdown id={item.dish_id} options={item.price} initValue={item.selected_size} />}
+                                                        {item.sauces && <CustomCheckBox id={item.dish_id} sauces={item.sauces} />}
                                                     </div>
-                                                    {Array.isArray(item.price) && <OptionsDropdown id={item.dish_id} options={item.price} initValue={item.selected_size} />}
-                                                    {item.sauces && <CustomCheckBox id={item.dish_id} sauces={item.sauces} />}
-                                                </div>
-                                                <div className="list__price">
-                                                    {Array.isArray(item.price)
-                                                        ? (item.price.find(p => p[item.selected_size])?.[item.selected_size] * item.quantity).toFixed(2)
-                                                        : (item.price * item.quantity).toFixed(2)}
-                                                </div>
-                                                <Quantity parentClass={"list"} item={item} isDisabled={true} />
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </Collapsible>
-                        )}
+                                                    <div className="list__price">
+                                                        {Array.isArray(item.price)
+                                                            ? (item.price.find(p => p[item.selected_size])?.[item.selected_size] * item.quantity).toFixed(2)
+                                                            : (item.price * item.quantity).toFixed(2)}
+                                                    </div>
+                                                    <Quantity parentClass={"list"} item={item} isDisabled={true} />
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </Collapsible>
+                            )}
+                        </div>
                     </div>
                     <div className="orders__box">
                         <div className="orders__total">Gesamtsumme : {totalPrice.toFixed(2)}</div>
-                        <div className='orders__'>
+                        <div className="orders__tip">
                             <input 
                                 type="checkbox"
                                 id="tip"

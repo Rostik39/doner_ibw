@@ -13,7 +13,7 @@ const Header = (props) => {
     const {cartCounter} = useContext(CartContext);
     const {data, error, isPending, fetchData} = useFetch();
 
-    const logMeOut = () => {
+    const handleLogout = () => {
         fetchData("/logout",
             "POST",
             {
@@ -37,7 +37,6 @@ const Header = (props) => {
                     <nav className="menu__body">
                         <ul className="menu__list">
                             <li className="menu__item"><Link to="/menu" className="menu__link">Speisekarte</Link></li>
-                            {/* <li className="menu__item"><Link to="/user" className="menu__link">User</Link></li> */}
                             <li className="menu__item"><Link to="/orders-overview" className="menu__link">Gesamtbestellung</Link></li>
                         </ul>
                     </nav>
@@ -49,7 +48,7 @@ const Header = (props) => {
                             <img src={Cart} alt="Cart"></img>  
                         </div>
                     </Link>
-                    <button data-da=".menu__body,767.98" className="header__logout" id="logout" onClick={logMeOut}>Logout</button>
+                    <button data-da=".menu__body,767.98" className="header__logout" id="logout" onClick={handleLogout}>Logout</button>
                     <button type="button" className="menu__icon icon-menu"><span></span></button>
                 </div>
             </div>

@@ -1,13 +1,25 @@
 .orders {
     &__container {
+        display: flex;
+        flex-direction: column;
+        padding-top: toRem(20);
+        gap: toRem(25);
+        align-items: center;
+    }
+
+    &__items {
         display: grid;
         gap: toRem(15);
-        padding-top: toRem(20);
 
         @media (min-width: toEm(1215)) {
             grid-template-columns: repeat(2, 1fr);
             align-items: start;
         }
+    }
+
+    &__button {
+        color: #fff;
+        @include buttonDefault($color: $skyBlue, $secondColor: $blue);
     }
 
     &__box {
@@ -16,11 +28,11 @@
         gap: toRem(10);
         position: fixed;
         bottom: toRem(10);
-        @include adaptiveValue("right", 300, 4);
         padding: 0.9375rem;
         border: solid 0.125rem #00b4d8;
         border-radius: 0.25rem;
         box-shadow: 5px 5px 0px 0px #90e0ef;
+        @include adaptiveValue("right", 300, 4);
     }
 
     &__total {
