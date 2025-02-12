@@ -31,15 +31,6 @@ const CartProvider = ({ children }) => {
         }
     }, [cart, isInitialized]);
 
-    useEffect(() => {
-        if (cartCounter > 0) {
-            document.querySelector('.cart__amount').classList.add("impulse")
-            setTimeout(()=>{
-                document.querySelector('.cart__amount').classList.remove("impulse");
-            }, 500)
-        }
-    }, [cartCounter])
-
     const countTotalPrice = () => {
         let result = 0;
         for(let i = 0; i < cart.length; i++){
@@ -93,6 +84,10 @@ const CartProvider = ({ children }) => {
                 }
             }
         });
+        document.querySelector('.cart__amount').classList.add("impulse")
+        setTimeout(()=>{
+            document.querySelector('.cart__amount').classList.remove("impulse");
+        }, 500)
     };
 
     const handleChangeOption = (id, newOption) => {
