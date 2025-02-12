@@ -1,9 +1,25 @@
+from functools import wraps
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt, create_access_token, get_jwt_identity
-from datetime import timezone, datetime, timedelta
+from datetime import date, timezone, datetime, timedelta
+
+from sqlalchemy import func
 from model import User, Order, OrderItem, Sauce, PizzaSize, Dish, PizzaPrice, Tip, db
 
 orders = Blueprint('orders', __name__)
+
+def admin_required(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        identity = get_jwt_identity()
+        user = User.query.filter_by(username=identity["username"]).first()
+
+        if user and user.verify_rights() :
+            return func(*args, **kwargs)
+        
+        return jsonify({"error": "Permission denied"}), 403
+        
+    return wrapper
 
 @orders.after_request
 def refresh_expiring_jwts(response):
@@ -22,8 +38,17 @@ def refresh_expiring_jwts(response):
 
 @orders.route('/api/orders', methods=["GET"])
 @jwt_required()
+@admin_required
 def get_orders():
-    orders = Order.query.join(User).join(OrderItem).join(Dish).all()
+    today = date.today()
+    orders = (
+        Order.query
+        .join(User)
+        .join(OrderItem)
+        .join(Dish)
+        .filter(func.date(Order.created) == today)
+        .all()
+    )
 
     orders_data = []
     for order in orders:
@@ -88,10 +113,10 @@ def get_orders():
 
 @orders.route("/api/balance", methods=["PUT"])
 @jwt_required()
+@admin_required
 def update_balance():
     data = request.json
 
-    # Check if 'username' and 'new_balance' are in the request body
     if not data or 'username' not in data or 'new_balance' not in data:
         return jsonify({"error": "Invalid data, 'username' and 'new_balance' are required."}), 400
     
@@ -109,7 +134,7 @@ def update_balance():
         return jsonify({"error": "User not found"}), 404
 
     user.balance = new_balance
-    db.session.commit()  # Commit the changes to the database
+    db.session.commit() 
 
     return jsonify({"message": f"Balance for {username} updated successfully", "new_balance": new_balance}), 200
 
@@ -124,10 +149,11 @@ def get_tip():
 
 @orders.route("/api/tip", methods=["POST"])
 @jwt_required()
+@admin_required
 def update_tip():
     tip = Tip.query.first()
     data = request.json
-    tip.with_tip = data["withTip"]
+    tip.with_tip = data["tip"]
     db.session.add(tip)
     db.session.commit()
 

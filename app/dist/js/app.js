@@ -212,7 +212,7 @@
                     var abortCont = new AbortController;
                     setIsPending(true);
                     setError(null);
-                    fetch("http://192.168.10.38/api" + endOfUrl, {
+                    fetch("http://192.168.10.38:5050/api" + endOfUrl, {
                         method,
                         headers: {
                             Authorization: token ? "Bearer ".concat(token) : null,
@@ -223,7 +223,7 @@
                         return res.json().then((function(data) {
                             if (!res.ok) {
                                 if (res.status === 401) {
-                                    alert(data.msg);
+                                    alert(data.error);
                                     var buttonLogout = document.getElementById("logout");
                                     buttonLogout.click();
                                 }
@@ -9077,6 +9077,70 @@
         982: (module, __unused_webpack_exports, __webpack_require__) => {
             "use strict";
             if (true) module.exports = __webpack_require__(463);
+        },
+        160: (__unused_webpack_module, exports, __webpack_require__) => {
+            "use strict";
+            /**
+ * @license React
+ * use-sync-external-store-with-selector.production.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */            var React = __webpack_require__(540);
+            function is(x, y) {
+                return x === y && (0 !== x || 1 / x === 1 / y) || x !== x && y !== y;
+            }
+            var objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = React.useSyncExternalStore, useRef = React.useRef, useEffect = React.useEffect, useMemo = React.useMemo, useDebugValue = React.useDebugValue;
+            exports.useSyncExternalStoreWithSelector = function(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {
+                var instRef = useRef(null);
+                if (null === instRef.current) {
+                    var inst = {
+                        hasValue: !1,
+                        value: null
+                    };
+                    instRef.current = inst;
+                } else inst = instRef.current;
+                instRef = useMemo((function() {
+                    function memoizedSelector(nextSnapshot) {
+                        if (!hasMemo) {
+                            hasMemo = !0;
+                            memoizedSnapshot = nextSnapshot;
+                            nextSnapshot = selector(nextSnapshot);
+                            if (void 0 !== isEqual && inst.hasValue) {
+                                var currentSelection = inst.value;
+                                if (isEqual(currentSelection, nextSnapshot)) return memoizedSelection = currentSelection;
+                            }
+                            return memoizedSelection = nextSnapshot;
+                        }
+                        currentSelection = memoizedSelection;
+                        if (objectIs(memoizedSnapshot, nextSnapshot)) return currentSelection;
+                        var nextSelection = selector(nextSnapshot);
+                        if (void 0 !== isEqual && isEqual(currentSelection, nextSelection)) return memoizedSnapshot = nextSnapshot, 
+                        currentSelection;
+                        memoizedSnapshot = nextSnapshot;
+                        return memoizedSelection = nextSelection;
+                    }
+                    var memoizedSnapshot, memoizedSelection, hasMemo = !1, maybeGetServerSnapshot = void 0 === getServerSnapshot ? null : getServerSnapshot;
+                    return [ function() {
+                        return memoizedSelector(getSnapshot());
+                    }, null === maybeGetServerSnapshot ? void 0 : function() {
+                        return memoizedSelector(maybeGetServerSnapshot());
+                    } ];
+                }), [ getSnapshot, getServerSnapshot, selector, isEqual ]);
+                var value = useSyncExternalStore(subscribe, instRef[0], instRef[1]);
+                useEffect((function() {
+                    inst.hasValue = !0;
+                    inst.value = value;
+                }), [ value ]);
+                useDebugValue(value);
+                return value;
+            };
+        },
+        418: (module, __unused_webpack_exports, __webpack_require__) => {
+            "use strict";
+            if (true) module.exports = __webpack_require__(160);
         }
     };
     var __webpack_module_cache__ = {};
@@ -9119,7 +9183,7 @@
         var client = __webpack_require__(338);
         __webpack_require__(232);
         /**
- * react-router v7.1.2
+ * react-router v7.1.5
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -9660,7 +9724,7 @@
         }
         function useRoutesImpl(routes, locationArg, dataRouterState, future) {
             invariant(useInRouterContext(), `useRoutes() may be used only in the context of a <Router> component.`);
-            let {navigator: navigator2} = react.useContext(NavigationContext);
+            let {navigator: navigator2, static: isStatic} = react.useContext(NavigationContext);
             let {matches: parentMatches} = react.useContext(RouteContext);
             let routeMatch = parentMatches[parentMatches.length - 1];
             let parentParams = routeMatch ? routeMatch.params : {};
@@ -9685,7 +9749,7 @@
                 let segments = pathname.replace(/^\//, "").split("/");
                 remainingPathname = "/" + segments.slice(parentSegments.length).join("/");
             }
-            let matches = matchRoutes(routes, {
+            let matches = !isStatic && dataRouterState && dataRouterState.matches && dataRouterState.matches.length > 0 ? dataRouterState.matches : matchRoutes(routes, {
                 pathname: remainingPathname
             });
             if (ENABLE_DEV_WARNINGS) {
@@ -10503,7 +10567,7 @@
         }
         var isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
         try {
-            if (isBrowser) window.__reactRouterVersion = "7.1.2";
+            if (isBrowser) window.__reactRouterVersion = "7.1.5";
         } catch (e) {}
         function BrowserRouter({basename, children, window: window2}) {
             let historyRef = react.useRef();
@@ -10895,6 +10959,7 @@
             ServerMode2["Test"] = "test";
             return ServerMode2;
         })(ServerMode || {});
+        new Set([ 100, 101, 204, 205, 304 ]);
         function i(e, t, r, n) {
             return new (r || (r = Promise))((function(o, a) {
                 function i(e) {
@@ -11538,12 +11603,6 @@
                     setTotalPrice(countTotalPrice());
                 }
             }), [ cart, isInitialized ]);
-            (0, react.useEffect)((function() {
-                document.querySelector(".cart__amount").classList.add("impulse");
-                setTimeout((function() {
-                    document.querySelector(".cart__amount").classList.remove("impulse");
-                }), 500);
-            }), [ cartCounter ]);
             var countTotalPrice = function countTotalPrice() {
                 var result = 0;
                 var _loop = function _loop() {
@@ -11607,6 +11666,10 @@
                         }) ]);
                     }
                 }));
+                document.querySelector(".cart__amount").classList.add("impulse");
+                setTimeout((function() {
+                    document.querySelector(".cart__amount").classList.remove("impulse");
+                }), 500);
             };
             var handleChangeOption = function handleChangeOption(id, newOption) {
                 setCart((function(prevCart) {
@@ -11972,14 +12035,261 @@
             }, "sign in")));
         };
         const authentication_SignUp = SignUp;
+        var with_selector = __webpack_require__(418);
+        var IS_REACT_19 = null && React.version.startsWith("19");
+        null && Symbol.for(IS_REACT_19 ? "react.transitional.element" : "react.element");
+        null && Symbol.for("react.portal");
+        null && Symbol.for("react.fragment");
+        null && Symbol.for("react.strict_mode");
+        null && Symbol.for("react.profiler");
+        null && Symbol.for("react.consumer");
+        null && Symbol.for("react.context");
+        Symbol.for("react.forward_ref");
+        null && Symbol.for("react.suspense");
+        null && Symbol.for("react.suspense_list");
+        Symbol.for("react.memo");
+        null && Symbol.for("react.lazy");
+        null && Symbol.for("react.offscreen");
+        null && Symbol.for("react.client.reference");
+        function defaultNoopBatch(callback) {
+            callback();
+        }
+        function createListenerCollection() {
+            let first = null;
+            let last = null;
+            return {
+                clear() {
+                    first = null;
+                    last = null;
+                },
+                notify() {
+                    defaultNoopBatch((() => {
+                        let listener = first;
+                        while (listener) {
+                            listener.callback();
+                            listener = listener.next;
+                        }
+                    }));
+                },
+                get() {
+                    const listeners = [];
+                    let listener = first;
+                    while (listener) {
+                        listeners.push(listener);
+                        listener = listener.next;
+                    }
+                    return listeners;
+                },
+                subscribe(callback) {
+                    let isSubscribed = true;
+                    const listener = last = {
+                        callback,
+                        next: null,
+                        prev: last
+                    };
+                    if (listener.prev) listener.prev.next = listener; else first = listener;
+                    return function unsubscribe() {
+                        if (!isSubscribed || first === null) return;
+                        isSubscribed = false;
+                        if (listener.next) listener.next.prev = listener.prev; else last = listener.prev;
+                        if (listener.prev) listener.prev.next = listener.next; else first = listener.next;
+                    };
+                }
+            };
+        }
+        var nullListeners = {
+            notify() {},
+            get: () => []
+        };
+        function createSubscription(store, parentSub) {
+            let unsubscribe;
+            let listeners = nullListeners;
+            let subscriptionsAmount = 0;
+            let selfSubscribed = false;
+            function addNestedSub(listener) {
+                trySubscribe();
+                const cleanupListener = listeners.subscribe(listener);
+                let removed = false;
+                return () => {
+                    if (!removed) {
+                        removed = true;
+                        cleanupListener();
+                        tryUnsubscribe();
+                    }
+                };
+            }
+            function notifyNestedSubs() {
+                listeners.notify();
+            }
+            function handleChangeWrapper() {
+                if (subscription.onStateChange) subscription.onStateChange();
+            }
+            function isSubscribed() {
+                return selfSubscribed;
+            }
+            function trySubscribe() {
+                subscriptionsAmount++;
+                if (!unsubscribe) {
+                    unsubscribe = parentSub ? parentSub.addNestedSub(handleChangeWrapper) : store.subscribe(handleChangeWrapper);
+                    listeners = createListenerCollection();
+                }
+            }
+            function tryUnsubscribe() {
+                subscriptionsAmount--;
+                if (unsubscribe && subscriptionsAmount === 0) {
+                    unsubscribe();
+                    unsubscribe = void 0;
+                    listeners.clear();
+                    listeners = nullListeners;
+                }
+            }
+            function trySubscribeSelf() {
+                if (!selfSubscribed) {
+                    selfSubscribed = true;
+                    trySubscribe();
+                }
+            }
+            function tryUnsubscribeSelf() {
+                if (selfSubscribed) {
+                    selfSubscribed = false;
+                    tryUnsubscribe();
+                }
+            }
+            const subscription = {
+                addNestedSub,
+                notifyNestedSubs,
+                handleChangeWrapper,
+                isSubscribed,
+                trySubscribe: trySubscribeSelf,
+                tryUnsubscribe: tryUnsubscribeSelf,
+                getListeners: () => listeners
+            };
+            return subscription;
+        }
+        var canUseDOM = () => !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
+        var isDOM = canUseDOM();
+        var isRunningInReactNative = () => typeof navigator !== "undefined" && navigator.product === "ReactNative";
+        var isReactNative = isRunningInReactNative();
+        var getUseIsomorphicLayoutEffect = () => isDOM || isReactNative ? react.useLayoutEffect : react.useEffect;
+        var react_redux_useIsomorphicLayoutEffect = getUseIsomorphicLayoutEffect();
+        Object.defineProperty;
+        Object.getOwnPropertyNames;
+        Object.getOwnPropertySymbols;
+        Object.getOwnPropertyDescriptor;
+        Object.getPrototypeOf;
+        Object.prototype;
+        var ContextKey = Symbol.for(`react-redux-context`);
+        var gT = typeof globalThis !== "undefined" ? globalThis : {};
+        function getContext() {
+            if (!react.createContext) return {};
+            const contextMap = gT[ContextKey] ??= new Map;
+            let realContext = contextMap.get(react.createContext);
+            if (!realContext) {
+                realContext = react.createContext(null);
+                if (false) ;
+                contextMap.set(react.createContext, realContext);
+            }
+            return realContext;
+        }
+        var ReactReduxContext = getContext();
+        function Provider(providerProps) {
+            const {children, context, serverState, store} = providerProps;
+            const contextValue = react.useMemo((() => {
+                const subscription = createSubscription(store);
+                const baseContextValue = {
+                    store,
+                    subscription,
+                    getServerState: serverState ? () => serverState : void 0
+                };
+                if (true) return baseContextValue;
+            }), [ store, serverState ]);
+            const previousState = react.useMemo((() => store.getState()), [ store ]);
+            react_redux_useIsomorphicLayoutEffect((() => {
+                const {subscription} = contextValue;
+                subscription.onStateChange = subscription.notifyNestedSubs;
+                subscription.trySubscribe();
+                if (previousState !== store.getState()) subscription.notifyNestedSubs();
+                return () => {
+                    subscription.tryUnsubscribe();
+                    subscription.onStateChange = void 0;
+                };
+            }), [ contextValue, previousState ]);
+            const Context = context || ReactReduxContext;
+            return react.createElement(Context.Provider, {
+                value: contextValue
+            }, children);
+        }
+        var Provider_default = Provider;
+        function createReduxContextHook(context = ReactReduxContext) {
+            return function useReduxContext2() {
+                const contextValue = react.useContext(context);
+                if (false) ;
+                return contextValue;
+            };
+        }
+        var useReduxContext = createReduxContextHook();
+        function createStoreHook(context = ReactReduxContext) {
+            const useReduxContext2 = context === ReactReduxContext ? useReduxContext : createReduxContextHook(context);
+            const useStore2 = () => {
+                const {store} = useReduxContext2();
+                return store;
+            };
+            Object.assign(useStore2, {
+                withTypes: () => useStore2
+            });
+            return useStore2;
+        }
+        var useStore = createStoreHook();
+        function createDispatchHook(context = ReactReduxContext) {
+            const useStore2 = context === ReactReduxContext ? useStore : createStoreHook(context);
+            const useDispatch2 = () => {
+                const store = useStore2();
+                return store.dispatch;
+            };
+            Object.assign(useDispatch2, {
+                withTypes: () => useDispatch2
+            });
+            return useDispatch2;
+        }
+        var useDispatch = createDispatchHook();
+        var refEquality = (a, b) => a === b;
+        function createSelectorHook(context = ReactReduxContext) {
+            const useReduxContext2 = context === ReactReduxContext ? useReduxContext : createReduxContextHook(context);
+            const useSelector2 = (selector, equalityFnOrOptions = {}) => {
+                const {equalityFn = refEquality} = typeof equalityFnOrOptions === "function" ? {
+                    equalityFn: equalityFnOrOptions
+                } : equalityFnOrOptions;
+                if (false) ;
+                const reduxContext = useReduxContext2();
+                const {store, subscription, getServerState} = reduxContext;
+                react.useRef(true);
+                const wrappedSelector = react.useCallback({
+                    [selector.name](state) {
+                        const selected = selector(state);
+                        if (false) ;
+                        return selected;
+                    }
+                }[selector.name], [ selector ]);
+                const selectedState = (0, with_selector.useSyncExternalStoreWithSelector)(subscription.addNestedSub, store.getState, getServerState || store.getState, wrappedSelector, equalityFn);
+                react.useDebugValue(selectedState);
+                return selectedState;
+            };
+            Object.assign(useSelector2, {
+                withTypes: () => useSelector2
+            });
+            return useSelector2;
+        }
+        var useSelector = createSelectorHook();
         const box = __webpack_require__.p + "../img/2033dc5c45fcaf73f41779902842d08f.svg";
         const ibw_logo = __webpack_require__.p + "../img/df14faa28429d9f9e69d4d365572922a.svg";
         var Header = function Header(props) {
             var navigate = useNavigate();
             var _useContext = (0, react.useContext)(CartContext), cartCounter = _useContext.cartCounter;
-            var _useFetch = (0, useFetch.A)(), fetchData = (_useFetch.data, _useFetch.error, 
-            _useFetch.isPending, _useFetch.fetchData);
-            var logMeOut = function logMeOut() {
+            var _useFetch = (0, useFetch.A)(), fetchData = _useFetch.fetchData;
+            var isAdmin = useSelector((function(state) {
+                return state.user.admin;
+            }));
+            var handleLogout = function handleLogout() {
                 fetchData("/logout", "POST", {
                     doOnSuccess: function doOnSuccess() {
                         props.logout();
@@ -12009,7 +12319,7 @@
             }, react.createElement(Link, {
                 to: "/menu",
                 className: "menu__link"
-            }, "Speisekarte")), react.createElement("li", {
+            }, "Speisekarte")), isAdmin && react.createElement("li", {
                 className: "menu__item"
             }, react.createElement(Link, {
                 to: "/orders-overview",
@@ -12030,13 +12340,1381 @@
                 "data-da": ".menu__body,767.98",
                 className: "header__logout",
                 id: "logout",
-                onClick: logMeOut
+                onClick: handleLogout
             }, "Logout"), react.createElement("button", {
                 type: "button",
                 className: "menu__icon icon-menu"
             }, react.createElement("span", null)))));
         };
         const header_Header = Header;
+        class InvalidTokenError extends Error {}
+        InvalidTokenError.prototype.name = "InvalidTokenError";
+        function b64DecodeUnicode(str) {
+            return decodeURIComponent(atob(str).replace(/(.)/g, ((m, p) => {
+                let code = p.charCodeAt(0).toString(16).toUpperCase();
+                if (code.length < 2) code = "0" + code;
+                return "%" + code;
+            })));
+        }
+        function base64UrlDecode(str) {
+            let output = str.replace(/-/g, "+").replace(/_/g, "/");
+            switch (output.length % 4) {
+              case 0:
+                break;
+
+              case 2:
+                output += "==";
+                break;
+
+              case 3:
+                output += "=";
+                break;
+
+              default:
+                throw new Error("base64 string is not of the correct length");
+            }
+            try {
+                return b64DecodeUnicode(output);
+            } catch (err) {
+                return atob(output);
+            }
+        }
+        function jwtDecode(token, options) {
+            if (typeof token !== "string") throw new InvalidTokenError("Invalid token specified: must be a string");
+            options || (options = {});
+            const pos = options.header === true ? 0 : 1;
+            const part = token.split(".")[pos];
+            if (typeof part !== "string") throw new InvalidTokenError(`Invalid token specified: missing part #${pos + 1}`);
+            let decoded;
+            try {
+                decoded = base64UrlDecode(part);
+            } catch (e) {
+                throw new InvalidTokenError(`Invalid token specified: invalid base64 for part #${pos + 1} (${e.message})`);
+            }
+            try {
+                return JSON.parse(decoded);
+            } catch (e) {
+                throw new InvalidTokenError(`Invalid token specified: invalid json for part #${pos + 1} (${e.message})`);
+            }
+        }
+        function formatProdErrorMessage(code) {
+            return `Minified Redux error #${code}; visit https://redux.js.org/Errors?code=${code} for the full message or use the non-minified dev environment for full errors. `;
+        }
+        var $$observable = (() => typeof Symbol === "function" && Symbol.observable || "@@observable")();
+        var symbol_observable_default = $$observable;
+        var randomString = () => Math.random().toString(36).substring(7).split("").join(".");
+        var ActionTypes = {
+            INIT: `@@redux/INIT${randomString()}`,
+            REPLACE: `@@redux/REPLACE${randomString()}`,
+            PROBE_UNKNOWN_ACTION: () => `@@redux/PROBE_UNKNOWN_ACTION${randomString()}`
+        };
+        var actionTypes_default = ActionTypes;
+        function redux_isPlainObject(obj) {
+            if (typeof obj !== "object" || obj === null) return false;
+            let proto = obj;
+            while (Object.getPrototypeOf(proto) !== null) proto = Object.getPrototypeOf(proto);
+            return Object.getPrototypeOf(obj) === proto || Object.getPrototypeOf(obj) === null;
+        }
+        function createStore(reducer, preloadedState, enhancer) {
+            if (typeof reducer !== "function") throw new Error(true ? formatProdErrorMessage(2) : 0);
+            if (typeof preloadedState === "function" && typeof enhancer === "function" || typeof enhancer === "function" && typeof arguments[3] === "function") throw new Error(true ? formatProdErrorMessage(0) : 0);
+            if (typeof preloadedState === "function" && typeof enhancer === "undefined") {
+                enhancer = preloadedState;
+                preloadedState = void 0;
+            }
+            if (typeof enhancer !== "undefined") {
+                if (typeof enhancer !== "function") throw new Error(true ? formatProdErrorMessage(1) : 0);
+                return enhancer(createStore)(reducer, preloadedState);
+            }
+            let currentReducer = reducer;
+            let currentState = preloadedState;
+            let currentListeners = new Map;
+            let nextListeners = currentListeners;
+            let listenerIdCounter = 0;
+            let isDispatching = false;
+            function ensureCanMutateNextListeners() {
+                if (nextListeners === currentListeners) {
+                    nextListeners = new Map;
+                    currentListeners.forEach(((listener, key) => {
+                        nextListeners.set(key, listener);
+                    }));
+                }
+            }
+            function getState() {
+                if (isDispatching) throw new Error(true ? formatProdErrorMessage(3) : 0);
+                return currentState;
+            }
+            function subscribe(listener) {
+                if (typeof listener !== "function") throw new Error(true ? formatProdErrorMessage(4) : 0);
+                if (isDispatching) throw new Error(true ? formatProdErrorMessage(5) : 0);
+                let isSubscribed = true;
+                ensureCanMutateNextListeners();
+                const listenerId = listenerIdCounter++;
+                nextListeners.set(listenerId, listener);
+                return function unsubscribe() {
+                    if (!isSubscribed) return;
+                    if (isDispatching) throw new Error(true ? formatProdErrorMessage(6) : 0);
+                    isSubscribed = false;
+                    ensureCanMutateNextListeners();
+                    nextListeners.delete(listenerId);
+                    currentListeners = null;
+                };
+            }
+            function dispatch(action) {
+                if (!redux_isPlainObject(action)) throw new Error(true ? formatProdErrorMessage(7) : 0);
+                if (typeof action.type === "undefined") throw new Error(true ? formatProdErrorMessage(8) : 0);
+                if (typeof action.type !== "string") throw new Error(true ? formatProdErrorMessage(17) : 0);
+                if (isDispatching) throw new Error(true ? formatProdErrorMessage(9) : 0);
+                try {
+                    isDispatching = true;
+                    currentState = currentReducer(currentState, action);
+                } finally {
+                    isDispatching = false;
+                }
+                const listeners = currentListeners = nextListeners;
+                listeners.forEach((listener => {
+                    listener();
+                }));
+                return action;
+            }
+            function replaceReducer(nextReducer) {
+                if (typeof nextReducer !== "function") throw new Error(true ? formatProdErrorMessage(10) : 0);
+                currentReducer = nextReducer;
+                dispatch({
+                    type: actionTypes_default.REPLACE
+                });
+            }
+            function observable() {
+                const outerSubscribe = subscribe;
+                return {
+                    subscribe(observer) {
+                        if (typeof observer !== "object" || observer === null) throw new Error(true ? formatProdErrorMessage(11) : 0);
+                        function observeState() {
+                            const observerAsObserver = observer;
+                            if (observerAsObserver.next) observerAsObserver.next(getState());
+                        }
+                        observeState();
+                        const unsubscribe = outerSubscribe(observeState);
+                        return {
+                            unsubscribe
+                        };
+                    },
+                    [symbol_observable_default]() {
+                        return this;
+                    }
+                };
+            }
+            dispatch({
+                type: actionTypes_default.INIT
+            });
+            const store = {
+                dispatch,
+                subscribe,
+                getState,
+                replaceReducer,
+                [symbol_observable_default]: observable
+            };
+            return store;
+        }
+        function assertReducerShape(reducers) {
+            Object.keys(reducers).forEach((key => {
+                const reducer = reducers[key];
+                const initialState = reducer(void 0, {
+                    type: actionTypes_default.INIT
+                });
+                if (typeof initialState === "undefined") throw new Error(true ? formatProdErrorMessage(12) : 0);
+                if (typeof reducer(void 0, {
+                    type: actionTypes_default.PROBE_UNKNOWN_ACTION()
+                }) === "undefined") throw new Error(true ? formatProdErrorMessage(13) : 0);
+            }));
+        }
+        function combineReducers(reducers) {
+            const reducerKeys = Object.keys(reducers);
+            const finalReducers = {};
+            for (let i = 0; i < reducerKeys.length; i++) {
+                const key = reducerKeys[i];
+                if (false) ;
+                if (typeof reducers[key] === "function") finalReducers[key] = reducers[key];
+            }
+            const finalReducerKeys = Object.keys(finalReducers);
+            if (false) ;
+            let shapeAssertionError;
+            try {
+                assertReducerShape(finalReducers);
+            } catch (e) {
+                shapeAssertionError = e;
+            }
+            return function combination(state = {}, action) {
+                if (shapeAssertionError) throw shapeAssertionError;
+                if (false) ;
+                let hasChanged = false;
+                const nextState = {};
+                for (let i = 0; i < finalReducerKeys.length; i++) {
+                    const key = finalReducerKeys[i];
+                    const reducer = finalReducers[key];
+                    const previousStateForKey = state[key];
+                    const nextStateForKey = reducer(previousStateForKey, action);
+                    if (typeof nextStateForKey === "undefined") {
+                        action && action.type;
+                        throw new Error(true ? formatProdErrorMessage(14) : 0);
+                    }
+                    nextState[key] = nextStateForKey;
+                    hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
+                }
+                hasChanged = hasChanged || finalReducerKeys.length !== Object.keys(state).length;
+                return hasChanged ? nextState : state;
+            };
+        }
+        function compose(...funcs) {
+            if (funcs.length === 0) return arg => arg;
+            if (funcs.length === 1) return funcs[0];
+            return funcs.reduce(((a, b) => (...args) => a(b(...args))));
+        }
+        function applyMiddleware(...middlewares) {
+            return createStore2 => (reducer, preloadedState) => {
+                const store = createStore2(reducer, preloadedState);
+                let dispatch = () => {
+                    throw new Error(true ? formatProdErrorMessage(15) : 0);
+                };
+                const middlewareAPI = {
+                    getState: store.getState,
+                    dispatch: (action, ...args) => dispatch(action, ...args)
+                };
+                const chain = middlewares.map((middleware => middleware(middlewareAPI)));
+                dispatch = compose(...chain)(store.dispatch);
+                return {
+                    ...store,
+                    dispatch
+                };
+            };
+        }
+        function redux_isAction(action) {
+            return redux_isPlainObject(action) && "type" in action && typeof action.type === "string";
+        }
+        function createThunkMiddleware(extraArgument) {
+            const middleware = ({dispatch, getState}) => next => action => {
+                if (typeof action === "function") return action(dispatch, getState, extraArgument);
+                return next(action);
+            };
+            return middleware;
+        }
+        var redux_thunk_thunk = createThunkMiddleware();
+        var withExtraArgument = createThunkMiddleware;
+        var NOTHING = Symbol.for("immer-nothing");
+        var DRAFTABLE = Symbol.for("immer-draftable");
+        var DRAFT_STATE = Symbol.for("immer-state");
+        function die(error, ...args) {
+            if (false) ;
+            throw new Error(`[Immer] minified error nr: ${error}. Full error at: https://bit.ly/3cXEKWf`);
+        }
+        var immer_getPrototypeOf = Object.getPrototypeOf;
+        function immer_isDraft(value) {
+            return !!value && !!value[DRAFT_STATE];
+        }
+        function isDraftable(value) {
+            if (!value) return false;
+            return immer_isPlainObject(value) || Array.isArray(value) || !!value[DRAFTABLE] || !!value.constructor?.[DRAFTABLE] || isMap(value) || isSet(value);
+        }
+        var objectCtorString = Object.prototype.constructor.toString();
+        function immer_isPlainObject(value) {
+            if (!value || typeof value !== "object") return false;
+            const proto = immer_getPrototypeOf(value);
+            if (proto === null) return true;
+            const Ctor = Object.hasOwnProperty.call(proto, "constructor") && proto.constructor;
+            if (Ctor === Object) return true;
+            return typeof Ctor == "function" && Function.toString.call(Ctor) === objectCtorString;
+        }
+        function each(obj, iter) {
+            if (getArchtype(obj) === 0) Reflect.ownKeys(obj).forEach((key => {
+                iter(key, obj[key], obj);
+            })); else obj.forEach(((entry, index) => iter(index, entry, obj)));
+        }
+        function getArchtype(thing) {
+            const state = thing[DRAFT_STATE];
+            return state ? state.type_ : Array.isArray(thing) ? 1 : isMap(thing) ? 2 : isSet(thing) ? 3 : 0;
+        }
+        function has(thing, prop) {
+            return getArchtype(thing) === 2 ? thing.has(prop) : Object.prototype.hasOwnProperty.call(thing, prop);
+        }
+        function set(thing, propOrOldValue, value) {
+            const t = getArchtype(thing);
+            if (t === 2) thing.set(propOrOldValue, value); else if (t === 3) thing.add(value); else thing[propOrOldValue] = value;
+        }
+        function immer_is(x, y) {
+            if (x === y) return x !== 0 || 1 / x === 1 / y; else return x !== x && y !== y;
+        }
+        function isMap(target) {
+            return target instanceof Map;
+        }
+        function isSet(target) {
+            return target instanceof Set;
+        }
+        function latest(state) {
+            return state.copy_ || state.base_;
+        }
+        function shallowCopy(base, strict) {
+            if (isMap(base)) return new Map(base);
+            if (isSet(base)) return new Set(base);
+            if (Array.isArray(base)) return Array.prototype.slice.call(base);
+            const isPlain = immer_isPlainObject(base);
+            if (strict === true || strict === "class_only" && !isPlain) {
+                const descriptors = Object.getOwnPropertyDescriptors(base);
+                delete descriptors[DRAFT_STATE];
+                let keys = Reflect.ownKeys(descriptors);
+                for (let i = 0; i < keys.length; i++) {
+                    const key = keys[i];
+                    const desc = descriptors[key];
+                    if (desc.writable === false) {
+                        desc.writable = true;
+                        desc.configurable = true;
+                    }
+                    if (desc.get || desc.set) descriptors[key] = {
+                        configurable: true,
+                        writable: true,
+                        enumerable: desc.enumerable,
+                        value: base[key]
+                    };
+                }
+                return Object.create(immer_getPrototypeOf(base), descriptors);
+            } else {
+                const proto = immer_getPrototypeOf(base);
+                if (proto !== null && isPlain) return {
+                    ...base
+                };
+                const obj = Object.create(proto);
+                return Object.assign(obj, base);
+            }
+        }
+        function freeze(obj, deep = false) {
+            if (isFrozen(obj) || immer_isDraft(obj) || !isDraftable(obj)) return obj;
+            if (getArchtype(obj) > 1) obj.set = obj.add = obj.clear = obj.delete = dontMutateFrozenCollections;
+            Object.freeze(obj);
+            if (deep) Object.entries(obj).forEach((([key, value]) => freeze(value, true)));
+            return obj;
+        }
+        function dontMutateFrozenCollections() {
+            die(2);
+        }
+        function isFrozen(obj) {
+            return Object.isFrozen(obj);
+        }
+        var plugins = {};
+        function getPlugin(pluginKey) {
+            const plugin = plugins[pluginKey];
+            if (!plugin) die(0, pluginKey);
+            return plugin;
+        }
+        var currentScope;
+        function getCurrentScope() {
+            return currentScope;
+        }
+        function createScope(parent_, immer_) {
+            return {
+                drafts_: [],
+                parent_,
+                immer_,
+                canAutoFreeze_: true,
+                unfinalizedDrafts_: 0
+            };
+        }
+        function usePatchesInScope(scope, patchListener) {
+            if (patchListener) {
+                getPlugin("Patches");
+                scope.patches_ = [];
+                scope.inversePatches_ = [];
+                scope.patchListener_ = patchListener;
+            }
+        }
+        function revokeScope(scope) {
+            leaveScope(scope);
+            scope.drafts_.forEach(revokeDraft);
+            scope.drafts_ = null;
+        }
+        function leaveScope(scope) {
+            if (scope === currentScope) currentScope = scope.parent_;
+        }
+        function enterScope(immer2) {
+            return currentScope = createScope(currentScope, immer2);
+        }
+        function revokeDraft(draft) {
+            const state = draft[DRAFT_STATE];
+            if (state.type_ === 0 || state.type_ === 1) state.revoke_(); else state.revoked_ = true;
+        }
+        function processResult(result, scope) {
+            scope.unfinalizedDrafts_ = scope.drafts_.length;
+            const baseDraft = scope.drafts_[0];
+            const isReplaced = result !== void 0 && result !== baseDraft;
+            if (isReplaced) {
+                if (baseDraft[DRAFT_STATE].modified_) {
+                    revokeScope(scope);
+                    die(4);
+                }
+                if (isDraftable(result)) {
+                    result = finalize(scope, result);
+                    if (!scope.parent_) maybeFreeze(scope, result);
+                }
+                if (scope.patches_) getPlugin("Patches").generateReplacementPatches_(baseDraft[DRAFT_STATE].base_, result, scope.patches_, scope.inversePatches_);
+            } else result = finalize(scope, baseDraft, []);
+            revokeScope(scope);
+            if (scope.patches_) scope.patchListener_(scope.patches_, scope.inversePatches_);
+            return result !== NOTHING ? result : void 0;
+        }
+        function finalize(rootScope, value, path) {
+            if (isFrozen(value)) return value;
+            const state = value[DRAFT_STATE];
+            if (!state) {
+                each(value, ((key, childValue) => finalizeProperty(rootScope, state, value, key, childValue, path)));
+                return value;
+            }
+            if (state.scope_ !== rootScope) return value;
+            if (!state.modified_) {
+                maybeFreeze(rootScope, state.base_, true);
+                return state.base_;
+            }
+            if (!state.finalized_) {
+                state.finalized_ = true;
+                state.scope_.unfinalizedDrafts_--;
+                const result = state.copy_;
+                let resultEach = result;
+                let isSet2 = false;
+                if (state.type_ === 3) {
+                    resultEach = new Set(result);
+                    result.clear();
+                    isSet2 = true;
+                }
+                each(resultEach, ((key, childValue) => finalizeProperty(rootScope, state, result, key, childValue, path, isSet2)));
+                maybeFreeze(rootScope, result, false);
+                if (path && rootScope.patches_) getPlugin("Patches").generatePatches_(state, path, rootScope.patches_, rootScope.inversePatches_);
+            }
+            return state.copy_;
+        }
+        function finalizeProperty(rootScope, parentState, targetObject, prop, childValue, rootPath, targetIsSet) {
+            if (false) ;
+            if (immer_isDraft(childValue)) {
+                const path = rootPath && parentState && parentState.type_ !== 3 && !has(parentState.assigned_, prop) ? rootPath.concat(prop) : void 0;
+                const res = finalize(rootScope, childValue, path);
+                set(targetObject, prop, res);
+                if (immer_isDraft(res)) rootScope.canAutoFreeze_ = false; else return;
+            } else if (targetIsSet) targetObject.add(childValue);
+            if (isDraftable(childValue) && !isFrozen(childValue)) {
+                if (!rootScope.immer_.autoFreeze_ && rootScope.unfinalizedDrafts_ < 1) return;
+                finalize(rootScope, childValue);
+                if ((!parentState || !parentState.scope_.parent_) && typeof prop !== "symbol" && Object.prototype.propertyIsEnumerable.call(targetObject, prop)) maybeFreeze(rootScope, childValue);
+            }
+        }
+        function maybeFreeze(scope, value, deep = false) {
+            if (!scope.parent_ && scope.immer_.autoFreeze_ && scope.canAutoFreeze_) freeze(value, deep);
+        }
+        function createProxyProxy(base, parent) {
+            const isArray = Array.isArray(base);
+            const state = {
+                type_: isArray ? 1 : 0,
+                scope_: parent ? parent.scope_ : getCurrentScope(),
+                modified_: false,
+                finalized_: false,
+                assigned_: {},
+                parent_: parent,
+                base_: base,
+                draft_: null,
+                copy_: null,
+                revoke_: null,
+                isManual_: false
+            };
+            let target = state;
+            let traps = objectTraps;
+            if (isArray) {
+                target = [ state ];
+                traps = arrayTraps;
+            }
+            const {revoke, proxy} = Proxy.revocable(target, traps);
+            state.draft_ = proxy;
+            state.revoke_ = revoke;
+            return proxy;
+        }
+        var objectTraps = {
+            get(state, prop) {
+                if (prop === DRAFT_STATE) return state;
+                const source = latest(state);
+                if (!has(source, prop)) return readPropFromProto(state, source, prop);
+                const value = source[prop];
+                if (state.finalized_ || !isDraftable(value)) return value;
+                if (value === peek(state.base_, prop)) {
+                    prepareCopy(state);
+                    return state.copy_[prop] = createProxy(value, state);
+                }
+                return value;
+            },
+            has(state, prop) {
+                return prop in latest(state);
+            },
+            ownKeys(state) {
+                return Reflect.ownKeys(latest(state));
+            },
+            set(state, prop, value) {
+                const desc = getDescriptorFromProto(latest(state), prop);
+                if (desc?.set) {
+                    desc.set.call(state.draft_, value);
+                    return true;
+                }
+                if (!state.modified_) {
+                    const current2 = peek(latest(state), prop);
+                    const currentState = current2?.[DRAFT_STATE];
+                    if (currentState && currentState.base_ === value) {
+                        state.copy_[prop] = value;
+                        state.assigned_[prop] = false;
+                        return true;
+                    }
+                    if (immer_is(value, current2) && (value !== void 0 || has(state.base_, prop))) return true;
+                    prepareCopy(state);
+                    markChanged(state);
+                }
+                if (state.copy_[prop] === value && (value !== void 0 || prop in state.copy_) || Number.isNaN(value) && Number.isNaN(state.copy_[prop])) return true;
+                state.copy_[prop] = value;
+                state.assigned_[prop] = true;
+                return true;
+            },
+            deleteProperty(state, prop) {
+                if (peek(state.base_, prop) !== void 0 || prop in state.base_) {
+                    state.assigned_[prop] = false;
+                    prepareCopy(state);
+                    markChanged(state);
+                } else delete state.assigned_[prop];
+                if (state.copy_) delete state.copy_[prop];
+                return true;
+            },
+            getOwnPropertyDescriptor(state, prop) {
+                const owner = latest(state);
+                const desc = Reflect.getOwnPropertyDescriptor(owner, prop);
+                if (!desc) return desc;
+                return {
+                    writable: true,
+                    configurable: state.type_ !== 1 || prop !== "length",
+                    enumerable: desc.enumerable,
+                    value: owner[prop]
+                };
+            },
+            defineProperty() {
+                die(11);
+            },
+            getPrototypeOf(state) {
+                return immer_getPrototypeOf(state.base_);
+            },
+            setPrototypeOf() {
+                die(12);
+            }
+        };
+        var arrayTraps = {};
+        each(objectTraps, ((key, fn) => {
+            arrayTraps[key] = function() {
+                arguments[0] = arguments[0][0];
+                return fn.apply(this, arguments);
+            };
+        }));
+        arrayTraps.deleteProperty = function(state, prop) {
+            if (false) ;
+            return arrayTraps.set.call(this, state, prop, void 0);
+        };
+        arrayTraps.set = function(state, prop, value) {
+            if (false) ;
+            return objectTraps.set.call(this, state[0], prop, value, state[0]);
+        };
+        function peek(draft, prop) {
+            const state = draft[DRAFT_STATE];
+            const source = state ? latest(state) : draft;
+            return source[prop];
+        }
+        function readPropFromProto(state, source, prop) {
+            const desc = getDescriptorFromProto(source, prop);
+            return desc ? `value` in desc ? desc.value : desc.get?.call(state.draft_) : void 0;
+        }
+        function getDescriptorFromProto(source, prop) {
+            if (!(prop in source)) return;
+            let proto = immer_getPrototypeOf(source);
+            while (proto) {
+                const desc = Object.getOwnPropertyDescriptor(proto, prop);
+                if (desc) return desc;
+                proto = immer_getPrototypeOf(proto);
+            }
+            return;
+        }
+        function markChanged(state) {
+            if (!state.modified_) {
+                state.modified_ = true;
+                if (state.parent_) markChanged(state.parent_);
+            }
+        }
+        function prepareCopy(state) {
+            if (!state.copy_) state.copy_ = shallowCopy(state.base_, state.scope_.immer_.useStrictShallowCopy_);
+        }
+        var Immer2 = class {
+            constructor(config) {
+                this.autoFreeze_ = true;
+                this.useStrictShallowCopy_ = false;
+                this.produce = (base, recipe, patchListener) => {
+                    if (typeof base === "function" && typeof recipe !== "function") {
+                        const defaultBase = recipe;
+                        recipe = base;
+                        const self = this;
+                        return function curriedProduce(base2 = defaultBase, ...args) {
+                            return self.produce(base2, (draft => recipe.call(this, draft, ...args)));
+                        };
+                    }
+                    if (typeof recipe !== "function") die(6);
+                    if (patchListener !== void 0 && typeof patchListener !== "function") die(7);
+                    let result;
+                    if (isDraftable(base)) {
+                        const scope = enterScope(this);
+                        const proxy = createProxy(base, void 0);
+                        let hasError = true;
+                        try {
+                            result = recipe(proxy);
+                            hasError = false;
+                        } finally {
+                            if (hasError) revokeScope(scope); else leaveScope(scope);
+                        }
+                        usePatchesInScope(scope, patchListener);
+                        return processResult(result, scope);
+                    } else if (!base || typeof base !== "object") {
+                        result = recipe(base);
+                        if (result === void 0) result = base;
+                        if (result === NOTHING) result = void 0;
+                        if (this.autoFreeze_) freeze(result, true);
+                        if (patchListener) {
+                            const p = [];
+                            const ip = [];
+                            getPlugin("Patches").generateReplacementPatches_(base, result, p, ip);
+                            patchListener(p, ip);
+                        }
+                        return result;
+                    } else die(1, base);
+                };
+                this.produceWithPatches = (base, recipe) => {
+                    if (typeof base === "function") return (state, ...args) => this.produceWithPatches(state, (draft => base(draft, ...args)));
+                    let patches, inversePatches;
+                    const result = this.produce(base, recipe, ((p, ip) => {
+                        patches = p;
+                        inversePatches = ip;
+                    }));
+                    return [ result, patches, inversePatches ];
+                };
+                if (typeof config?.autoFreeze === "boolean") this.setAutoFreeze(config.autoFreeze);
+                if (typeof config?.useStrictShallowCopy === "boolean") this.setUseStrictShallowCopy(config.useStrictShallowCopy);
+            }
+            createDraft(base) {
+                if (!isDraftable(base)) die(8);
+                if (immer_isDraft(base)) base = immer_current(base);
+                const scope = enterScope(this);
+                const proxy = createProxy(base, void 0);
+                proxy[DRAFT_STATE].isManual_ = true;
+                leaveScope(scope);
+                return proxy;
+            }
+            finishDraft(draft, patchListener) {
+                const state = draft && draft[DRAFT_STATE];
+                if (!state || !state.isManual_) die(9);
+                const {scope_: scope} = state;
+                usePatchesInScope(scope, patchListener);
+                return processResult(void 0, scope);
+            }
+            setAutoFreeze(value) {
+                this.autoFreeze_ = value;
+            }
+            setUseStrictShallowCopy(value) {
+                this.useStrictShallowCopy_ = value;
+            }
+            applyPatches(base, patches) {
+                let i;
+                for (i = patches.length - 1; i >= 0; i--) {
+                    const patch = patches[i];
+                    if (patch.path.length === 0 && patch.op === "replace") {
+                        base = patch.value;
+                        break;
+                    }
+                }
+                if (i > -1) patches = patches.slice(i + 1);
+                const applyPatchesImpl = getPlugin("Patches").applyPatches_;
+                if (immer_isDraft(base)) return applyPatchesImpl(base, patches);
+                return this.produce(base, (draft => applyPatchesImpl(draft, patches)));
+            }
+        };
+        function createProxy(value, parent) {
+            const draft = isMap(value) ? getPlugin("MapSet").proxyMap_(value, parent) : isSet(value) ? getPlugin("MapSet").proxySet_(value, parent) : createProxyProxy(value, parent);
+            const scope = parent ? parent.scope_ : getCurrentScope();
+            scope.drafts_.push(draft);
+            return draft;
+        }
+        function immer_current(value) {
+            if (!immer_isDraft(value)) die(10, value);
+            return currentImpl(value);
+        }
+        function currentImpl(value) {
+            if (!isDraftable(value) || isFrozen(value)) return value;
+            const state = value[DRAFT_STATE];
+            let copy;
+            if (state) {
+                if (!state.modified_) return state.base_;
+                state.finalized_ = true;
+                copy = shallowCopy(value, state.scope_.immer_.useStrictShallowCopy_);
+            } else copy = shallowCopy(value, true);
+            each(copy, ((key, childValue) => {
+                set(copy, key, currentImpl(childValue));
+            }));
+            if (state) state.finalized_ = false;
+            return copy;
+        }
+        var immer = new Immer2;
+        var produce = immer.produce;
+        immer.produceWithPatches.bind(immer);
+        immer.setAutoFreeze.bind(immer);
+        immer.setUseStrictShallowCopy.bind(immer);
+        immer.applyPatches.bind(immer);
+        immer.createDraft.bind(immer);
+        immer.finishDraft.bind(immer);
+        var createDraftSafeSelectorCreator = (...args) => {
+            const createSelector2 = createSelectorCreator(...args);
+            const createDraftSafeSelector2 = Object.assign(((...args2) => {
+                const selector = createSelector2(...args2);
+                const wrappedSelector = (value, ...rest) => selector(isDraft(value) ? current(value) : value, ...rest);
+                Object.assign(wrappedSelector, selector);
+                return wrappedSelector;
+            }), {
+                withTypes: () => createDraftSafeSelector2
+            });
+            return createDraftSafeSelector2;
+        };
+        null && createDraftSafeSelectorCreator(weakMapMemoize);
+        var composeWithDevTools = typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : function() {
+            if (arguments.length === 0) return;
+            if (typeof arguments[0] === "object") return compose;
+            return compose.apply(null, arguments);
+        };
+        typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__;
+        var hasMatchFunction = v => v && typeof v.match === "function";
+        function createAction(type, prepareAction) {
+            function actionCreator(...args) {
+                if (prepareAction) {
+                    let prepared = prepareAction(...args);
+                    if (!prepared) throw new Error(true ? redux_toolkit_modern_formatProdErrorMessage(0) : 0);
+                    return {
+                        type,
+                        payload: prepared.payload,
+                        ..."meta" in prepared && {
+                            meta: prepared.meta
+                        },
+                        ..."error" in prepared && {
+                            error: prepared.error
+                        }
+                    };
+                }
+                return {
+                    type,
+                    payload: args[0]
+                };
+            }
+            actionCreator.toString = () => `${type}`;
+            actionCreator.type = type;
+            actionCreator.match = action => redux_isAction(action) && action.type === type;
+            return actionCreator;
+        }
+        var Tuple = class _Tuple extends Array {
+            constructor(...items) {
+                super(...items);
+                Object.setPrototypeOf(this, _Tuple.prototype);
+            }
+            static get [Symbol.species]() {
+                return _Tuple;
+            }
+            concat(...arr) {
+                return super.concat.apply(this, arr);
+            }
+            prepend(...arr) {
+                if (arr.length === 1 && Array.isArray(arr[0])) return new _Tuple(...arr[0].concat(this));
+                return new _Tuple(...arr.concat(this));
+            }
+        };
+        function freezeDraftable(val) {
+            return isDraftable(val) ? produce(val, (() => {})) : val;
+        }
+        function getOrInsertComputed(map, key, compute) {
+            if (map.has(key)) return map.get(key);
+            return map.set(key, compute(key)).get(key);
+        }
+        function isBoolean(x) {
+            return typeof x === "boolean";
+        }
+        var buildGetDefaultMiddleware = () => function getDefaultMiddleware(options) {
+            const {thunk = true, immutableCheck = true, serializableCheck = true, actionCreatorCheck = true} = options ?? {};
+            let middlewareArray = new Tuple;
+            if (thunk) if (isBoolean(thunk)) middlewareArray.push(redux_thunk_thunk); else middlewareArray.push(withExtraArgument(thunk.extraArgument));
+            if (false) ;
+            return middlewareArray;
+        };
+        var SHOULD_AUTOBATCH = "RTK_autoBatch";
+        var createQueueWithTimer = timeout => notify => {
+            setTimeout(notify, timeout);
+        };
+        var autoBatchEnhancer = (options = {
+            type: "raf"
+        }) => next => (...args) => {
+            const store = next(...args);
+            let notifying = true;
+            let shouldNotifyAtEndOfTick = false;
+            let notificationQueued = false;
+            const listeners = new Set;
+            const queueCallback = options.type === "tick" ? queueMicrotask : options.type === "raf" ? typeof window !== "undefined" && window.requestAnimationFrame ? window.requestAnimationFrame : createQueueWithTimer(10) : options.type === "callback" ? options.queueNotification : createQueueWithTimer(options.timeout);
+            const notifyListeners = () => {
+                notificationQueued = false;
+                if (shouldNotifyAtEndOfTick) {
+                    shouldNotifyAtEndOfTick = false;
+                    listeners.forEach((l => l()));
+                }
+            };
+            return Object.assign({}, store, {
+                subscribe(listener2) {
+                    const wrappedListener = () => notifying && listener2();
+                    const unsubscribe = store.subscribe(wrappedListener);
+                    listeners.add(listener2);
+                    return () => {
+                        unsubscribe();
+                        listeners.delete(listener2);
+                    };
+                },
+                dispatch(action) {
+                    try {
+                        notifying = !action?.meta?.[SHOULD_AUTOBATCH];
+                        shouldNotifyAtEndOfTick = !notifying;
+                        if (shouldNotifyAtEndOfTick) if (!notificationQueued) {
+                            notificationQueued = true;
+                            queueCallback(notifyListeners);
+                        }
+                        return store.dispatch(action);
+                    } finally {
+                        notifying = true;
+                    }
+                }
+            });
+        };
+        var buildGetDefaultEnhancers = middlewareEnhancer => function getDefaultEnhancers(options) {
+            const {autoBatch = true} = options ?? {};
+            let enhancerArray = new Tuple(middlewareEnhancer);
+            if (autoBatch) enhancerArray.push(autoBatchEnhancer(typeof autoBatch === "object" ? autoBatch : void 0));
+            return enhancerArray;
+        };
+        function configureStore(options) {
+            const getDefaultMiddleware = buildGetDefaultMiddleware();
+            const {reducer = void 0, middleware, devTools = true, preloadedState = void 0, enhancers = void 0} = options || {};
+            let rootReducer;
+            if (typeof reducer === "function") rootReducer = reducer; else if (redux_isPlainObject(reducer)) rootReducer = combineReducers(reducer); else throw new Error(true ? redux_toolkit_modern_formatProdErrorMessage(1) : 0);
+            if (false) ;
+            let finalMiddleware;
+            if (typeof middleware === "function") {
+                finalMiddleware = middleware(getDefaultMiddleware);
+                if (false) ;
+            } else finalMiddleware = getDefaultMiddleware();
+            if (false) ;
+            let finalCompose = compose;
+            if (devTools) finalCompose = composeWithDevTools({
+                trace: "production" !== "production",
+                ...typeof devTools === "object" && devTools
+            });
+            const middlewareEnhancer = applyMiddleware(...finalMiddleware);
+            const getDefaultEnhancers = buildGetDefaultEnhancers(middlewareEnhancer);
+            if (false) ;
+            let storeEnhancers = typeof enhancers === "function" ? enhancers(getDefaultEnhancers) : getDefaultEnhancers();
+            if (false) ;
+            if (false) ;
+            if (false) ;
+            const composedEnhancer = finalCompose(...storeEnhancers);
+            return createStore(rootReducer, preloadedState, composedEnhancer);
+        }
+        function executeReducerBuilderCallback(builderCallback) {
+            const actionsMap = {};
+            const actionMatchers = [];
+            let defaultCaseReducer;
+            const builder = {
+                addCase(typeOrActionCreator, reducer) {
+                    if (false) ;
+                    const type = typeof typeOrActionCreator === "string" ? typeOrActionCreator : typeOrActionCreator.type;
+                    if (!type) throw new Error(true ? redux_toolkit_modern_formatProdErrorMessage(28) : 0);
+                    if (type in actionsMap) throw new Error(true ? redux_toolkit_modern_formatProdErrorMessage(29) : 0);
+                    actionsMap[type] = reducer;
+                    return builder;
+                },
+                addMatcher(matcher, reducer) {
+                    if (false) ;
+                    actionMatchers.push({
+                        matcher,
+                        reducer
+                    });
+                    return builder;
+                },
+                addDefaultCase(reducer) {
+                    if (false) ;
+                    defaultCaseReducer = reducer;
+                    return builder;
+                }
+            };
+            builderCallback(builder);
+            return [ actionsMap, actionMatchers, defaultCaseReducer ];
+        }
+        function isStateFunction(x) {
+            return typeof x === "function";
+        }
+        function createReducer(initialState, mapOrBuilderCallback) {
+            if (false) ;
+            let [actionsMap, finalActionMatchers, finalDefaultCaseReducer] = executeReducerBuilderCallback(mapOrBuilderCallback);
+            let getInitialState;
+            if (isStateFunction(initialState)) getInitialState = () => freezeDraftable(initialState()); else {
+                const frozenInitialState = freezeDraftable(initialState);
+                getInitialState = () => frozenInitialState;
+            }
+            function reducer(state = getInitialState(), action) {
+                let caseReducers = [ actionsMap[action.type], ...finalActionMatchers.filter((({matcher}) => matcher(action))).map((({reducer: reducer2}) => reducer2)) ];
+                if (caseReducers.filter((cr => !!cr)).length === 0) caseReducers = [ finalDefaultCaseReducer ];
+                return caseReducers.reduce(((previousState, caseReducer) => {
+                    if (caseReducer) if (immer_isDraft(previousState)) {
+                        const draft = previousState;
+                        const result = caseReducer(draft, action);
+                        if (result === void 0) return previousState;
+                        return result;
+                    } else if (!isDraftable(previousState)) {
+                        const result = caseReducer(previousState, action);
+                        if (result === void 0) {
+                            if (previousState === null) return previousState;
+                            throw Error("A case reducer on a non-draftable value must not return undefined");
+                        }
+                        return result;
+                    } else return produce(previousState, (draft => caseReducer(draft, action)));
+                    return previousState;
+                }), state);
+            }
+            reducer.getInitialState = getInitialState;
+            return reducer;
+        }
+        var matches = (matcher, action) => {
+            if (hasMatchFunction(matcher)) return matcher.match(action); else return matcher(action);
+        };
+        function isAnyOf(...matchers) {
+            return action => matchers.some((matcher => matches(matcher, action)));
+        }
+        var urlAlphabet = "ModuleSymbhasOwnPr-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW";
+        var nanoid = (size = 21) => {
+            let id = "";
+            let i = size;
+            while (i--) id += urlAlphabet[Math.random() * 64 | 0];
+            return id;
+        };
+        var commonProperties = [ "name", "message", "stack", "code" ];
+        var RejectWithValue = class {
+            constructor(payload, meta) {
+                this.payload = payload;
+                this.meta = meta;
+            }
+            _type;
+        };
+        var FulfillWithMeta = class {
+            constructor(payload, meta) {
+                this.payload = payload;
+                this.meta = meta;
+            }
+            _type;
+        };
+        var miniSerializeError = value => {
+            if (typeof value === "object" && value !== null) {
+                const simpleError = {};
+                for (const property of commonProperties) if (typeof value[property] === "string") simpleError[property] = value[property];
+                return simpleError;
+            }
+            return {
+                message: String(value)
+            };
+        };
+        (() => {
+            function createAsyncThunk2(typePrefix, payloadCreator, options) {
+                const fulfilled = createAction(typePrefix + "/fulfilled", ((payload, requestId, arg, meta) => ({
+                    payload,
+                    meta: {
+                        ...meta || {},
+                        arg,
+                        requestId,
+                        requestStatus: "fulfilled"
+                    }
+                })));
+                const pending = createAction(typePrefix + "/pending", ((requestId, arg, meta) => ({
+                    payload: void 0,
+                    meta: {
+                        ...meta || {},
+                        arg,
+                        requestId,
+                        requestStatus: "pending"
+                    }
+                })));
+                const rejected = createAction(typePrefix + "/rejected", ((error, requestId, arg, payload, meta) => ({
+                    payload,
+                    error: (options && options.serializeError || miniSerializeError)(error || "Rejected"),
+                    meta: {
+                        ...meta || {},
+                        arg,
+                        requestId,
+                        rejectedWithValue: !!payload,
+                        requestStatus: "rejected",
+                        aborted: error?.name === "AbortError",
+                        condition: error?.name === "ConditionError"
+                    }
+                })));
+                function actionCreator(arg) {
+                    return (dispatch, getState, extra) => {
+                        const requestId = options?.idGenerator ? options.idGenerator(arg) : nanoid();
+                        const abortController = new AbortController;
+                        let abortHandler;
+                        let abortReason;
+                        function abort(reason) {
+                            abortReason = reason;
+                            abortController.abort();
+                        }
+                        const promise = async function() {
+                            let finalAction;
+                            try {
+                                let conditionResult = options?.condition?.(arg, {
+                                    getState,
+                                    extra
+                                });
+                                if (isThenable(conditionResult)) conditionResult = await conditionResult;
+                                if (conditionResult === false || abortController.signal.aborted) throw {
+                                    name: "ConditionError",
+                                    message: "Aborted due to condition callback returning false."
+                                };
+                                const abortedPromise = new Promise(((_, reject) => {
+                                    abortHandler = () => {
+                                        reject({
+                                            name: "AbortError",
+                                            message: abortReason || "Aborted"
+                                        });
+                                    };
+                                    abortController.signal.addEventListener("abort", abortHandler);
+                                }));
+                                dispatch(pending(requestId, arg, options?.getPendingMeta?.({
+                                    requestId,
+                                    arg
+                                }, {
+                                    getState,
+                                    extra
+                                })));
+                                finalAction = await Promise.race([ abortedPromise, Promise.resolve(payloadCreator(arg, {
+                                    dispatch,
+                                    getState,
+                                    extra,
+                                    requestId,
+                                    signal: abortController.signal,
+                                    abort,
+                                    rejectWithValue: (value, meta) => new RejectWithValue(value, meta),
+                                    fulfillWithValue: (value, meta) => new FulfillWithMeta(value, meta)
+                                })).then((result => {
+                                    if (result instanceof RejectWithValue) throw result;
+                                    if (result instanceof FulfillWithMeta) return fulfilled(result.payload, requestId, arg, result.meta);
+                                    return fulfilled(result, requestId, arg);
+                                })) ]);
+                            } catch (err) {
+                                finalAction = err instanceof RejectWithValue ? rejected(null, requestId, arg, err.payload, err.meta) : rejected(err, requestId, arg);
+                            } finally {
+                                if (abortHandler) abortController.signal.removeEventListener("abort", abortHandler);
+                            }
+                            const skipDispatch = options && !options.dispatchConditionRejection && rejected.match(finalAction) && finalAction.meta.condition;
+                            if (!skipDispatch) dispatch(finalAction);
+                            return finalAction;
+                        }();
+                        return Object.assign(promise, {
+                            abort,
+                            requestId,
+                            arg,
+                            unwrap() {
+                                return promise.then(unwrapResult);
+                            }
+                        });
+                    };
+                }
+                return Object.assign(actionCreator, {
+                    pending,
+                    rejected,
+                    fulfilled,
+                    settled: isAnyOf(rejected, fulfilled),
+                    typePrefix
+                });
+            }
+            createAsyncThunk2.withTypes = () => createAsyncThunk2;
+        })();
+        function unwrapResult(action) {
+            if (action.meta && action.meta.rejectedWithValue) throw action.payload;
+            if (action.error) throw action.error;
+            return action.payload;
+        }
+        function isThenable(value) {
+            return value !== null && typeof value === "object" && typeof value.then === "function";
+        }
+        var asyncThunkSymbol = Symbol.for("rtk-slice-createasyncthunk");
+        var ReducerType = (ReducerType2 => {
+            ReducerType2["reducer"] = "reducer";
+            ReducerType2["reducerWithPrepare"] = "reducerWithPrepare";
+            ReducerType2["asyncThunk"] = "asyncThunk";
+            return ReducerType2;
+        })(ReducerType || {});
+        function getType(slice, actionKey) {
+            return `${slice}/${actionKey}`;
+        }
+        function buildCreateSlice({creators} = {}) {
+            const cAT = creators?.asyncThunk?.[asyncThunkSymbol];
+            return function createSlice2(options) {
+                const {name, reducerPath = name} = options;
+                if (!name) throw new Error(true ? redux_toolkit_modern_formatProdErrorMessage(11) : 0);
+                if (typeof process !== "undefined" && "production" === "development") ;
+                const reducers = (typeof options.reducers === "function" ? options.reducers(buildReducerCreators()) : options.reducers) || {};
+                const reducerNames = Object.keys(reducers);
+                const context = {
+                    sliceCaseReducersByName: {},
+                    sliceCaseReducersByType: {},
+                    actionCreators: {},
+                    sliceMatchers: []
+                };
+                const contextMethods = {
+                    addCase(typeOrActionCreator, reducer2) {
+                        const type = typeof typeOrActionCreator === "string" ? typeOrActionCreator : typeOrActionCreator.type;
+                        if (!type) throw new Error(true ? redux_toolkit_modern_formatProdErrorMessage(12) : 0);
+                        if (type in context.sliceCaseReducersByType) throw new Error(true ? redux_toolkit_modern_formatProdErrorMessage(13) : 0);
+                        context.sliceCaseReducersByType[type] = reducer2;
+                        return contextMethods;
+                    },
+                    addMatcher(matcher, reducer2) {
+                        context.sliceMatchers.push({
+                            matcher,
+                            reducer: reducer2
+                        });
+                        return contextMethods;
+                    },
+                    exposeAction(name2, actionCreator) {
+                        context.actionCreators[name2] = actionCreator;
+                        return contextMethods;
+                    },
+                    exposeCaseReducer(name2, reducer2) {
+                        context.sliceCaseReducersByName[name2] = reducer2;
+                        return contextMethods;
+                    }
+                };
+                reducerNames.forEach((reducerName => {
+                    const reducerDefinition = reducers[reducerName];
+                    const reducerDetails = {
+                        reducerName,
+                        type: getType(name, reducerName),
+                        createNotation: typeof options.reducers === "function"
+                    };
+                    if (isAsyncThunkSliceReducerDefinition(reducerDefinition)) handleThunkCaseReducerDefinition(reducerDetails, reducerDefinition, contextMethods, cAT); else handleNormalReducerDefinition(reducerDetails, reducerDefinition, contextMethods);
+                }));
+                function buildReducer() {
+                    if (false) ;
+                    const [extraReducers = {}, actionMatchers = [], defaultCaseReducer = void 0] = typeof options.extraReducers === "function" ? executeReducerBuilderCallback(options.extraReducers) : [ options.extraReducers ];
+                    const finalCaseReducers = {
+                        ...extraReducers,
+                        ...context.sliceCaseReducersByType
+                    };
+                    return createReducer(options.initialState, (builder => {
+                        for (let key in finalCaseReducers) builder.addCase(key, finalCaseReducers[key]);
+                        for (let sM of context.sliceMatchers) builder.addMatcher(sM.matcher, sM.reducer);
+                        for (let m of actionMatchers) builder.addMatcher(m.matcher, m.reducer);
+                        if (defaultCaseReducer) builder.addDefaultCase(defaultCaseReducer);
+                    }));
+                }
+                const selectSelf = state => state;
+                const injectedSelectorCache = new Map;
+                let _reducer;
+                function reducer(state, action) {
+                    if (!_reducer) _reducer = buildReducer();
+                    return _reducer(state, action);
+                }
+                function getInitialState() {
+                    if (!_reducer) _reducer = buildReducer();
+                    return _reducer.getInitialState();
+                }
+                function makeSelectorProps(reducerPath2, injected = false) {
+                    function selectSlice(state) {
+                        let sliceState = state[reducerPath2];
+                        if (typeof sliceState === "undefined") if (injected) sliceState = getInitialState(); else if (false) ;
+                        return sliceState;
+                    }
+                    function getSelectors(selectState = selectSelf) {
+                        const selectorCache = getOrInsertComputed(injectedSelectorCache, injected, (() => new WeakMap));
+                        return getOrInsertComputed(selectorCache, selectState, (() => {
+                            const map = {};
+                            for (const [name2, selector] of Object.entries(options.selectors ?? {})) map[name2] = wrapSelector(selector, selectState, getInitialState, injected);
+                            return map;
+                        }));
+                    }
+                    return {
+                        reducerPath: reducerPath2,
+                        getSelectors,
+                        get selectors() {
+                            return getSelectors(selectSlice);
+                        },
+                        selectSlice
+                    };
+                }
+                const slice = {
+                    name,
+                    reducer,
+                    actions: context.actionCreators,
+                    caseReducers: context.sliceCaseReducersByName,
+                    getInitialState,
+                    ...makeSelectorProps(reducerPath),
+                    injectInto(injectable, {reducerPath: pathOpt, ...config} = {}) {
+                        const newReducerPath = pathOpt ?? reducerPath;
+                        injectable.inject({
+                            reducerPath: newReducerPath,
+                            reducer
+                        }, config);
+                        return {
+                            ...slice,
+                            ...makeSelectorProps(newReducerPath, true)
+                        };
+                    }
+                };
+                return slice;
+            };
+        }
+        function wrapSelector(selector, selectState, getInitialState, injected) {
+            function wrapper(rootState, ...args) {
+                let sliceState = selectState(rootState);
+                if (typeof sliceState === "undefined") if (injected) sliceState = getInitialState(); else if (false) ;
+                return selector(sliceState, ...args);
+            }
+            wrapper.unwrapped = selector;
+            return wrapper;
+        }
+        var createSlice = buildCreateSlice();
+        function buildReducerCreators() {
+            function asyncThunk(payloadCreator, config) {
+                return {
+                    _reducerDefinitionType: "asyncThunk",
+                    payloadCreator,
+                    ...config
+                };
+            }
+            asyncThunk.withTypes = () => asyncThunk;
+            return {
+                reducer(caseReducer) {
+                    return Object.assign({
+                        [caseReducer.name](...args) {
+                            return caseReducer(...args);
+                        }
+                    }[caseReducer.name], {
+                        _reducerDefinitionType: "reducer"
+                    });
+                },
+                preparedReducer(prepare, reducer) {
+                    return {
+                        _reducerDefinitionType: "reducerWithPrepare",
+                        prepare,
+                        reducer
+                    };
+                },
+                asyncThunk
+            };
+        }
+        function handleNormalReducerDefinition({type, reducerName, createNotation}, maybeReducerWithPrepare, context) {
+            let caseReducer;
+            let prepareCallback;
+            if ("reducer" in maybeReducerWithPrepare) {
+                if (createNotation && !isCaseReducerWithPrepareDefinition(maybeReducerWithPrepare)) throw new Error(true ? redux_toolkit_modern_formatProdErrorMessage(17) : 0);
+                caseReducer = maybeReducerWithPrepare.reducer;
+                prepareCallback = maybeReducerWithPrepare.prepare;
+            } else caseReducer = maybeReducerWithPrepare;
+            context.addCase(type, caseReducer).exposeCaseReducer(reducerName, caseReducer).exposeAction(reducerName, prepareCallback ? createAction(type, prepareCallback) : createAction(type));
+        }
+        function isAsyncThunkSliceReducerDefinition(reducerDefinition) {
+            return reducerDefinition._reducerDefinitionType === "asyncThunk";
+        }
+        function isCaseReducerWithPrepareDefinition(reducerDefinition) {
+            return reducerDefinition._reducerDefinitionType === "reducerWithPrepare";
+        }
+        function handleThunkCaseReducerDefinition({type, reducerName}, reducerDefinition, context, cAT) {
+            if (!cAT) throw new Error(true ? redux_toolkit_modern_formatProdErrorMessage(18) : 0);
+            const {payloadCreator, fulfilled, pending, rejected, settled, options} = reducerDefinition;
+            const thunk = cAT(type, payloadCreator, options);
+            context.exposeAction(reducerName, thunk);
+            if (fulfilled) context.addCase(thunk.fulfilled, fulfilled);
+            if (pending) context.addCase(thunk.pending, pending);
+            if (rejected) context.addCase(thunk.rejected, rejected);
+            if (settled) context.addMatcher(thunk.settled, settled);
+            context.exposeCaseReducer(reducerName, {
+                fulfilled: fulfilled || noop,
+                pending: pending || noop,
+                rejected: rejected || noop,
+                settled: settled || noop
+            });
+        }
+        function noop() {}
+        null && isDraft3;
+        var assertFunction = (func, expected) => {
+            if (typeof func !== "function") throw new TypeError(true ? redux_toolkit_modern_formatProdErrorMessage(32) : 0);
+        };
+        var {assign: redux_toolkit_modern_assign} = Object;
+        var alm = "listenerMiddleware";
+        var getListenerEntryPropsFrom = options => {
+            let {type, actionCreator, matcher, predicate, effect} = options;
+            if (type) predicate = createAction(type).match; else if (actionCreator) {
+                type = actionCreator.type;
+                predicate = actionCreator.match;
+            } else if (matcher) predicate = matcher; else if (predicate) ; else throw new Error(true ? redux_toolkit_modern_formatProdErrorMessage(21) : 0);
+            assertFunction(effect, "options.listener");
+            return {
+                predicate,
+                type,
+                effect
+            };
+        };
+        var createListenerEntry = redux_toolkit_modern_assign((options => {
+            const {type, predicate, effect} = getListenerEntryPropsFrom(options);
+            const entry = {
+                id: nanoid(),
+                effect,
+                type,
+                predicate,
+                pending: new Set,
+                unsubscribe: () => {
+                    throw new Error(true ? redux_toolkit_modern_formatProdErrorMessage(22) : 0);
+                }
+            };
+            return entry;
+        }), {
+            withTypes: () => createListenerEntry
+        });
+        var addListener = redux_toolkit_modern_assign(createAction(`${alm}/add`), {
+            withTypes: () => addListener
+        });
+        null && createAction(`${alm}/removeAll`);
+        var removeListener = redux_toolkit_modern_assign(createAction(`${alm}/remove`), {
+            withTypes: () => removeListener
+        });
+        Symbol.for("rtk-state-proxy-original");
+        new WeakMap;
+        function redux_toolkit_modern_formatProdErrorMessage(code) {
+            return `Minified Redux Toolkit error #${code}; visit https://redux-toolkit.js.org/Errors?code=${code} for the full message or use the non-minified dev environment for full errors. `;
+        }
+        const initialState = {
+            username: null,
+            admin: false
+        };
+        const userSlice = createSlice({
+            name: "user",
+            initialState,
+            reducers: {
+                initUser: (state, action) => {
+                    state.username = action.payload.username, state.admin = action.payload.admin;
+                },
+                logoutUser: state => {
+                    state.username = null, state.admin = false;
+                }
+            }
+        });
+        const {initUser, logoutUser} = userSlice.actions;
+        const user_userSlice = userSlice.reducer;
         function useToken_slicedToArray(r, e) {
             return useToken_arrayWithHoles(r) || useToken_iterableToArrayLimit(r, e) || useToken_unsupportedIterableToArray(r, e) || useToken_nonIterableRest();
         }
@@ -12080,26 +13758,41 @@
             if (Array.isArray(r)) return r;
         }
         function useToken() {
+            var dispatch = useDispatch();
+            var _useState = (0, react.useState)(getToken()), _useState2 = useToken_slicedToArray(_useState, 2), token = _useState2[0], setToken = _useState2[1];
             function getToken() {
                 var name = "token=";
                 var decodedCookie = decodeURIComponent(document.cookie);
                 var cookieArray = decodedCookie.split(";");
                 for (var i = 0; i < cookieArray.length; i++) {
                     var cookie = cookieArray[i].trim();
-                    if (cookie.indexOf(name) === 0) return cookie.substring(name.length, cookie.length);
+                    if (cookie.indexOf(name) === 0) {
+                        var _token = cookie.substring(name.length, cookie.length);
+                        var decodedToken = jwtDecode(_token);
+                        dispatch(initUser({
+                            username: decodedToken.sub.username,
+                            admin: decodedToken.sub.admin
+                        }));
+                        return _token;
+                    }
                 }
                 return null;
             }
-            var _useState = (0, react.useState)(getToken()), _useState2 = useToken_slicedToArray(_useState, 2), token = _useState2[0], setToken = _useState2[1];
             function saveToken(userToken) {
                 var d = new Date;
                 d.setTime(d.getTime() + 7 * 24 * 60 * 60 * 1e3);
                 var expires = "expires=" + d.toUTCString();
+                var decodedToken = jwtDecode(userToken);
+                dispatch(initUser({
+                    username: decodedToken.sub.username,
+                    admin: decodedToken.sub.admin
+                }));
                 document.cookie = "token=".concat(userToken, ";").concat(expires, ";path=/");
                 setToken(userToken);
             }
             function removeToken() {
                 document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                dispatch(logoutUser());
                 setToken(null);
             }
             return {
@@ -12416,24 +14109,27 @@
             var _useState = (0, react.useState)(0), _useState2 = Cart_slicedToArray(_useState, 2), balance = _useState2[0], setBalance = _useState2[1];
             var _useFetch = (0, useFetch.A)(props.token, props.setToken), error = (_useFetch.data, 
             _useFetch.error), isPending = _useFetch.isPending, fetchData = _useFetch.fetchData;
+            var tip = useSelector((function(state) {
+                return state.tip.value;
+            }));
             (0, react.useEffect)((function() {
                 fetchData("/balance", "GET", {
                     doOnSuccess: function doOnSuccess(data) {
                         return setBalance(data.balance);
-                    },
-                    doOnError: function doOnError() {}
+                    }
                 });
             }), [ balance ]);
             var handleOrder = function handleOrder() {
+                var orderPrice;
+                if (tip) orderPrice = (totalPrice + .5).toFixed(2); else orderPrice = totalPrice.toFixed(2);
                 fetchData("/cart/order", "POST", {
                     body: {
                         cart,
-                        totalPrice: totalPrice.toFixed(2)
+                        totalPrice: orderPrice
                     },
                     doOnSuccess: function doOnSuccess(data) {
                         alert(data.message);
                         clearCart();
-                        setBalance(0);
                     }
                 });
             };
@@ -12649,6 +14345,23 @@
         var react_collapsible_dist = __webpack_require__(614);
         var dist_default = __webpack_require__.n(react_collapsible_dist);
         var NumberInput = __webpack_require__(363);
+        const tipSlice_initialState = {
+            value: false
+        };
+        const tipSlice = createSlice({
+            name: "tip",
+            initialState: tipSlice_initialState,
+            reducers: {
+                initTip: (state, action) => {
+                    state.value = action.payload;
+                },
+                switchTip: state => {
+                    state.value = !state.value;
+                }
+            }
+        });
+        const {switchTip, initTip} = tipSlice.actions;
+        const Tip_tipSlice = tipSlice.reducer;
         function OrdersOverview_typeof(o) {
             "@babel/helpers - typeof";
             return OrdersOverview_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o) {
@@ -12744,11 +14457,17 @@
         }
         var OrdersOverview = function OrdersOverview(_ref) {
             var token = _ref.token, setToken = _ref.setToken;
-            var _useState = (0, react.useState)([]), _useState2 = OrdersOverview_slicedToArray(_useState, 2), orders = _useState2[0], setOrders = _useState2[1];
-            var _useState3 = (0, react.useState)(false), _useState4 = OrdersOverview_slicedToArray(_useState3, 2), withTip = _useState4[0], setTip = _useState4[1];
-            var _useState5 = (0, react.useState)(0), _useState6 = OrdersOverview_slicedToArray(_useState5, 2), totalPrice = _useState6[0], setTotalPrice = _useState6[1];
+            var dispatch = useDispatch();
+            var tip = useSelector((function(state) {
+                return state.tip.value;
+            }));
             var _useFetch = (0, useFetch.A)(token, setToken), data = _useFetch.data, error = _useFetch.error, fetchData = (_useFetch.isPending, 
             _useFetch.fetchData);
+            var _useState = (0, react.useState)([]), _useState2 = OrdersOverview_slicedToArray(_useState, 2), orders = _useState2[0], setOrders = _useState2[1];
+            var _useState3 = (0, react.useState)(0), _useState4 = OrdersOverview_slicedToArray(_useState3, 2), totalPrice = _useState4[0], setTotalPrice = _useState4[1];
+            var _useState5 = (0, react.useState)(0), _useState6 = OrdersOverview_slicedToArray(_useState5, 2), totalPriceWithTip = _useState6[0], setTotalPriceWithTip = _useState6[1];
+            var _useState7 = (0, react.useState)(false), _useState8 = OrdersOverview_slicedToArray(_useState7, 2), openState = _useState8[0], setOpenState = _useState8[1];
+            var _useState9 = (0, react.useState)(""), _useState10 = OrdersOverview_slicedToArray(_useState9, 2), buttonText = _useState10[0], setButtonText = _useState10[1];
             var todaysDate = (new Date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -12762,12 +14481,13 @@
                 });
                 fetchData("/tip", "GET", {
                     doOnSuccess: function doOnSuccess(data) {
-                        return setTip(data);
+                        return dispatch(initTip(data));
                     }
                 });
             }), []);
             (0, react.useEffect)((function() {
                 var calculatedTotalPrice = 0;
+                var calculatedTotalPriceWithTip = 0;
                 orders.forEach((function(order) {
                     if (todaysDate === order.date) {
                         order.cart.forEach((function(item) {
@@ -12780,14 +14500,19 @@
                                 price = priceObject[selectedSize];
                             } else price = parseFloat(item.price);
                             calculatedTotalPrice += price * item.quantity;
+                            calculatedTotalPriceWithTip += price * item.quantity;
                         }));
-                        if (withTip) calculatedTotalPrice += .5;
+                        if (tip) calculatedTotalPriceWithTip += .5;
                     }
                 }));
                 setTotalPrice(calculatedTotalPrice);
+                setTotalPriceWithTip(calculatedTotalPriceWithTip);
             }), [ orders ]);
+            (0, react.useEffect)((function() {
+                if (buttonText === "anzeigen") setButtonText("schließen"); else setButtonText("anzeigen");
+            }), [ openState ]);
             var handleCheckState = function handleCheckState() {
-                if (!withTip) setOrders(orders.map((function(order) {
+                if (!tip) setOrders(orders.map((function(order) {
                     if (todaysDate === order.date) return OrdersOverview_objectSpread(OrdersOverview_objectSpread({}, order), {}, {
                         user: OrdersOverview_objectSpread(OrdersOverview_objectSpread({}, order.user), {}, {
                             balance: (parseFloat(order.user.balance) - .5).toFixed(2)
@@ -12802,21 +14527,30 @@
                     });
                     return order;
                 })));
-                setTip(!withTip);
+                dispatch(switchTip());
                 fetchData("/tip", "POST", {
                     body: {
-                        withTip: !withTip
+                        tip: !tip
                     }
                 });
             };
             return react.createElement("div", {
                 className: "page__orders orders"
-            }, error && react.createElement("div", null, error), data && react.createElement(react.Fragment, null, react.createElement("div", {
+            }, error && react.createElement("p", null, error), orders.length > 0 && react.createElement(react.Fragment, null, react.createElement("div", {
                 className: "orders__container"
+            }, react.createElement("button", {
+                className: "orders__button",
+                onClick: function onClick() {
+                    return setOpenState(!openState);
+                }
+            }, "Alle Bestellungen ", buttonText), react.createElement("div", {
+                className: "orders__items"
             }, orders.map((function(order) {
                 return react.createElement(dist_default(), {
                     trigger: order.user.username,
-                    key: order.user.username
+                    key: order.user.username,
+                    open: openState,
+                    handleTriggerClick: function handleTriggerClick() {}
                 }, react.createElement("div", {
                     className: "Collapsible__body"
                 }, react.createElement("div", {
@@ -12866,21 +14600,25 @@
                         isDisabled: true
                     }));
                 })))));
-            }))), react.createElement("div", {
+            })))), react.createElement("div", {
                 className: "orders__box"
             }, react.createElement("div", {
+                className: "orders__prices"
+            }, react.createElement("div", {
                 className: "orders__total"
-            }, "Gesamtsumme : ", totalPrice.toFixed(2)), react.createElement("div", {
-                className: "orders__"
-            }, react.createElement("input", {
+            }, "Gesamtsumme : ", totalPrice.toFixed(2)), tip && react.createElement("div", {
+                className: "orders__totalWithTip"
+            }, "mit Trinkgeld : ", totalPriceWithTip.toFixed(2))), react.createElement("div", {
+                className: "orders__tip"
+            }, react.createElement("label", {
+                htmlFor: "tip"
+            }, "Trinkgeld"), react.createElement("input", {
                 type: "checkbox",
                 id: "tip",
-                checked: withTip,
+                checked: tip,
                 className: "orders__checkbox",
                 onChange: handleCheckState
-            }), react.createElement("label", {
-                htmlFor: "tip"
-            }, "Trinkgeld")))));
+            })))), orders.length < 1 && Array.isArray(data) && react.createElement("p", null, "Es gibt keine Bestellung für heute"));
         };
         const orders_OrdersOverview = OrdersOverview;
         var AppContent = function AppContent() {
@@ -12948,7 +14686,15 @@
             return react.createElement(BrowserRouter, null, react.createElement(AppContent, null));
         };
         const components_App = App;
+        const store = configureStore({
+            reducer: {
+                tip: Tip_tipSlice,
+                user: user_userSlice
+            }
+        });
         var root = document.querySelector("#root") ? document.querySelector("#root") : document.querySelector(".wrapper");
-        client.createRoot(root).render(react.createElement(components_App, null));
+        client.createRoot(root).render(react.createElement(Provider_default, {
+            store
+        }, react.createElement(components_App, null)));
     })();
 })();
