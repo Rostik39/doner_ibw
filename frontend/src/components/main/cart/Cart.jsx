@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { CartContext } from "./CartProvider"
 import OptionsDropdown from "../../default/OptionsDropdown";
 import CustomCheckBox from "../../default/CustomCheckBox";
@@ -7,36 +6,42 @@ import useFetch from "../../../functions/useFetch";
 import Loading from "../../default/Loading";
 import Quantity from "../../default/Quantity";
 import DeleteButton from "../../default/DeleteButton";
+import { useSelector } from 'react-redux';
 
 
 const Cart = (props) => {
     const { cart, totalPrice, clearCart } = useContext(CartContext);
     const [balance, setBalance] = useState(0);
     const {data, error, isPending, fetchData} = useFetch(props.token, props.setToken);
+    const tip = useSelector((state) => state.tip.value);
 
     useEffect(() => {
         fetchData("/balance", 
             "GET", 
             {
-                doOnSuccess: (data) => setBalance(data.balance),
-                doOnError: () => {}
+                doOnSuccess: (data) => setBalance(data.balance)
             }
         )
     }, [balance])
 
     const handleOrder = () => {
+        let orderPrice;
+        if (tip) {
+            orderPrice = (totalPrice + 0.5).toFixed(2)
+        } else {
+            orderPrice = totalPrice.toFixed(2)
+        }
         fetchData(
             "/cart/order", 
             "POST",        
             {
                 body: {
                     cart: cart,
-                    totalPrice: totalPrice.toFixed(2)
+                    totalPrice: orderPrice
                 }, 
                 doOnSuccess: (data) => {
                     alert(data.message);
                     clearCart();
-                    setBalance(0);
                 }
             }
         );

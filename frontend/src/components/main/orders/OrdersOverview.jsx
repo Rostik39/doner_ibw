@@ -6,20 +6,24 @@ import CustomCheckBox from '../../default/CustomCheckBox';
 import OptionsDropdown from '../../default/OptionsDropdown';
 import Quantity from '../../default/Quantity';
 import NumberInput from '../../default/NumberInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { initTip, switchTip } from '../../../state/Tip/tipSlice';
 
 
 const OrdersOverview = ({ token, setToken }) => {
-    const [orders, setOrders] = useState([]);
-    const [withTip, setTip] = useState(false);
-    const [totalPrice, setTotalPrice] = useState(0);
+    const dispatch = useDispatch();
+    const tip = useSelector((state) => state.tip.value);
     const { data, error, isPending, fetchData } = useFetch(token, setToken);
+    const [orders, setOrders] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [totalPriceWithTip, setTotalPriceWithTip] = useState(0);
+    const [openState, setOpenState] = useState(false);
+    const [buttonText, setButtonText] = useState('');
     const todaysDate = new Date().toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: '2-digit'
     });
-    const [openState, setOpenState] = useState(false);
-    const [buttonText, setButtonText] = useState('');
 
 
     useEffect(() => {
@@ -29,7 +33,7 @@ const OrdersOverview = ({ token, setToken }) => {
         )
         fetchData("/tip",
             'GET',
-            { doOnSuccess: (data) => setTip(data) }
+            { doOnSuccess: (data) => dispatch(initTip(data)) }
         )
     }, [])
 
@@ -37,12 +41,13 @@ const OrdersOverview = ({ token, setToken }) => {
     //* calculate total price 
     useEffect(() => {
         let calculatedTotalPrice = 0;
+        let calculatedTotalPriceWithTip = 0;
 
         orders.forEach(order => {
-            if (todaysDate === order.date){
+            if (todaysDate === order.date) {
                 order.cart.forEach(item => {
                     let price;
-                    
+
                     // Check if the price is an array and find the price by selected size
                     if (Array.isArray(item.price)) {
                         let selectedSize = item.selected_size;
@@ -51,29 +56,39 @@ const OrdersOverview = ({ token, setToken }) => {
                     } else {
                         price = parseFloat(item.price);
                     }
-                    
+
                     // Calculate the total price for the item (price * quantity)
                     calculatedTotalPrice += price * item.quantity;
+                    calculatedTotalPriceWithTip += price * item.quantity;
                 });
-                if(withTip){
-                    calculatedTotalPrice += 0.5
+                if (tip) {
+                    calculatedTotalPriceWithTip += 0.5
                 }
             }
         });
-        
+
         setTotalPrice(calculatedTotalPrice)
+        setTotalPriceWithTip(calculatedTotalPriceWithTip)
+
     }, [orders]);
 
+    useEffect(() => {
+        if (buttonText === "anzeigen") {
+            setButtonText("schließen")
+        } else {
+            setButtonText("anzeigen")
+        }
+    }, [openState]);
 
     const handleCheckState = () => {
-        if (!withTip) {
+        if (!tip) {
             setOrders(
                 orders.map(order => {
                     if (todaysDate === order.date) {
                         return {
-                            ...order, 
+                            ...order,
                             user: {
-                                ...order.user, 
+                                ...order.user,
                                 balance: (parseFloat(order.user.balance) - 0.5).toFixed(2)
                             }
                         };
@@ -86,9 +101,9 @@ const OrdersOverview = ({ token, setToken }) => {
                 orders.map(order => {
                     if (todaysDate === order.date) {
                         return {
-                            ...order, 
+                            ...order,
                             user: {
-                                ...order.user, 
+                                ...order.user,
                                 balance: (parseFloat(order.user.balance) + 0.5).toFixed(2)
                             }
                         };
@@ -98,50 +113,35 @@ const OrdersOverview = ({ token, setToken }) => {
             );
         }
 
-        setTip(!withTip);
+        dispatch(switchTip())
         fetchData("/tip", "POST", {
             body: {
-                withTip: !withTip
+                tip: !tip
             }
         })
-    }
-
-    useEffect(() => {
-        if (buttonText === "anzeigen") {
-            setButtonText("schließen")
-        } else {
-            setButtonText("anzeigen")
-        }
-    }, [openState]);
-
-    const handleCollapseAll = () => {
-        setOpenState(!openState);
     }
 
 
     return (
         <div className="page__orders orders">
-            {isPending &&
-                <Loading />
-            }
             {error &&
-                <div>{error}</div>
+                <p>{error}</p>
             }
-            {data &&
+            {orders.length > 0 &&
                 <>
                     <div className="orders__container">
-                        <button className="orders__button" onClick={handleCollapseAll}>Alle Bestellungen {buttonText}</button>
+                        <button className="orders__button" onClick={() => setOpenState(!openState)}>Alle Bestellungen {buttonText}</button>
                         <div className="orders__items">
-                            {orders.map((order, index) =>
-                                <Collapsible trigger={order.user.username} key={order.user.username} open={openState} handleTriggerClick={() => {}}>
+                            {orders.map((order) =>
+                                <Collapsible trigger={order.user.username} key={order.user.username} open={openState} handleTriggerClick={() => { }}>
                                     <div className="Collapsible__body">
                                         <div className="Collapsible__balance balance">
                                             <div className="balance__text">Guthaben : </div>
-                                            <NumberInput 
-                                                className={"balance"} 
-                                                initValue={order.user.balance} 
-                                                username={order.user.username} 
-                                                token={token} 
+                                            <NumberInput
+                                                className={"balance"}
+                                                initValue={order.user.balance}
+                                                username={order.user.username}
+                                                token={token}
                                                 setToken={setToken}
                                                 updateBalance={setOrders}
                                                 orders={orders}
@@ -175,20 +175,24 @@ const OrdersOverview = ({ token, setToken }) => {
                         </div>
                     </div>
                     <div className="orders__box">
-                        <div className="orders__total">Gesamtsumme : {totalPrice.toFixed(2)}</div>
+                        <div className="orders__prices">
+                            <div className="orders__total">Gesamtsumme : {totalPrice.toFixed(2)}</div>
+                            {tip && <div className="orders__totalWithTip">mit Trinkgeld : {totalPriceWithTip.toFixed(2)}</div>}
+                        </div>
                         <div className="orders__tip">
-                            <input 
+                            <label htmlFor="tip">Trinkgeld</label>
+                            <input
                                 type="checkbox"
                                 id="tip"
-                                checked={withTip}
-                                className='orders__checkbox' 
+                                checked={tip}
+                                className='orders__checkbox'
                                 onChange={handleCheckState}
                             />
-                            <label htmlFor="tip">Trinkgeld</label>
                         </div>
                     </div>
                 </>
             }
+            {orders.length < 1 && Array.isArray(data) && <p>Es gibt keine Bestellung für heute</p>}
         </div>
     );
 }
