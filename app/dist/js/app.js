@@ -212,7 +212,7 @@
                     var abortCont = new AbortController;
                     setIsPending(true);
                     setError(null);
-                    fetch("http://192.168.10.38:5050/api" + endOfUrl, {
+                    fetch("http://192.168.10.38/api" + endOfUrl, {
                         method,
                         headers: {
                             Authorization: token ? "Bearer ".concat(token) : null,
