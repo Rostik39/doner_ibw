@@ -1,17 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useContext } from 'react';
-import Cart from "../../img/box.svg";
 import { CartContext } from "../main/cart/CartProvider";
 import useFetch from "../../functions/useFetch";
+import { useSelector } from "react-redux";
 
 // images
+import Cart from "../../img/box.svg";
 import Logo from "../../img/ibw_logo.svg";
 
 
 const Header = (props) => {
     const navigate = useNavigate();
     const {cartCounter} = useContext(CartContext);
-    const {data, error, isPending, fetchData} = useFetch();
+    const { fetchData } = useFetch();
+    const isAdmin = useSelector((state) => state.user.admin);
 
     const handleLogout = () => {
         fetchData("/logout",
@@ -37,7 +39,7 @@ const Header = (props) => {
                     <nav className="menu__body">
                         <ul className="menu__list">
                             <li className="menu__item"><Link to="/menu" className="menu__link">Speisekarte</Link></li>
-                            <li className="menu__item"><Link to="/orders-overview" className="menu__link">Gesamtbestellung</Link></li>
+                            {isAdmin && <li className="menu__item"><Link to="/orders-overview" className="menu__link">Gesamtbestellung</Link></li>}
                         </ul>
                     </nav>
                 </div>
