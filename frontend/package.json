@@ -91,12 +91,15 @@
 		"webpack-stream": "latest"
 	},
 	"dependencies": {
+		"@reduxjs/toolkit": "^2.5.1",
 		"ajv": "^8.17.1",
 		"gulp-cheerio": "^1.0.0",
 		"isotope-layout": "^3.0.6",
+		"jwt-decode": "^4.0.0",
 		"react": "^18.2.0",
 		"react-collapsible": "^2.10.0",
 		"react-dom": "^18.2.0",
+		"react-redux": "^9.2.0",
 		"react-router-dom": "^6.26.1",
 		"react-sticky-el": "^2.1.1",
 		"react-type-animation": "^3.2.0",
