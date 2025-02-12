@@ -41,6 +41,6 @@
 
     &__button {
         color: #ffffff;
-        @include buttonDefault($color: $skyBlue, $secondColor: $blue);
+        @include buttonDefault($color: $blue, $secondColor: $skyBlue);
     }
 }

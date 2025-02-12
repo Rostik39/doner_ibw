@@ -1,4 +1,10 @@
 .orders {
+    &:has(p) {
+        margin: auto 0;
+        text-align: center;
+        @include adaptiveValue("font-size", 40, 20);
+    }
+
     &__container {
         display: flex;
         flex-direction: column;
@@ -19,28 +25,40 @@
 
     &__button {
         color: #fff;
-        @include buttonDefault($color: $skyBlue, $secondColor: $blue);
+        @include buttonDefault($color: $blue, $secondColor: $skyBlue);
     }
 
     &__box {
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        gap: toRem(10);
+        gap: toRem(15);
         position: fixed;
         bottom: toRem(10);
         padding: 0.9375rem;
         border: solid 0.125rem #00b4d8;
         border-radius: 0.25rem;
         box-shadow: 5px 5px 0px 0px #90e0ef;
+        z-index: 50;
+        background-color: #fff;
         @include adaptiveValue("right", 300, 4);
     }
 
-    &__total {
+    &__prices {
+        :not(:last-child) {
+            margin-bottom: toRem(10);
+        }
+    }
+
+    &__total {}
+
+    &__totalWithTip {
+        text-align: right;
     }
 
     &__checkbox {
         width: auto;
-        margin-right: toRem(5);
+        margin-left: toRem(5);
     }
 }
 
