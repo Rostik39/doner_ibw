@@ -17,7 +17,7 @@ def signIn():
 
     if user is None or not user.verify_password(password):
         return jsonify({"error": "Invalid username or password"}), 401
-    access_token = create_access_token(identity=username)
+    access_token = create_access_token(identity={"username": username, "admin": user.admin})
 
     return jsonify({"message": "Login successful", "token": access_token}), 200
 

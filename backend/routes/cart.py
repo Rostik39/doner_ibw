@@ -23,9 +23,9 @@ def refresh_expiring_jwts(response):
 @cart.route("/api/cart/order", methods=["POST"])
 @jwt_required()
 def make_an_order():
-    username = get_jwt_identity()
+    identity = get_jwt_identity()
 
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=identity["username"]).first()
     if not user:
         return jsonify({"error": "User not found"}), 404
 
@@ -98,9 +98,9 @@ def make_an_order():
 @cart.route("/api/balance", methods=["GET"])
 @jwt_required() 
 def get_balance():
-    username = get_jwt_identity()
+    identity = get_jwt_identity()
     
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=identity["username"]).first()
     
     if user:
         return jsonify({"balance": str(user.balance)}), 200
